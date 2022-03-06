@@ -10,4 +10,7 @@ const Notifications = () => {
 
 export default Notifications;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  background-color: #0d1117;
+  width: 100%;
+`;
