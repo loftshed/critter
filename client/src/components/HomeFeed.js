@@ -4,6 +4,7 @@ const HomeFeed = () => {
   return (
     <>
       <Wrapper>HomeFeed</Wrapper>
+      <Wrapper>Scooby doo</Wrapper>
     </>
   );
 };
