@@ -9,18 +9,21 @@ import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 
 const App = () => {
-  const { currentUser, setCurrentUser, status, setStatus } =
-    useContext(CurrentUserContext);
-
-  const receiveCurrentUserFromServer = (data) => {
-    console.log(data);
-  };
+  const {
+    currentUser,
+    setCurrentUser,
+    status,
+    setStatus,
+    receiveCurrentUserFromServer,
+  } = useContext(CurrentUserContext);
 
   useEffect(() => {
-    console.log("useEffect useEffectin'");
+    console.log("Fetching user profile from server");
     fetch("/api/me/profile")
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        receiveCurrentUserFromServer(data);
+      });
   }, []);
 
   return (

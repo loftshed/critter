@@ -15,8 +15,6 @@ const {
 } = require("./routes.helpers.js");
 
 router.get("/api/me/profile", (req, res) => {
-  console.log("/api/me/profile loaded");
-  console.log(req);
   const profile = getUserProfile(CURRENT_USER_HANDLE);
 
   return simulateProblems(res, { profile });
