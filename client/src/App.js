@@ -5,11 +5,13 @@ import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
   return (
-    <>
-      <Router>
+    <Router>
+      <div style={{ display: "flex" }}>
+        <Sidebar />
         <Switch>
           <Route exact path="/">
             <HomeFeed />
@@ -27,8 +29,8 @@ const App = () => {
             <Profile />
           </Route>
         </Switch>
-      </Router>
-    </>
+      </div>
+    </Router>
   );
 };
 

@@ -23,6 +23,8 @@ export default Sidebar;
 const Navigation = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Wrapper = styled.div`
