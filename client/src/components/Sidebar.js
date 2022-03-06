@@ -55,7 +55,7 @@ const Wrapper = styled.div`
   padding: 1rem;
   width: 40vw;
   height: 100vh;
-  background-color: #30363d;
+  background-color: ${COLORS.darkSidebar};
 `;
 
 const NavigationLink = styled(NavLink)`

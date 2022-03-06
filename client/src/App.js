@@ -9,13 +9,8 @@ import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 
 const App = () => {
-  const {
-    currentUser,
-    setCurrentUser,
-    status,
-    setStatus,
-    receiveCurrentUserFromServer,
-  } = useContext(CurrentUserContext);
+  const { currentUser, status, setStatus, receiveCurrentUserFromServer } =
+    useContext(CurrentUserContext);
 
   useEffect(() => {
     console.log("Fetching user profile from server");
@@ -46,7 +41,7 @@ const App = () => {
               <TweetDetails />
             </Route>
             <Route exact path="/:profileId">
-              <Profile />
+              {currentUser !== null && <Profile />}
             </Route>
           </Switch>
         </div>

@@ -7,8 +7,7 @@ export const CurrentUserProvider = ({ children }) => {
   const [status, setStatus] = useState("loading");
 
   const receiveCurrentUserFromServer = (data) => {
-    const userProfile = data;
-    console.log(data);
+    setCurrentUser({ ...data });
   };
 
   return (
