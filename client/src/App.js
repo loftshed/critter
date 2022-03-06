@@ -18,9 +18,11 @@ const App = () => {
 
   useEffect(() => {
     console.log("useEffect useEffectin'");
-    fetch("/me/profile")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    fetch("/api/me/profile")
+      .then((res) => res.text())
+      .then((text) => console.log(text));
+    // .then((res) => res.json())
+    // .then((data) => console.log(data));
   }, []);
 
   return (
