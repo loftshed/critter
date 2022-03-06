@@ -14,17 +14,17 @@ const App = () => {
           <Route exact path="/">
             <HomeFeed />
           </Route>
-          <Route exact path="/:profileId">
-            <Profile />
-          </Route>
-          <Route path="/tweet/:tweetId">
-            <TweetDetails />
-          </Route>
           <Route exact path="/notifications/">
             <Notifications />
           </Route>
           <Route exact path="/bookmarks/">
             <Bookmarks />
+          </Route>
+          <Route path="/tweet/:tweetId">
+            <TweetDetails />
+          </Route>
+          <Route exact path="/:profileId">
+            <Profile />
           </Route>
         </Switch>
       </Router>

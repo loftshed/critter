@@ -1,10 +1,13 @@
 import React from "react";
+import Sidebar from "./Sidebar";
 import styled from "styled-components";
 const HomeFeed = () => {
   return (
     <>
-      <Wrapper>HomeFeed</Wrapper>
-      <Wrapper>Scooby doo</Wrapper>
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        <Wrapper>HomeFeed</Wrapper>
+      </div>
     </>
   );
 };
