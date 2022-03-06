@@ -34,6 +34,13 @@ const Sidebar = () => {
 
 export default Sidebar;
 
+const Wrapper = styled.div`
+  padding: 1rem;
+  width: fit-content;
+  height: 100vh;
+  background-color: ${COLORS.darkSidebarBg};
+`;
+
 const StyledLogo = styled(Logo)`
   width: 5rem;
 `;
@@ -49,13 +56,6 @@ const Navigation = styled.div`
   font-size: 24px;
   font-weight: 700;
   gap: 10px;
-`;
-
-const Wrapper = styled.div`
-  padding: 1rem;
-  width: 40vw;
-  height: 100vh;
-  background-color: ${COLORS.darkSidebarBg};
 `;
 
 const NavigationLink = styled(NavLink)`
