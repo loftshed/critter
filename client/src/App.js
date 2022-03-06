@@ -7,10 +7,13 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/CurrentUserContext";
+import { FeedContext } from "./components/FeedContext";
 
 const App = () => {
   const { currentUser, status, setStatus, receiveCurrentUserFromServer } =
     useContext(CurrentUserContext);
+
+  const { receiveFeedItemsFromServer, feedItems } = useContext(FeedContext);
 
   useEffect(() => {
     console.log("Fetching user profile from server");
@@ -19,7 +22,16 @@ const App = () => {
       .then((data) => {
         receiveCurrentUserFromServer(data);
       });
+
+    console.log("Fetching currentUser home feed from server");
+    fetch("/api/me/home-feed")
+      .then((res) => res.json())
+      .then((data) => {
+        receiveFeedItemsFromServer(data);
+      });
   }, []);
+
+  console.log(feedItems);
 
   return (
     <>

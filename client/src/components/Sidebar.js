@@ -9,8 +9,8 @@ import { MdHome, MdPerson, MdNotifications, MdBookmarks } from "react-icons/md";
 const Sidebar = () => {
   return (
     <Wrapper>
-      <StyledLogo />
       <Navigation>
+        <StyledLogo />
         <NavigationLink exact to="/">
           <MdHome />
           <Item>Home</Item>
@@ -42,7 +42,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledLogo = styled(Logo)`
-  width: 5rem;
+  width: 50px;
 `;
 
 const Item = styled.div`
@@ -55,7 +55,7 @@ const Navigation = styled.div`
   flex-direction: column;
   font-size: 24px;
   font-weight: 700;
-  gap: 10px;
+  gap: 2rem;
 `;
 
 const NavigationLink = styled(NavLink)`
