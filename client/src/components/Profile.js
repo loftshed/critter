@@ -1,10 +1,18 @@
 import React, { useContext } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
-import { COLORS } from "../constants";
+import { COLORS, SIZES, FONTWEIGHT } from "../constants";
 import styled from "styled-components";
+import { icons } from "react-icons/lib";
+
+import { MdLocationPin, MdCalendarToday } from "react-icons/md";
 
 const Profile = () => {
   const { currentUser } = useContext(CurrentUserContext);
+
+  // prevents the page from rendering if currentUser has not been loaded from the server yet
+  if (currentUser === null) {
+    return null;
+  }
 
   // destructure all these things from profile property of currentUser
   const {
@@ -14,8 +22,6 @@ const Profile = () => {
       bio,
       displayName,
       handle,
-      isBeingFollowedByYou,
-      isFollowingYou,
       joined,
       location,
       numFollowers,
@@ -27,10 +33,31 @@ const Profile = () => {
   return (
     <>
       <Wrapper>
-        <div>
-          <Banner src={bannerSrc} />
+        <Banner src={bannerSrc} />
+        <UserInfo>
           <Avatar src={avatarSrc} />
-        </div>
+          <div>
+            <DisplayName>{displayName}</DisplayName>
+            <Handle>@{handle}</Handle>
+          </div>
+          <Bio>{bio}</Bio>
+          <FlexRow>
+            <LocationJoinDate>
+              <MdLocationPin />
+              {location}
+            </LocationJoinDate>
+            <LocationJoinDate>
+              <MdCalendarToday />
+              {joined}
+            </LocationJoinDate>
+          </FlexRow>
+          <FlexRow>
+            <FollowData>{numFollowing}</FollowData>
+            <FollowDataText>Following</FollowDataText>
+            <FollowData>{numFollowers}</FollowData>
+            <FollowDataText>Followers</FollowDataText>
+          </FlexRow>
+        </UserInfo>
       </Wrapper>
     </>
   );
@@ -38,18 +65,64 @@ const Profile = () => {
 
 export default Profile;
 
+const Wrapper = styled.div`
+  background-color: ${COLORS.darkBg};
+  width: 100%;
+  height: 100vh;
+`;
+
+const FlexRow = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
 const Avatar = styled.img`
-  margin: -105px 0px 0px 25px;
   border-radius: 50%;
-  border: #fff 5px solid;
+  border: ${COLORS.darkBorder} 5px solid;
   width: 200px;
 `;
 
 const Banner = styled.img`
   width: 100%;
+  margin-bottom: -110px;
 `;
 
-const Wrapper = styled.div`
-  background-color: ${COLORS.darkBg};
-  width: 100%;
+/// start of UserInfo
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 0rem 2rem;
+  gap: 1em;
+  color: ${COLORS.darkText};
 `;
+
+const DisplayName = styled.div`
+  font-size: 24px;
+  font-weight: ${FONTWEIGHT.boldest};
+`;
+
+const Handle = styled.div`
+  color: ${COLORS.darkSubtext};
+  font-weight: ${FONTWEIGHT.bold};
+  font-size: 18px;
+`;
+
+const Bio = styled.div``;
+
+const LocationJoinDate = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: ${COLORS.darkSubtext};
+`;
+
+const FollowData = styled.div`
+  font-weight: ${FONTWEIGHT.boldest};
+`;
+
+const FollowDataText = styled.div`
+  font-weight: ${FONTWEIGHT.bold};
+  color: ${COLORS.darkSubtext};
+`;
+/// end of UserInfo

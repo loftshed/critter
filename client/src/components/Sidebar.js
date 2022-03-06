@@ -55,14 +55,14 @@ const Wrapper = styled.div`
   padding: 1rem;
   width: 40vw;
   height: 100vh;
-  background-color: ${COLORS.darkSidebar};
+  background-color: ${COLORS.darkSidebarBg};
 `;
 
 const NavigationLink = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #c9d1d9;
+  color: ${COLORS.darkLink};
 
   &.active {
     color: ${COLORS.primary};

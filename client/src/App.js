@@ -41,7 +41,7 @@ const App = () => {
               <TweetDetails />
             </Route>
             <Route exact path="/:profileId">
-              {currentUser !== null && <Profile />}
+              <Profile />
             </Route>
           </Switch>
         </div>
