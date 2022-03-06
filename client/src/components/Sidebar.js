@@ -9,7 +9,9 @@ const Sidebar = () => {
     <Wrapper>
       <Logo />
       <Navigation>
-        <NavigationLink to="/">Home</NavigationLink>
+        <NavigationLink exact to="/">
+          Home
+        </NavigationLink>
         <NavigationLink to="/:profileId">Profile</NavigationLink>
         <NavigationLink to="/notifications/">Notifications</NavigationLink>
         <NavigationLink to="/bookmarks/">Bookmarks</NavigationLink>
@@ -23,7 +25,8 @@ export default Sidebar;
 const Navigation = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
   gap: 10px;
 `;
 
@@ -34,7 +37,8 @@ const Wrapper = styled.div`
 `;
 
 const NavigationLink = styled(NavLink)`
-  /* default styles here */
+  text-decoration: none;
+  color: black;
 
   &.active {
     color: ${COLORS.primary};
