@@ -7,7 +7,7 @@ import { ReactComponent as Logo } from "../assets/logo.svg";
 const Sidebar = () => {
   return (
     <Wrapper>
-      <Logo />
+      <StyledLogo />
       <Navigation>
         <NavigationLink exact to="/">
           Home
@@ -22,17 +22,23 @@ const Sidebar = () => {
 
 export default Sidebar;
 
+const StyledLogo = styled(Logo)`
+  width: 5rem;
+`;
+
 const Navigation = styled.div`
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   gap: 10px;
 `;
 
 const Wrapper = styled.div`
+  padding: 1rem;
   width: 30vw;
-  height: 90vh;
+  height: 100vh;
   background-color: grey;
 `;
 
