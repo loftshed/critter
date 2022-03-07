@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { UserContext } from "./UserContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
@@ -13,6 +14,7 @@ import {
 
 const Sidebar = () => {
   const { currentUser } = useContext(CurrentUserContext);
+  const { getUserProfile } = useContext(UserContext);
 
   return (
     <Wrapper>
@@ -22,7 +24,10 @@ const Sidebar = () => {
           <HomeIcon />
           <Item>Home</Item>
         </NavigationLink>
-        <NavigationLink to={`/:${currentUser.profile.handle}`}>
+        <NavigationLink
+          to={`/:${currentUser.profile.handle}`}
+          onClick={() => getUserProfile(currentUser.profile.handle)}
+        >
           <ProfileIcon />
           <Item>Profile</Item>
         </NavigationLink>

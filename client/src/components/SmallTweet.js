@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS, FONTWEIGHT } from "../constants";
 import ActionBar from "./ActionBar";
 import moment from "moment";
+import { UserContext } from "./UserContext";
 
 const SmallTweet = ({ tweet }) => {
+  const { getUserProfile } = useContext(UserContext);
   // console.log(tweet);
   const author = tweet.author;
   // reminder, this const needed to be in square bracket to destructure the array
@@ -13,20 +15,14 @@ const SmallTweet = ({ tweet }) => {
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
   console.log();
 
-  // const getProfile = () => {
-  //   console.log("Fetching another user's profile from the server");
-  //   fetch(`/api/:${handle}/profile`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       receiveUserFrom(data);
-  //     });
-  // };
-
   return (
     <>
       <Wrapper>
         {tweet.isRetweeted && <Header></Header>}
-        <Link to={`/:${author.handle}`}>
+        <Link
+          to={`/:${author.handle}`}
+          onClick={() => getUserProfile(author.handle)}
+        >
           <Avatar src={author.avatarSrc} />
         </Link>
         <TweetContainer>

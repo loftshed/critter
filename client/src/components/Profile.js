@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
-import { UerContext } from "./UserContext";
+import { UserContext } from "./UserContext";
 import { FeedContext } from "./FeedContext";
 import { COLORS, SIZES, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
@@ -13,20 +13,16 @@ import {
 
 const Profile = () => {
   const { currentUser } = useContext(CurrentUserContext);
-  const { user, receiveUserFromServer } = useContext(FeedContext);
-  const userHandleWithColonDingleberry = useParams(); // uses parameters from the URL to set user handle
-  const userHandle = userHandleWithColonDingleberry.profileId.slice(1);
+  const { user, setUserHandle } = useContext(UserContext);
+  const userHandle = useParams(); // uses parameters from the URL to set user handle
 
-  // useEffect(() => {
-  //   console.log(
-  //     `Fetching profile for user with handle '${userHandle}' from server`
-  //   );
-  //   fetch(`/api/:${userHandle}/profile`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       receiveUserFromServer(data);
-  //     });
-  // }, []);
+  useEffect(() => {
+    setUserHandle(userHandle.profileId.slice(1));
+  }, []);
+
+  if (user === null) {
+    return null;
+  }
 
   // destructure all these things from profile property of currentUser
   const {
@@ -42,7 +38,7 @@ const Profile = () => {
       numFollowing,
       // numLikes,
     },
-  } = currentUser;
+  } = user;
 
   const joinDate = moment(joined).format(" MMMM Do");
 

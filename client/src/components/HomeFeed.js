@@ -8,8 +8,7 @@ import TweetInput from "./TweetInput";
 
 const HomeFeed = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
-  const { currentUser } = useContext(CurrentUserContext);
-  // console.log(feedItems.tweetsById);
+  // const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     console.log("Fetching home feed from server");
