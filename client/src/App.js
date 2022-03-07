@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/CurrentUserContext";
+import { ComposeTweetContext } from "./components/ComposeTweetContext";
 import { FeedContext } from "./components/FeedContext";
 import GlobalStyles from "./GlobalStyles";
 

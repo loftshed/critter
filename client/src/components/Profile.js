@@ -28,7 +28,7 @@ const Profile = () => {
       location,
       numFollowers,
       numFollowing,
-      numLikes,
+      // numLikes,
     },
   } = currentUser;
 

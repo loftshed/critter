@@ -1,6 +1,7 @@
 import React from "react";
 import { COLORS } from "../constants";
 import styled from "styled-components";
+
 const Notifications = () => {
   return (
     <Wrapper>
