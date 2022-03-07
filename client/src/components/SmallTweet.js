@@ -2,12 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS, FONTWEIGHT } from "../constants";
 import ActionBar from "./ActionBar";
+import moment from "moment";
 
 const SmallTweet = ({ tweet }) => {
   // console.log(tweet);
   const author = tweet.author;
-  const [media] = tweet.media;
   // reminder, this const needed to be in square bracket to destructure the array
+  const [media] = tweet.media;
+  const timestamp = moment(tweet.timestamp).format("MMMM Do");
+  console.log();
 
   return (
     <>
@@ -20,7 +23,7 @@ const SmallTweet = ({ tweet }) => {
               <DisplayName>{author.displayName}</DisplayName>
               <Handle>@{author.handle}</Handle>
               <>•</>
-              <Timestamp>{tweet.timestamp}</Timestamp>
+              <Timestamp>{timestamp}</Timestamp>
             </AuthorInfo>
             <Status>{tweet.status}</Status>
             {media && <Image src={media.url} />}

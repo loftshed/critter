@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { COLORS, SIZES, FONTWEIGHT } from "../constants";
 import styled from "styled-components";
-import { icons } from "react-icons/lib";
-
-import { MdLocationPin, MdCalendarToday } from "react-icons/md";
+import moment from "moment";
+import {
+  FiMapPin as LocationIcon,
+  FiCalendar as CalendarIcon,
+} from "react-icons/fi";
 
 const Profile = () => {
   const { currentUser } = useContext(CurrentUserContext);
@@ -30,6 +32,8 @@ const Profile = () => {
     },
   } = currentUser;
 
+  const joinDate = moment(joined).format(" MMMM Do");
+
   return (
     <>
       <Wrapper>
@@ -43,12 +47,13 @@ const Profile = () => {
           <Bio>{bio}</Bio>
           <FlexRow>
             <LocationJoinDate>
-              <MdLocationPin />
+              <LocationIcon />
               {location}
             </LocationJoinDate>
             <LocationJoinDate>
-              <MdCalendarToday />
-              {joined}
+              <CalendarIcon />
+              Joined
+              {joinDate}
             </LocationJoinDate>
           </FlexRow>
           <FlexRow>
