@@ -13,4 +13,5 @@ export default Notifications;
 const Wrapper = styled.div`
   background-color: #0d1117;
   width: 100%;
+  height: 100vh;
 `;

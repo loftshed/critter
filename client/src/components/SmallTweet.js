@@ -1,43 +1,53 @@
 import React from "react";
 import styled from "styled-components";
 import { COLORS, FONTWEIGHT } from "../constants";
+import ActionBar from "./ActionBar";
 
-const Tweet = ({ tweet }) => {
-  // console.log(tweet);
+const SmallTweet = ({ tweet }) => {
+  console.log(tweet);
   const author = tweet.author;
-
   const [media] = tweet.media;
   // reminder, this const needed to be in square bracket to destructure the array
 
   return (
     <>
       <Wrapper>
-        <Header></Header>
+        {tweet.isRetweeted && <Header></Header>}
         <Avatar src={author.avatarSrc}></Avatar>
-        <TweetBody>
-          <AuthorInfo>
-            <DisplayName>{author.displayName}</DisplayName>
-            <Handle>@{author.handle}</Handle>
-            <>•</>
-            <Timestamp>{tweet.timestamp}</Timestamp>
-          </AuthorInfo>
-          <Status>{tweet.status}</Status>
-          {media && <Image src={media.url} />}
-        </TweetBody>
+        <TweetContainer>
+          <TweetBody>
+            <AuthorInfo>
+              <DisplayName>{author.displayName}</DisplayName>
+              <Handle>@{author.handle}</Handle>
+              <>•</>
+              <Timestamp>{tweet.timestamp}</Timestamp>
+            </AuthorInfo>
+            <Status>{tweet.status}</Status>
+            {media && <Image src={media.url} />}
+          </TweetBody>
+          <ActionBar />
+        </TweetContainer>
       </Wrapper>
     </>
   );
 };
 
-export default Tweet;
+export default SmallTweet;
 
 const Wrapper = styled.div`
   display: flex;
   gap: 1em;
-  padding: 1em 0em;
+  padding: 1em 2em;
+  width: 90%;
 `;
 
 const Header = styled.div``;
+
+const TweetContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+`;
 
 // Tweet content begins
 const TweetBody = styled.div`
@@ -66,10 +76,11 @@ const DisplayName = styled.div`
 const Handle = styled.div``;
 const Timestamp = styled.div``;
 const Status = styled.div`
+  font-size: 18px;
   font-weight: ${FONTWEIGHT.bold};
 `;
 const Image = styled.img`
-  width: 90%;
+  width: 100%;
   border-radius: 25px;
 `;
 

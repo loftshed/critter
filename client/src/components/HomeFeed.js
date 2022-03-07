@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Tweet from "./Tweet";
+import SmallTweet from "./SmallTweet";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { FeedContext } from "./FeedContext";
 import { COLORS } from "../constants";
@@ -19,7 +19,7 @@ const HomeFeed = () => {
   return (
     <Wrapper>
       {tweets.map((tweet) => {
-        return <Tweet tweet={tweet} key={tweet.id}></Tweet>;
+        return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
       })}
     </Wrapper>
   );
