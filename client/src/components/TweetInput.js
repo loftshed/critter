@@ -25,6 +25,17 @@ const TweetInput = () => {
     setTweetString(ev.target.value);
   };
 
+  const getCounterColor = () => {
+    let counterColor = COLORS.darkSubtext;
+    if (remainingChars <= 55 && remainingChars > 0) {
+      counterColor = "yellow";
+    }
+    if (remainingChars <= 0) {
+      counterColor = "red";
+    }
+    return counterColor;
+  };
+
   return (
     <Wrapper>
       <InputContainer>
@@ -32,12 +43,18 @@ const TweetInput = () => {
         <InputSubmit>
           <Input
             onInput={(ev) => handleInput(ev)}
-            maxLength="280"
             placeholder="What's going on?"
           ></Input>
           <SubmitArea>
-            <Counter>{remainingChars}</Counter>
-            <Button>Meow</Button>
+            <Counter style={{ color: getCounterColor() }}>
+              {remainingChars}
+            </Counter>
+            <Button
+              disabled={remainingChars < 0}
+              style={{ opacity: remainingChars < 0 ? "50%" : "100%" }}
+            >
+              Meow
+            </Button>
           </SubmitArea>
         </InputSubmit>
       </InputContainer>
@@ -96,7 +113,6 @@ const SubmitArea = styled.div`
 `;
 
 const Counter = styled.div`
-  color: ${COLORS.darkSubtext};
   font-weight: 700;
 `;
 
@@ -106,8 +122,8 @@ const Button = styled.button`
   font: inherit;
   font-weight: 700;
   border-style: none;
-  padding: 5px 10px;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 50px;
 `;
 //////////////inputcontainer ends
 

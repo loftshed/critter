@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { FeedContext } from "./FeedContext";
 import { CurrentUserContext } from "./CurrentUserContext";
 import {
-  MdOutlineChatBubbleOutline as ReplyIcon,
-  MdRepeat as RetweetIcon,
-  MdIosShare as ShareIcon,
-} from "react-icons/md";
-import { IoMdHeartEmpty as HeartIcon } from "react-icons/io";
+  FiMessageSquare as ReplyIcon,
+  FiRepeat as RetweetIcon,
+  FiShare as ShareIcon,
+  FiHeart as HeartIcon,
+} from "react-icons/fi";
 
 const ActionBar = () => {
   const { feedItems } = useContext(FeedContext);
   const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <Wrapper>
       <ReplyIcon />

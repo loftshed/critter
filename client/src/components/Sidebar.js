@@ -3,8 +3,12 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { COLORS } from "../constants";
 import { ReactComponent as Logo } from "../assets/logo.svg";
-
-import { MdHome, MdPerson, MdNotifications, MdBookmarks } from "react-icons/md";
+import {
+  FiHome as HomeIcon,
+  FiUser as ProfileIcon,
+  FiBell as NotificationIcon,
+  FiBookmark as BookmarksIcon,
+} from "react-icons/fi";
 
 const Sidebar = () => {
   return (
@@ -12,19 +16,19 @@ const Sidebar = () => {
       <Navigation>
         <StyledLogo />
         <NavigationLink exact to="/">
-          <MdHome />
+          <HomeIcon />
           <Item>Home</Item>
         </NavigationLink>
         <NavigationLink to="/:profileId">
-          <MdPerson />
+          <ProfileIcon />
           <Item>Profile</Item>
         </NavigationLink>
         <NavigationLink to="/notifications/">
-          <MdNotifications />
+          <NotificationIcon />
           <Item>Notifications</Item>
         </NavigationLink>
         <NavigationLink to="/bookmarks/">
-          <MdHome></MdHome>
+          <BookmarksIcon />
           <Item>Bookmarks</Item>
         </NavigationLink>
       </Navigation>
@@ -53,7 +57,7 @@ const Navigation = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   gap: 2rem;
 `;
