@@ -30,8 +30,9 @@ const TweetInput = () => {
         <Avatar src={avatarSrc} />
         <InputSubmit>
           <Input
-            placeholder="What's going on?"
             onInput={(ev) => handleInput(ev)}
+            maxLength="280"
+            placeholder="What's going on?"
           ></Input>
           <SubmitArea>
             <Counter>{remainingChars}</Counter>
@@ -72,6 +73,7 @@ const InputSubmit = styled.div`
 
 // text input
 const Input = styled.textarea`
+  text-align: justify;
   padding: 5px 10px;
   font: inherit;
   font-size: 20px;
