@@ -13,3 +13,5 @@ export const FONTWEIGHT = {
   bold: 500,
   boldest: 700,
 };
+
+export const FONTSIZE = {};

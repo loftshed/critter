@@ -23,15 +23,13 @@ const App = () => {
         receiveCurrentUserFromServer(data);
       });
 
-    console.log("Fetching currentUser home feed from server");
+    console.log("Fetching home feed from server");
     fetch("/api/me/home-feed")
       .then((res) => res.json())
       .then((data) => {
         receiveFeedItemsFromServer(data);
       });
   }, []);
-
-  console.log(feedItems);
 
   return (
     <>
