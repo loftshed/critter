@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS, FONTWEIGHT } from "../constants";
 import ActionBar from "./ActionBar";
@@ -12,11 +13,22 @@ const SmallTweet = ({ tweet }) => {
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
   console.log();
 
+  // const getProfile = () => {
+  //   console.log("Fetching another user's profile from the server");
+  //   fetch(`/api/:${handle}/profile`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       receiveUserFrom(data);
+  //     });
+  // };
+
   return (
     <>
       <Wrapper>
         {tweet.isRetweeted && <Header></Header>}
-        <Avatar src={author.avatarSrc}></Avatar>
+        <Link to={`/:${author.handle}`}>
+          <Avatar src={author.avatarSrc} />
+        </Link>
         <TweetContainer>
           <TweetBody>
             <AuthorInfo>
@@ -65,7 +77,7 @@ const TweetBody = styled.div`
 `;
 
 const Avatar = styled.img`
-  padding-top: 1em;
+  margin-top: 1em;
   border-radius: 50%;
   width: 100px;
   height: 100px;

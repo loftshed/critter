@@ -1,6 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
+import { UerContext } from "./UserContext";
+import { FeedContext } from "./FeedContext";
 import { COLORS, SIZES, FONTWEIGHT } from "../constants";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
 import {
@@ -10,11 +13,20 @@ import {
 
 const Profile = () => {
   const { currentUser } = useContext(CurrentUserContext);
+  const { user, receiveUserFromServer } = useContext(FeedContext);
+  const userHandleWithColonDingleberry = useParams(); // uses parameters from the URL to set user handle
+  const userHandle = userHandleWithColonDingleberry.profileId.slice(1);
 
-  // prevents the page from rendering if currentUser has not been loaded from the server yet
-  if (currentUser === null) {
-    return null;
-  }
+  // useEffect(() => {
+  //   console.log(
+  //     `Fetching profile for user with handle '${userHandle}' from server`
+  //   );
+  //   fetch(`/api/:${userHandle}/profile`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       receiveUserFromServer(data);
+  //     });
+  // }, []);
 
   // destructure all these things from profile property of currentUser
   const {

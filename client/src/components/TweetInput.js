@@ -14,10 +14,6 @@ const TweetInput = () => {
     handlePostTweet,
   } = useContext(ComposeTweetContext);
 
-  if (currentUser === null) {
-    return null;
-  }
-
   const {
     profile: { avatarSrc },
   } = currentUser;
@@ -99,13 +95,14 @@ const InputSubmit = styled.div`
 // text input
 const Input = styled.textarea`
   text-align: justify;
-  padding: 5px 10px;
+  padding: 10px 10px;
   font: inherit;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: 400;
   height: 150px;
   background-color: #15141a;
   border-radius: 10px;
+  border: none;
   resize: none;
   color: white;
 `;

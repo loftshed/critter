@@ -7,31 +7,26 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/CurrentUserContext";
-import { ComposeTweetContext } from "./components/ComposeTweetContext";
 import { FeedContext } from "./components/FeedContext";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
   const { currentUser, status, setStatus, receiveCurrentUserFromServer } =
     useContext(CurrentUserContext);
-
-  const { receiveFeedItemsFromServer, feedItems } = useContext(FeedContext);
+  // const { feedItems } = useContext(FeedContext);
 
   useEffect(() => {
-    console.log("Fetching user profile from server");
+    console.log("Fetching current user profile from server");
     fetch("/api/me/profile")
       .then((res) => res.json())
       .then((data) => {
         receiveCurrentUserFromServer(data);
       });
-
-    console.log("Fetching home feed from server");
-    fetch("/api/me/home-feed")
-      .then((res) => res.json())
-      .then((data) => {
-        receiveFeedItemsFromServer(data);
-      });
   }, []);
+
+  if (currentUser === null) {
+    return null;
+  }
 
   return (
     <>
@@ -52,7 +47,7 @@ const App = () => {
             <Route path="/tweet/:tweetId">
               <TweetDetails />
             </Route>
-            <Route exact path="/:profileId">
+            <Route path="/:profileId">
               <Profile />
             </Route>
           </Switch>

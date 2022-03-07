@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import SmallTweet from "./SmallTweet";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -7,15 +7,25 @@ import { COLORS } from "../constants";
 import TweetInput from "./TweetInput";
 
 const HomeFeed = () => {
-  const { feedItems } = useContext(FeedContext);
-  // const { currentUser } = useContext(CurrentUserContext);
+  const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
+  const { currentUser } = useContext(CurrentUserContext);
+  // console.log(feedItems.tweetsById);
+
+  useEffect(() => {
+    console.log("Fetching home feed from server");
+    fetch("/api/me/home-feed")
+      .then((res) => res.json())
+      .then((data) => {
+        receiveFeedItemsFromServer(data);
+      });
+  }, []);
 
   if (feedItems === null) {
     return null;
   }
 
-  // console.log(feedItems.tweetsById);
   const tweets = Object.values(feedItems.tweetsById);
+  console.log(tweets);
 
   return (
     <Wrapper>

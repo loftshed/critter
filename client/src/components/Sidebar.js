@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CurrentUserContext } from "./CurrentUserContext";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { COLORS } from "../constants";
@@ -11,6 +12,8 @@ import {
 } from "react-icons/fi";
 
 const Sidebar = () => {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <Wrapper>
       <Navigation>
@@ -19,7 +22,7 @@ const Sidebar = () => {
           <HomeIcon />
           <Item>Home</Item>
         </NavigationLink>
-        <NavigationLink to="/:profileId">
+        <NavigationLink to={`/:${currentUser.profile.handle}`}>
           <ProfileIcon />
           <Item>Profile</Item>
         </NavigationLink>
