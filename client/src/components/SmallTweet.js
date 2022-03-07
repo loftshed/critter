@@ -8,27 +8,32 @@ import { UserContext } from "./UserContext";
 
 const SmallTweet = ({ tweet }) => {
   const { getUserProfile } = useContext(UserContext);
-  // console.log(tweet);
   const author = tweet.author;
+  const timestamp = moment(tweet.timestamp).format("MMMM Do");
   // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
-  const timestamp = moment(tweet.timestamp).format("MMMM Do");
+
   console.log();
 
   return (
     <>
       <Wrapper>
         {tweet.isRetweeted && <Header></Header>}
-        <Link
+        <StyledLink
           to={`/:${author.handle}`}
           onClick={() => getUserProfile(author.handle)}
         >
           <Avatar src={author.avatarSrc} />
-        </Link>
+        </StyledLink>
         <TweetContainer>
           <TweetBody>
             <AuthorInfo>
-              <DisplayName>{author.displayName}</DisplayName>
+              <StyledLink
+                to={`/:${author.handle}`}
+                onClick={() => getUserProfile(author.handle)}
+              >
+                <DisplayName>{author.displayName}</DisplayName>
+              </StyledLink>
               <Handle>@{author.handle}</Handle>
               <>•</>
               <Timestamp>{timestamp}</Timestamp>
@@ -44,6 +49,10 @@ const SmallTweet = ({ tweet }) => {
 };
 
 export default SmallTweet;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const Wrapper = styled.div`
   display: flex;

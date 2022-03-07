@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { UserContext } from "./UserContext";
-import { FeedContext } from "./FeedContext";
+// import { FeedContext } from "./FeedContext";
 import { COLORS, SIZES, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ import {
   FiMapPin as LocationIcon,
   FiCalendar as CalendarIcon,
 } from "react-icons/fi";
+import ProfileFeed from "./ProfileFeed";
 
 const Profile = () => {
   const { currentUser } = useContext(CurrentUserContext);
@@ -71,6 +72,9 @@ const Profile = () => {
             <FollowDataText>Followers</FollowDataText>
           </FlexRow>
         </UserInfo>
+        <>
+          <ProfileFeed />
+        </>
       </Wrapper>
     </>
   );
