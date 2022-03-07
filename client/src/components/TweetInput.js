@@ -6,6 +6,7 @@ import { COLORS } from "../constants";
 const TweetInput = () => {
   const { currentUser } = useContext(CurrentUserContext);
   const [remainingChars, setRemainingChars] = useState(280);
+  const [tweetString, setTweetString] = useState(null);
 
   if (currentUser === null) {
     return null;
@@ -21,7 +22,7 @@ const TweetInput = () => {
       return 280 - length;
     };
     setRemainingChars(remainingCharCounter(ev.target.value.length));
-    console.log(ev.target.value);
+    setTweetString(ev.target.value);
   };
 
   return (
