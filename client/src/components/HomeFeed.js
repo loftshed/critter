@@ -4,6 +4,7 @@ import SmallTweet from "./SmallTweet";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { FeedContext } from "./FeedContext";
 import { COLORS } from "../constants";
+import TweetInput from "./TweetInput";
 
 const HomeFeed = () => {
   const { feedItems } = useContext(FeedContext);
@@ -22,6 +23,7 @@ const HomeFeed = () => {
       <HeaderContainer>
         <Header>Home</Header>
       </HeaderContainer>
+      <TweetInput />
       {tweets.map((tweet) => {
         return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
       })}
