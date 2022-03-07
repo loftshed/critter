@@ -8,6 +8,7 @@ import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 import { FeedContext } from "./components/FeedContext";
+import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
   const { currentUser, status, setStatus, receiveCurrentUserFromServer } =
@@ -33,7 +34,7 @@ const App = () => {
 
   return (
     <>
-      {/* {<GlobalStyles />} */}
+      <GlobalStyles />
       <Router>
         <div style={{ display: "flex" }}>
           <Sidebar />

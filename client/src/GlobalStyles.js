@@ -6,13 +6,13 @@ export default createGlobalStyle`
   *:after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Roboto'
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Roboto', sans-serif;
   }
 
   html, body {
     max-width: 100vw;
-  }
-
+  }      
 
   /* http://meyerweb.com/eric/tools/css/reset/
     v2.0 | 20110126

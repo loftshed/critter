@@ -19,7 +19,7 @@ const TweetInput = () => {
       <InputContainer>
         <Avatar src={avatarSrc} />
         <InputSubmit>
-          <Input></Input>
+          <Input placeholder="What's going on?"></Input>
           <SubmitArea>
             <Counter>280</Counter>
             <Button>Meow</Button>

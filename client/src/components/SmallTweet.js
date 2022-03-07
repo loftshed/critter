@@ -4,7 +4,7 @@ import { COLORS, FONTWEIGHT } from "../constants";
 import ActionBar from "./ActionBar";
 
 const SmallTweet = ({ tweet }) => {
-  console.log(tweet);
+  // console.log(tweet);
   const author = tweet.author;
   const [media] = tweet.media;
   // reminder, this const needed to be in square bracket to destructure the array
