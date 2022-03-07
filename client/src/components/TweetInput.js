@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import styled from "styled-components";
 import { COLORS } from "../constants";
 
 const TweetInput = () => {
   const { currentUser } = useContext(CurrentUserContext);
+  const [remainingChars, setRemainingChars] = useState(280);
 
   if (currentUser === null) {
     return null;
@@ -14,14 +15,26 @@ const TweetInput = () => {
     profile: { avatarSrc },
   } = currentUser;
 
+  const handleInput = (ev) => {
+    // returns remaining chars as result of 280 minus length of event target value
+    const remainingCharCounter = (length) => {
+      return 280 - length;
+    };
+    setRemainingChars(remainingCharCounter(ev.target.value.length));
+    console.log(ev.target.value);
+  };
+
   return (
     <Wrapper>
       <InputContainer>
         <Avatar src={avatarSrc} />
         <InputSubmit>
-          <Input placeholder="What's going on?"></Input>
+          <Input
+            placeholder="What's going on?"
+            onInput={(ev) => handleInput(ev)}
+          ></Input>
           <SubmitArea>
-            <Counter>280</Counter>
+            <Counter>{remainingChars}</Counter>
             <Button>Meow</Button>
           </SubmitArea>
         </InputSubmit>
@@ -63,7 +76,7 @@ const Input = styled.textarea`
   font: inherit;
   font-size: 20px;
   font-weight: 600;
-  height: 100px;
+  height: 150px;
   background-color: #15141a;
   border-radius: 10px;
   resize: none;
