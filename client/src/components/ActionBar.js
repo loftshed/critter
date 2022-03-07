@@ -27,5 +27,9 @@ export default ActionBar;
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
+  background-color: #30363d;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
   /* padding-top: 1em; */
 `;

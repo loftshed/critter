@@ -47,6 +47,10 @@ const TweetContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
+  padding: 1em;
+  width: 100%;
+  background-color: #15141a;
+  border-radius: 10px;
 `;
 
 // Tweet content begins
@@ -58,6 +62,7 @@ const TweetBody = styled.div`
 `;
 
 const Avatar = styled.img`
+  padding-top: 1em;
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -78,6 +83,7 @@ const Timestamp = styled.div``;
 const Status = styled.div`
   font-size: 18px;
   font-weight: ${FONTWEIGHT.bold};
+  color: ${COLORS.darkText};
 `;
 const Image = styled.img`
   width: 100%;
