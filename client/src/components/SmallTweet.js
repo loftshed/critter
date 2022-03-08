@@ -13,12 +13,15 @@ const SmallTweet = ({ tweet }) => {
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
   // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
+  const id = tweet.id;
 
-  ////
+  //// useHistory thing...
+  /// https://v5.reactrouter.com/web/api/history
+
   let history = useHistory();
 
-  const handleClick = () => {
-    history.push("/home");
+  const handleClick = (tweetId) => {
+    history.push(`/tweet/${tweetId}`);
   };
   ////
   console.log();
@@ -35,7 +38,7 @@ const SmallTweet = ({ tweet }) => {
           </StyledLink>
         </div>
         <div>
-          <TweetContainer onClick={() => handleClick()}>
+          <TweetContainer onClick={() => handleClick(tweet.id)}>
             <TweetBody>
               {/* {tweet.isRetweeted && (
                 <Header style={{ color: `${COLORS.darkSubtext}` }}>
