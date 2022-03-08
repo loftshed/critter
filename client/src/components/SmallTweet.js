@@ -29,14 +29,13 @@ const SmallTweet = ({ tweet }) => {
   return (
     <>
       <Wrapper>
-        <div>
-          <StyledLink
-            to={`/${author.handle}`}
-            onClick={() => getUserProfile(author.handle)}
-          >
-            <Avatar src={author.avatarSrc} />
-          </StyledLink>
-        </div>
+        <StyledLink
+          to={`/${author.handle}`}
+          onClick={() => getUserProfile(author.handle)}
+        >
+          <Avatar src={author.avatarSrc} />
+        </StyledLink>
+
         <div>
           <TweetContainer onClick={() => handleClick(tweet.id)}>
             <TweetBody>
@@ -76,9 +75,10 @@ const StyledLink = styled(Link)`
 
 const Wrapper = styled.div`
   display: flex;
+  /* flex-direction: column; */
   gap: 1em;
-  padding: 1em 2em;
-  width: 90%;
+  padding: 1em 3em;
+  width: 100%;
 `;
 
 const Header = styled.div`
@@ -92,6 +92,7 @@ const TweetContainer = styled.div`
   padding: 1em;
   background-color: #15141a;
   border-radius: 10px;
+  /* width: 100%; */
   &:hover {
     outline: white 2px solid;
     cursor: pointer;

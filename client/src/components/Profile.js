@@ -108,7 +108,7 @@ const FlexRow = styled.div`
 
 const Avatar = styled.img`
   border-radius: 50%;
-  border: ${COLORS.darkBorder} 5px solid;
+  border: ${COLORS.darkBg} 5px solid;
   width: 200px;
 `;
 

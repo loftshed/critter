@@ -15,17 +15,19 @@ const ActionBar = () => {
 
   return (
     <Wrapper>
-      <ReplyIcon />
-      <RetweetIcon />
-      <ShareIcon />
-      <HeartIcon />
+      <Bar>
+        <ReplyIcon />
+        <RetweetIcon />
+        <ShareIcon />
+        <HeartIcon />
+      </Bar>
     </Wrapper>
   );
 };
 
 export default ActionBar;
 
-const Wrapper = styled.div`
+const Bar = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: #30363d;
@@ -34,3 +36,5 @@ const Wrapper = styled.div`
   color: white;
   /* padding-top: 1em; */
 `;
+
+const Wrapper = styled.div``;

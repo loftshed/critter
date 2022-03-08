@@ -15,40 +15,42 @@ const BigTweet = ({ thisTweet }) => {
   // // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
 
+  console.log(tweet);
+  console.log(tweet.retweetFrom);
+
   return (
-    <>
-      <Wrapper>
-        <TweetContainer>
-          <TweetBody>
-            <TweetHeader>
+    <Wrapper>
+      <TweetContainer>
+        <TweetBody>
+          {}
+          <TweetHeader>
+            <StyledLink
+              to={`/${author.handle}`}
+              onClick={() => getUserProfile(author.handle)}
+            >
+              <Avatar src={author.avatarSrc} />
+            </StyledLink>
+            <AuthorInfo>
               <StyledLink
                 to={`/${author.handle}`}
                 onClick={() => getUserProfile(author.handle)}
               >
-                <Avatar src={author.avatarSrc} />
+                <DisplayName>{author.displayName}</DisplayName>
               </StyledLink>
-              <AuthorInfo>
-                <StyledLink
-                  to={`/${author.handle}`}
-                  onClick={() => getUserProfile(author.handle)}
-                >
-                  <DisplayName>{author.displayName}</DisplayName>
-                </StyledLink>
-                <Handle>@{author.handle}</Handle>
-              </AuthorInfo>
-            </TweetHeader>
-            <Status>{tweet.status}</Status>
-            {media && <Image src={media.url} />}
-          </TweetBody>
-          <Timestamp>
-            {timestamp}
-            <> • </>
-            Critter web app
-          </Timestamp>
-          <ActionBar />
-        </TweetContainer>
-      </Wrapper>
-    </>
+              <Handle>@{author.handle}</Handle>
+            </AuthorInfo>
+          </TweetHeader>
+          <Status>{tweet.status}</Status>
+          {media && <Image src={media.url} />}
+        </TweetBody>
+        <Timestamp>
+          {timestamp}
+          <> • </>
+          Critter web app
+        </Timestamp>
+        <ActionBar />
+      </TweetContainer>
+    </Wrapper>
   );
 };
 
@@ -74,7 +76,7 @@ const TweetContainer = styled.div`
   flex-direction: column;
   padding: 1.5em;
   gap: 1em;
-  min-height: 30vh;
+  min-height: fit-content;
 `;
 
 // Tweet content begins
