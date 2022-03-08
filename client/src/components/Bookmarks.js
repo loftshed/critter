@@ -1,12 +1,14 @@
 import React from "react";
 import { COLORS } from "../constants";
 import styled from "styled-components";
+import LoadingSpinner from "./LoadingSpinner";
 const Bookmarks = () => {
   return (
     <Wrapper>
       <HeaderContainer>
         <Header>Bookmarks</Header>
       </HeaderContainer>
+      <LoadingSpinner />
     </Wrapper>
   );
 };

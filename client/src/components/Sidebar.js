@@ -18,7 +18,11 @@ const Sidebar = () => {
   // const { getUserProfile } = useContext(UserContext);
 
   if (currentUser === null) {
-    return <LoadingSpinner />;
+    return (
+      <Wrapper>
+        <LoadingSpinner />
+      </Wrapper>
+    );
   }
 
   return (
