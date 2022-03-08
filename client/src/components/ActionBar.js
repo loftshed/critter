@@ -16,12 +16,20 @@ const ActionBar = () => {
   return (
     <Wrapper>
       <Bar>
-        <Buttons>
-          <ReplyIcon />
-          <RetweetIcon />
-          <ShareIcon />
-          <HeartIcon />
-        </Buttons>
+        <ButtonContainer>
+          <Button>
+            <ReplyIcon />
+          </Button>
+          <Button>
+            <RetweetIcon />
+          </Button>
+          <Button>
+            <ShareIcon />
+          </Button>
+          <Button>
+            <HeartIcon />
+          </Button>
+        </ButtonContainer>
       </Bar>
     </Wrapper>
   );
@@ -39,10 +47,12 @@ const Bar = styled.div`
   /* padding-top: 1em; */
 `;
 
-const Buttons = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
 `;
+
+const Button = styled.button``;
 
 const Wrapper = styled.div``;

@@ -23,14 +23,6 @@ const Sidebar = () => {
     window.scrollTo(0, 0);
   }, [params]);
 
-  if (currentUser === null) {
-    return (
-      <Wrapper>
-        <LoadingSpinner />
-      </Wrapper>
-    );
-  }
-
   return (
     <Wrapper>
       <Navigation>

@@ -24,6 +24,17 @@ const App = () => {
       });
   }, []);
 
+  if (currentUser === null) {
+    return (
+      <>
+        <GlobalStyles />
+        <LoadingDiv>
+          <LoadingSpinner />
+        </LoadingDiv>
+      </>
+    );
+  }
+
   return (
     <Router id="root">
       <WholeAssAppWrapper>
@@ -66,4 +77,12 @@ const Content = styled.div`
   height: 100%;
   width: 100%;
   margin-left: 230px;
+`;
+
+const LoadingDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 `;
