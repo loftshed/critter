@@ -11,10 +11,15 @@ import {
   FiBell as NotificationIcon,
   FiBookmark as BookmarksIcon,
 } from "react-icons/fi";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Sidebar = () => {
   const { currentUser } = useContext(CurrentUserContext);
   // const { getUserProfile } = useContext(UserContext);
+
+  if (currentUser === null) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <Wrapper>

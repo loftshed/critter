@@ -24,39 +24,35 @@ const App = () => {
       });
   }, []);
 
-  if (currentUser === null) {
-    return null;
-  }
+  // if (currentUser === null) {
+  //   return <LoadingSpinner />;
+  // }
 
   return (
     <Router id="root">
-      {currentUser === null ? (
-        <></>
-      ) : (
-        <WholeAssAppWrapper>
-          <GlobalStyles />
-          <Sidebar />
-          <Content>
-            <Switch>
-              <Route exact path="/">
-                <HomeFeed />
-              </Route>
-              <Route exact path="/notifications">
-                <Notifications />
-              </Route>
-              <Route exact path="/bookmarks">
-                <Bookmarks />
-              </Route>
-              <Route path="/tweet/:tweetId">
-                <TweetDetails />
-              </Route>
-              <Route path="/:profileId">
-                <Profile />
-              </Route>
-            </Switch>
-          </Content>
-        </WholeAssAppWrapper>
-      )}
+      <WholeAssAppWrapper>
+        <GlobalStyles />
+        <Sidebar />
+        <Content>
+          <Switch>
+            <Route exact path="/">
+              <HomeFeed />
+            </Route>
+            <Route exact path="/notifications">
+              <Notifications />
+            </Route>
+            <Route exact path="/bookmarks">
+              <Bookmarks />
+            </Route>
+            <Route path="/tweet/:tweetId">
+              <TweetDetails />
+            </Route>
+            <Route path="/:profileId">
+              <Profile />
+            </Route>
+          </Switch>
+        </Content>
+      </WholeAssAppWrapper>
     </Router>
   );
 };

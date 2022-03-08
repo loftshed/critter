@@ -4,6 +4,7 @@ import SmallTweet from "./SmallTweet";
 import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
 import TweetInput from "./TweetInput";
+import LoadingSpinner from "./LoadingSpinner";
 
 const HomeFeed = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
@@ -18,7 +19,7 @@ const HomeFeed = () => {
   }, []);
 
   if (feedItems === null) {
-    return null;
+    return <LoadingSpinner />;
   }
 
   const tweets = Object.values(feedItems.tweetsById);
@@ -31,14 +32,11 @@ const HomeFeed = () => {
         <Header>Home</Header>
       </HeaderContainer>
       <TweetInput />
-      {!feedItems && <div>Nothing Yet</div>}
-      {feedItems && (
-        <Tweets>
-          {tweets.map((tweet) => {
-            return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
-          })}
-        </Tweets>
-      )}
+      <Tweets>
+        {tweets.map((tweet) => {
+          return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
+        })}
+      </Tweets>
     </Wrapper>
   );
 };
