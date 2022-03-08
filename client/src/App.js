@@ -6,8 +6,8 @@ import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
-import { CurrentUserContext } from "./components/CurrentUserContext";
-import { FeedContext } from "./components/FeedContext";
+import { CurrentUserContext } from "./components/context/CurrentUserContext";
+import { FeedContext } from "./components/context/FeedContext";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {

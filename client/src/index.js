@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { UserProvider } from "./components/UserContext";
-import { CurrentUserProvider } from "./components/CurrentUserContext";
-import { ComposeTweetProvider } from "./components/ComposeTweetContext";
-import { FeedProvider } from "./components/FeedContext";
+import { UserProvider } from "./components/context/UserContext";
+import { CurrentUserProvider } from "./components/context/CurrentUserContext";
+import { ComposeTweetProvider } from "./components/context/ComposeTweetContext";
+import { FeedProvider } from "./components/context/FeedContext";
 
 import App from "./App";
 

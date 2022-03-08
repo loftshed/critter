@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import SmallTweet from "./SmallTweet";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { FeedContext } from "./FeedContext";
+import { CurrentUserContext } from "./context/CurrentUserContext";
+import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
 import TweetInput from "./TweetInput";
 
@@ -33,9 +33,11 @@ const HomeFeed = () => {
         <Header>Home</Header>
       </HeaderContainer>
       <TweetInput />
-      {tweets.map((tweet) => {
-        return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
-      })}
+      <Tweets>
+        {tweets.map((tweet) => {
+          return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
+        })}
+      </Tweets>
     </Wrapper>
   );
 };
@@ -45,6 +47,11 @@ export default HomeFeed;
 const Wrapper = styled.div`
   background-color: ${COLORS.darkBg};
   width: 100%;
+`;
+
+const Tweets = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
 `;
 
 const HeaderContainer = styled.div`

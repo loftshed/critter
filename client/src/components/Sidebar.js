@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { UserContext } from "./UserContext";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { UserContext } from "./context/UserContext";
+import { CurrentUserContext } from "./context/CurrentUserContext";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { COLORS } from "../constants";
@@ -46,7 +46,7 @@ export default Sidebar;
 const Wrapper = styled.div`
   padding: 1rem;
   width: fit-content;
-  height: 100;
+  /* height: 100%; */
   background-color: ${COLORS.darkSidebarBg};
 `;
 
@@ -71,6 +71,7 @@ const NavigationLink = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
+
   color: ${COLORS.darkLink};
 
   &.active {

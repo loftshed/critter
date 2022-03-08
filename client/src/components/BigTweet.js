@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { COLORS, FONTWEIGHT } from "../constants";
 import ActionBar from "./ActionBar";
 import moment from "moment";
 import { UserContext } from "./context/UserContext";
-import { FiRepeat as RetweetIcon } from "react-icons/fi";
+import { FiRepeat as RetweetIcon, FiHeart as HeartIcon } from "react-icons/fi";
 
-const SmallTweet = ({ tweet }) => {
+const BigTweet = ({ tweet }) => {
   const { getUserProfile } = useContext(UserContext);
   const author = tweet.author;
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
@@ -32,7 +32,6 @@ const SmallTweet = ({ tweet }) => {
             <TweetBody>
               {/* {tweet.isRetweeted && (
                 <Header style={{ color: `${COLORS.darkSubtext}` }}>
-                <RetweetIcon />
                   Retweeted by @{author.handle}!
                 </Header>
               )} */}
@@ -58,7 +57,7 @@ const SmallTweet = ({ tweet }) => {
   );
 };
 
-export default SmallTweet;
+export default BigTweet;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -80,6 +79,7 @@ const TweetContainer = styled.div`
   flex-direction: column;
   gap: 1em;
   padding: 1em;
+  width: 100%;
   background-color: #15141a;
   border-radius: 10px;
 `;

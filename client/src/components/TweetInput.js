@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { ComposeTweetContext } from "./ComposeTweetContext";
+import { CurrentUserContext } from "./context/CurrentUserContext";
+import { ComposeTweetContext } from "./context/ComposeTweetContext";
 import styled from "styled-components";
 import { COLORS } from "../constants";
 

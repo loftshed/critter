@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { CurrentUserContext } from "./CurrentUserContext";
-import { UserContext } from "./UserContext";
-import { FeedContext } from "./FeedContext";
+import { CurrentUserContext } from "./context/CurrentUserContext";
+import { UserContext } from "./context/UserContext";
+import { FeedContext } from "./context/FeedContext";
 import { COLORS, SIZES, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -59,6 +59,7 @@ const Profile = () => {
     <>
       <Wrapper>
         <Banner src={bannerSrc} />
+
         <UserInfo>
           <Avatar src={avatarSrc} />
           <div>
