@@ -7,14 +7,13 @@ import moment from "moment";
 import { UserContext } from "./context/UserContext";
 import { FiRepeat as RetweetIcon, FiHeart as HeartIcon } from "react-icons/fi";
 
-const BigTweet = ({ tweet }) => {
+const BigTweet = ({ thisTweet }) => {
   const { getUserProfile } = useContext(UserContext);
+  const { tweet } = thisTweet;
   const author = tweet.author;
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
-  // reminder, this const needed to be in square bracket to destructure the array
+  // // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
-
-  console.log();
 
   return (
     <>
@@ -30,11 +29,6 @@ const BigTweet = ({ tweet }) => {
         <div>
           <TweetContainer>
             <TweetBody>
-              {/* {tweet.isRetweeted && (
-                <Header style={{ color: `${COLORS.darkSubtext}` }}>
-                  Retweeted by @{author.handle}!
-                </Header>
-              )} */}
               <AuthorInfo>
                 <StyledLink
                   to={`/${author.handle}`}
