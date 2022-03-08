@@ -11,7 +11,7 @@ const BigTweet = ({ thisTweet }) => {
   const { getUserProfile } = useContext(UserContext);
   const { tweet } = thisTweet;
   const author = tweet.author;
-  const timestamp = moment(tweet.timestamp).format("MMMM Do");
+  const timestamp = moment(tweet.timestamp).format("h:mm A • MMM D YYYY");
   // // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
 
@@ -19,30 +19,33 @@ const BigTweet = ({ thisTweet }) => {
     <>
       <Wrapper>
         <div>
-          <StyledLink
-            to={`/${author.handle}`}
-            onClick={() => getUserProfile(author.handle)}
-          >
-            <Avatar src={author.avatarSrc} />
-          </StyledLink>
-        </div>
-        <div>
           <TweetContainer>
             <TweetBody>
-              <AuthorInfo>
+              <Header>
                 <StyledLink
                   to={`/${author.handle}`}
                   onClick={() => getUserProfile(author.handle)}
                 >
-                  <DisplayName>{author.displayName}</DisplayName>
+                  <Avatar src={author.avatarSrc} />
                 </StyledLink>
-                <Handle>@{author.handle}</Handle>
-                <>•</>
-                <Timestamp>{timestamp}</Timestamp>
-              </AuthorInfo>
+                <AuthorInfo>
+                  <StyledLink
+                    to={`/${author.handle}`}
+                    onClick={() => getUserProfile(author.handle)}
+                  >
+                    <DisplayName>{author.displayName}</DisplayName>
+                  </StyledLink>
+                  <Handle>@{author.handle}</Handle>
+                </AuthorInfo>
+              </Header>
               <Status>{tweet.status}</Status>
               {media && <Image src={media.url} />}
             </TweetBody>
+            <Timestamp>
+              {timestamp}
+              <> • </>
+              Critter web app
+            </Timestamp>
             <ActionBar />
           </TweetContainer>
         </div>
@@ -58,14 +61,16 @@ const StyledLink = styled(Link)`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
+  /* display: flex; */
   gap: 1em;
   padding: 1em 2em;
-  width: 90%;
+  width: 100%;
 `;
 
 const Header = styled.div`
+  display: flex;
   margin-bottom: -10px;
+  gap: 1em;
 `;
 
 const TweetContainer = styled.div`
@@ -87,16 +92,14 @@ const TweetBody = styled.div`
 `;
 
 const Avatar = styled.img`
-  margin-top: 1em;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
 `;
 
 const AuthorInfo = styled.div`
   display: flex;
-  align-items: center;
-  gap: 0.5em;
+  flex-direction: column;
   font-weight: ${FONTWEIGHT.bold};
 `;
 const DisplayName = styled.div`
@@ -106,7 +109,7 @@ const DisplayName = styled.div`
 const Handle = styled.div``;
 const Timestamp = styled.div``;
 const Status = styled.div`
-  font-size: 18px;
+  font-size: 22px;
   font-weight: ${FONTWEIGHT.bold};
   color: ${COLORS.darkText};
 `;

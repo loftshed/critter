@@ -53,8 +53,11 @@ const TweetInput = () => {
             </Counter>
             <Button
               onClick={() => handlePostTweet(tweetString)}
-              disabled={remainingChars < 0}
-              style={{ opacity: remainingChars < 0 ? "50%" : "100%" }}
+              disabled={remainingChars < 0 || remainingChars === 280}
+              style={{
+                opacity:
+                  remainingChars < 0 || remainingChars === 280 ? "50%" : "100%",
+              }}
             >
               Meow
             </Button>
