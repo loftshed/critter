@@ -11,6 +11,7 @@ import {
   FiCalendar as CalendarIcon,
 } from "react-icons/fi";
 import ProfileFeed from "./ProfileFeed";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Profile = () => {
   // const { currentUser } = useContext(CurrentUserContext);
@@ -22,7 +23,8 @@ const Profile = () => {
   useEffect(() => {
     getUserProfile(params.profileId);
     setUserHandle(params.profileId);
-  }, []);
+    window.scrollTo(0, 0);
+  }, [params]);
 
   useEffect(() => {
     console.log("Fetching profile feed from server");
@@ -33,8 +35,16 @@ const Profile = () => {
       });
   }, [params.profileId]);
 
+  // if (user === null) {
+  //   return null;
+  // }
+
   if (user === null) {
-    return null;
+    return (
+      <Wrapper>
+        <LoadingSpinner />
+      </Wrapper>
+    );
   }
 
   // destructure all these things from profile property of currentUser
@@ -59,7 +69,6 @@ const Profile = () => {
     <>
       <Wrapper>
         <Banner src={bannerSrc} />
-
         <UserInfo>
           <Avatar src={avatarSrc} />
           <div>
@@ -110,10 +119,12 @@ const Avatar = styled.img`
   border-radius: 50%;
   border: ${COLORS.darkBg} 5px solid;
   width: 200px;
+  min-height: 200px;
 `;
 
 const Banner = styled.img`
   width: 100%;
+  min-height: 350px;
   margin-bottom: -110px;
 `;
 

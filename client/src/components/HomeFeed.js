@@ -19,7 +19,11 @@ const HomeFeed = () => {
   }, []);
 
   if (feedItems === null) {
-    return <LoadingSpinner />;
+    return (
+      <Wrapper>
+        <LoadingSpinner />
+      </Wrapper>
+    );
   }
 
   const tweets = Object.values(feedItems.tweetsById);

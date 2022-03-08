@@ -5,6 +5,7 @@ import { COLORS, FONTWEIGHT } from "../constants";
 import ActionBar from "./ActionBar";
 import moment from "moment";
 import { UserContext } from "./context/UserContext";
+import LoadingSpinner from "./LoadingSpinner";
 import { FiRepeat as RetweetIcon } from "react-icons/fi";
 
 const SmallTweet = ({ tweet }) => {
@@ -13,7 +14,6 @@ const SmallTweet = ({ tweet }) => {
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
   // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
-  const id = tweet.id;
 
   //// useHistory thing...
   /// https://v5.reactrouter.com/web/api/history

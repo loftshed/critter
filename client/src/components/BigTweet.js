@@ -6,6 +6,7 @@ import ActionBar from "./ActionBar";
 import moment from "moment";
 import { UserContext } from "./context/UserContext";
 import { FiRepeat as RetweetIcon, FiHeart as HeartIcon } from "react-icons/fi";
+import LoadingSpinner from "./LoadingSpinner";
 
 const BigTweet = ({ thisTweet }) => {
   const { getUserProfile } = useContext(UserContext);
@@ -15,14 +16,21 @@ const BigTweet = ({ thisTweet }) => {
   // // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
 
-  console.log(tweet);
-  console.log(tweet.retweetFrom);
+  // use this for retweeted by heading...?
+  // console.log(tweet.retweetFrom);
+
+  if (!media) {
+    return (
+      <Wrapper>
+        <LoadingSpinner />
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>
       <TweetContainer>
         <TweetBody>
-          {}
           <TweetHeader>
             <StyledLink
               to={`/${author.handle}`}
@@ -41,7 +49,11 @@ const BigTweet = ({ thisTweet }) => {
             </AuthorInfo>
           </TweetHeader>
           <Status>{tweet.status}</Status>
-          {media && <Image src={media.url} />}
+          {media && (
+            <ImgCont>
+              <Image src={media.url} />
+            </ImgCont>
+          )}
         </TweetBody>
         <Timestamp>
           {timestamp}
@@ -77,6 +89,7 @@ const TweetContainer = styled.div`
   padding: 1.5em;
   gap: 1em;
   min-height: fit-content;
+  max-height: 95vh;
 `;
 
 // Tweet content begins
@@ -119,6 +132,13 @@ const Status = styled.div`
 const Image = styled.img`
   width: 100%;
   border-radius: 25px;
+  max-height: 70vh;
+  object-fit: cover;
+  object-position: center;
 `;
 
 // Tweet content ends
+
+const ImgCont = styled.div`
+  display: flex;
+`;

@@ -24,10 +24,6 @@ const App = () => {
       });
   }, []);
 
-  // if (currentUser === null) {
-  //   return <LoadingSpinner />;
-  // }
-
   return (
     <Router id="root">
       <WholeAssAppWrapper>
