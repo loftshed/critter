@@ -17,14 +17,16 @@ const SmallTweet = ({ tweet }) => {
 
   return (
     <>
+      {tweet.isRetweeted && <Header>farty</Header>}
       <Wrapper>
-        {tweet.isRetweeted && <Header></Header>}
-        <StyledLink
-          to={`/${author.handle}`}
-          onClick={() => getUserProfile(author.handle)}
-        >
-          <Avatar src={author.avatarSrc} />
-        </StyledLink>
+        <div>
+          <StyledLink
+            to={`/${author.handle}`}
+            onClick={() => getUserProfile(author.handle)}
+          >
+            <Avatar src={author.avatarSrc} />
+          </StyledLink>
+        </div>
         <TweetContainer>
           <TweetBody>
             <AuthorInfo>

@@ -4,7 +4,7 @@ import SmallTweet from "./SmallTweet";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { FeedContext } from "./FeedContext";
 import { COLORS } from "../constants";
-// import TweetInput from "./TweetInput";
+import TweetInput from "./TweetInput";
 
 const ProfileFeed = ({ feedItems }) => {
   const { receiveFeedItemsFromServer } = useContext(FeedContext);
@@ -27,7 +27,7 @@ const ProfileFeed = ({ feedItems }) => {
           <div>Likes</div>
         </Header>
       </HeaderContainer>
-      {/* <TweetInput /> maybe make this display if currentuser*/}
+      {/* <TweetInput /> */}
       {tweets.map((tweet) => {
         return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
       })}

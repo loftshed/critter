@@ -19,8 +19,6 @@ const Profile = () => {
     useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
 
-  // console.log(userHandle);
-
   useEffect(() => {
     getUserProfile(params.profileId);
     setUserHandle(params.profileId);
