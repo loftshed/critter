@@ -7,13 +7,12 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/context/CurrentUserContext";
-import { FeedContext } from "./components/context/FeedContext";
+import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
-  const { currentUser, status, setStatus, receiveCurrentUserFromServer } =
+  const { currentUser, receiveCurrentUserFromServer } =
     useContext(CurrentUserContext);
-  // const { feedItems } = useContext(FeedContext);
 
   useEffect(() => {
     console.log("Fetching current user profile from server");
@@ -29,32 +28,36 @@ const App = () => {
   }
 
   return (
-    <>
-      <GlobalStyles />
-      <Router>
-        <div style={{ display: "flex" }}>
-          <Sidebar />
-          <Switch>
-            <Route exact path="/">
-              <HomeFeed />
-            </Route>
-            <Route exact path="/notifications">
-              <Notifications />
-            </Route>
-            <Route exact path="/bookmarks">
-              <Bookmarks />
-            </Route>
-            <Route path="/tweet/:tweetId">
-              <TweetDetails />
-            </Route>
-            <Route path="/:profileId">
-              <Profile />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </>
+    <Router id="root">
+      <WholeAssAppWrapper>
+        <GlobalStyles />
+        <Sidebar />
+        <Switch>
+          <Route exact path="/">
+            <HomeFeed />
+          </Route>
+          <Route exact path="/notifications">
+            <Notifications />
+          </Route>
+          <Route exact path="/bookmarks">
+            <Bookmarks />
+          </Route>
+          <Route path="/tweet/:tweetId">
+            <TweetDetails />
+          </Route>
+          <Route path="/:profileId">
+            <Profile />
+          </Route>
+        </Switch>
+      </WholeAssAppWrapper>
+    </Router>
   );
 };
 
 export default App;
+
+const WholeAssAppWrapper = styled.div`
+  display: flex;
+  width: 50vw;
+  min-width: 1024px;
+`;

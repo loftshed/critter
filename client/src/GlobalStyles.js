@@ -12,7 +12,14 @@ export default createGlobalStyle`
 
   html, body {
     max-width: 100vw;
-  }      
+  }
+
+  #root {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
 
   /* http://meyerweb.com/eric/tools/css/reset/
     v2.0 | 20110126

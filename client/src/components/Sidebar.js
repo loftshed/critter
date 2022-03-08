@@ -46,7 +46,7 @@ export default Sidebar;
 const Wrapper = styled.div`
   padding: 1rem;
   width: fit-content;
-  /* height: 100%; */
+  height: 100vh;
   background-color: ${COLORS.darkSidebarBg};
 `;
 
