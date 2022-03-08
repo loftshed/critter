@@ -14,18 +14,26 @@ import ProfileFeed from "./ProfileFeed";
 
 const Profile = () => {
   // const { currentUser } = useContext(CurrentUserContext);
-  const { feedItems } = useContext(FeedContext);
-  const { user, setUserHandle, getUserProfile } = useContext(UserContext);
-  const userHandle = useParams(); // uses parameters from the URL to set user handle
+  const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
+  const { user, userHandle, setUserHandle, getUserProfile } =
+    useContext(UserContext);
+  const params = useParams(); // uses parameters from the URL to set user handle
 
-  console.log(user);
+  // console.log(userHandle);
 
   useEffect(() => {
-    getUserProfile(userHandle.profileId);
-    setUserHandle(userHandle.profileId);
+    getUserProfile(params.profileId);
+    setUserHandle(params.profileId);
   }, []);
 
-  console.log(feedItems);
+  useEffect(() => {
+    console.log("Fetching profile feed from server");
+    fetch(`/api/${params.profileId}/feed`)
+      .then((res) => res.json())
+      .then((data) => {
+        receiveFeedItemsFromServer(data);
+      });
+  }, [params.profileId]);
 
   if (user === null) {
     return null;

@@ -10,15 +10,6 @@ const ProfileFeed = ({ feedItems }) => {
   const { receiveFeedItemsFromServer } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    console.log("Fetching profile feed from server");
-    fetch("/api/me/home-feed")
-      .then((res) => res.json())
-      .then((data) => {
-        receiveFeedItemsFromServer(data);
-      });
-  }, []);
-
   if (feedItems === null) {
     return null;
   }
