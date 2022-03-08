@@ -18,37 +18,35 @@ const BigTweet = ({ thisTweet }) => {
   return (
     <>
       <Wrapper>
-        <div>
-          <TweetContainer>
-            <TweetBody>
-              <Header>
+        <TweetContainer>
+          <TweetBody>
+            <TweetHeader>
+              <StyledLink
+                to={`/${author.handle}`}
+                onClick={() => getUserProfile(author.handle)}
+              >
+                <Avatar src={author.avatarSrc} />
+              </StyledLink>
+              <AuthorInfo>
                 <StyledLink
                   to={`/${author.handle}`}
                   onClick={() => getUserProfile(author.handle)}
                 >
-                  <Avatar src={author.avatarSrc} />
+                  <DisplayName>{author.displayName}</DisplayName>
                 </StyledLink>
-                <AuthorInfo>
-                  <StyledLink
-                    to={`/${author.handle}`}
-                    onClick={() => getUserProfile(author.handle)}
-                  >
-                    <DisplayName>{author.displayName}</DisplayName>
-                  </StyledLink>
-                  <Handle>@{author.handle}</Handle>
-                </AuthorInfo>
-              </Header>
-              <Status>{tweet.status}</Status>
-              {media && <Image src={media.url} />}
-            </TweetBody>
-            <Timestamp>
-              {timestamp}
-              <> • </>
-              Critter web app
-            </Timestamp>
-            <ActionBar />
-          </TweetContainer>
-        </div>
+                <Handle>@{author.handle}</Handle>
+              </AuthorInfo>
+            </TweetHeader>
+            <Status>{tweet.status}</Status>
+            {media && <Image src={media.url} />}
+          </TweetBody>
+          <Timestamp>
+            {timestamp}
+            <> • </>
+            Critter web app
+          </Timestamp>
+          <ActionBar />
+        </TweetContainer>
       </Wrapper>
     </>
   );
@@ -61,26 +59,22 @@ const StyledLink = styled(Link)`
 `;
 
 const Wrapper = styled.div`
-  /* display: flex; */
-  gap: 1em;
-  padding: 1em 2em;
-  width: 100%;
-`;
-
-const Header = styled.div`
-  display: flex;
-  margin-bottom: -10px;
-  gap: 1em;
-`;
-
-const TweetContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  padding: 1em;
-  width: 100%;
+  justify-content: center;
+  height: 100vh;
+  padding-left: 25px;
+`;
+
+// contains the whole shebang
+const TweetContainer = styled.div`
   background-color: #15141a;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+  gap: 1em;
+  min-height: 30vh;
 `;
 
 // Tweet content begins
@@ -89,6 +83,13 @@ const TweetBody = styled.div`
   flex-direction: column;
   gap: 1em;
   color: ${COLORS.darkSubtext};
+  height: 100%;
+`;
+
+const TweetHeader = styled.div`
+  display: flex;
+  margin-bottom: -10px;
+  gap: 1em;
 `;
 
 const Avatar = styled.img`

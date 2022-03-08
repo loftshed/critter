@@ -28,5 +28,5 @@ const HeaderContainer = styled.div`
 `;
 
 const Header = styled.div`
-  margin: 0.5em 1em;
+  padding: 0.5em 1em;
 `;

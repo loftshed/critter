@@ -8,7 +8,6 @@ import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/context/CurrentUserContext";
 import styled from "styled-components";
-import { COLORS } from "./constants";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
@@ -67,5 +66,7 @@ const WholeAssAppWrapper = styled.div`
 `;
 
 const Content = styled.div`
+  height: 100%;
+  width: 100%;
   margin-left: 230px;
 `;
