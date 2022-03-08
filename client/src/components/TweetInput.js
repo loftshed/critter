@@ -48,12 +48,17 @@ const TweetInput = () => {
             onInput={(ev) => handleInput(ev)}
             placeholder="What's going on?"
           ></Input>
+          {}
           <SubmitArea>
             <Counter style={{ color: getCounterColor() }}>
               {remainingChars}
             </Counter>
             <Button
-              onClick={() => handlePostTweet(tweetString)}
+              onClick={() => {
+                handlePostTweet(tweetString);
+                setTweetString("");
+                setRemainingChars(280);
+              }}
               disabled={remainingChars < 0 || remainingChars === 280}
               style={{
                 opacity:
