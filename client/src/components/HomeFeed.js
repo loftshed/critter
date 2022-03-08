@@ -20,8 +20,16 @@ const HomeFeed = () => {
 
   if (feedItems === null) {
     return (
-      <Wrapper>
-        <LoadingSpinner />
+      <Wrapper style={{ height: "100%" }}>
+        <HeaderContainer>
+          <Header>Home</Header>
+        </HeaderContainer>
+        <div style={{ height: "272.5px" }}>
+          <LoadingSpinner />
+        </div>
+        <Tweets>
+          <LoadingSpinner />
+        </Tweets>
       </Wrapper>
     );
   }
@@ -55,6 +63,7 @@ const Wrapper = styled.div`
 const Tweets = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  height: 100%;
 `;
 
 const HeaderContainer = styled.div`

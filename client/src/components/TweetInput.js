@@ -3,6 +3,7 @@ import { CurrentUserContext } from "./context/CurrentUserContext";
 import { ComposeTweetContext } from "./context/ComposeTweetContext";
 import styled from "styled-components";
 import { COLORS } from "../constants";
+import LoadingSpinner from "./LoadingSpinner";
 
 const TweetInput = () => {
   const { currentUser } = useContext(CurrentUserContext);
@@ -13,6 +14,14 @@ const TweetInput = () => {
     setTweetString,
     handlePostTweet,
   } = useContext(ComposeTweetContext);
+
+  if (currentUser === null) {
+    return (
+      <Wrapper style={{ height: "100%" }}>
+        <LoadingSpinner />
+      </Wrapper>
+    );
+  }
 
   const {
     profile: { avatarSrc },

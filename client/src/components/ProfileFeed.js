@@ -4,11 +4,10 @@ import SmallTweet from "./SmallTweet";
 import { CurrentUserContext } from "./context/CurrentUserContext";
 import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
-import TweetInput from "./TweetInput";
 
 const ProfileFeed = ({ feedItems }) => {
-  const { receiveFeedItemsFromServer } = useContext(FeedContext);
-  const { currentUser } = useContext(CurrentUserContext);
+  // const { receiveFeedItemsFromServer } = useContext(FeedContext);
+  // const { currentUser } = useContext(CurrentUserContext);
 
   if (feedItems === null) {
     return null;
@@ -20,6 +19,7 @@ const ProfileFeed = ({ feedItems }) => {
   return (
     <Wrapper>
       {/* TODO! turn header into a component that can be used on all pages & has an arrow if you navigate to a tweet */}
+
       <HeaderContainer>
         <Header>
           <div>Tweets</div>
@@ -27,9 +27,7 @@ const ProfileFeed = ({ feedItems }) => {
           <div>Likes</div>
         </Header>
       </HeaderContainer>
-      {/* <TweetInput />
-      const params = useParams(); // uses parameters from the URL to set user
-      handle */}
+
       <Tweets>
         {tweets.map((tweet) => {
           return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;

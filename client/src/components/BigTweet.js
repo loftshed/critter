@@ -19,6 +19,8 @@ const BigTweet = ({ thisTweet }) => {
   // use this for retweeted by heading...?
   // console.log(tweet.retweetFrom);
 
+  console.log(tweet);
+
   if (!media) {
     return (
       <Wrapper>
@@ -49,11 +51,7 @@ const BigTweet = ({ thisTweet }) => {
             </AuthorInfo>
           </TweetHeader>
           <Status>{tweet.status}</Status>
-          {media && (
-            <ImgCont>
-              <Image src={media.url} />
-            </ImgCont>
-          )}
+          {media && <Image src={media.url} />}
         </TweetBody>
         <Timestamp>
           {timestamp}
@@ -130,15 +128,11 @@ const Status = styled.div`
   color: ${COLORS.darkText};
 `;
 const Image = styled.img`
-  width: 100%;
+  min-width: 100%;
   border-radius: 25px;
-  max-height: 70vh;
+  max-height: 60vh;
   object-fit: cover;
   object-position: center;
 `;
 
 // Tweet content ends
-
-const ImgCont = styled.div`
-  display: flex;
-`;

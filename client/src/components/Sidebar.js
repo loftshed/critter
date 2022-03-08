@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useParams, NavLink } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { CurrentUserContext } from "./context/CurrentUserContext";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+
 import { COLORS } from "../constants";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import {
@@ -16,6 +17,11 @@ import LoadingSpinner from "./LoadingSpinner";
 const Sidebar = () => {
   const { currentUser } = useContext(CurrentUserContext);
   // const { getUserProfile } = useContext(UserContext);
+  const params = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [params]);
 
   if (currentUser === null) {
     return (
