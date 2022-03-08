@@ -17,7 +17,6 @@ export default createGlobalStyle`
   #root {
     display: flex;
     justify-content: center;
-    height: 100%;
     width: 100%;
   }
 

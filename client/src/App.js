@@ -8,6 +8,7 @@ import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/context/CurrentUserContext";
 import styled from "styled-components";
+import { COLORS } from "./constants";
 import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
@@ -32,23 +33,25 @@ const App = () => {
       <WholeAssAppWrapper>
         <GlobalStyles />
         <Sidebar />
-        <Switch>
-          <Route exact path="/">
-            <HomeFeed />
-          </Route>
-          <Route exact path="/notifications">
-            <Notifications />
-          </Route>
-          <Route exact path="/bookmarks">
-            <Bookmarks />
-          </Route>
-          <Route path="/tweet/:tweetId">
-            <TweetDetails />
-          </Route>
-          <Route path="/:profileId">
-            <Profile />
-          </Route>
-        </Switch>
+        <Content>
+          <Switch>
+            <Route exact path="/">
+              <HomeFeed />
+            </Route>
+            <Route exact path="/notifications">
+              <Notifications />
+            </Route>
+            <Route exact path="/bookmarks">
+              <Bookmarks />
+            </Route>
+            <Route path="/tweet/:tweetId">
+              <TweetDetails />
+            </Route>
+            <Route path="/:profileId">
+              <Profile />
+            </Route>
+          </Switch>
+        </Content>
       </WholeAssAppWrapper>
     </Router>
   );
@@ -56,8 +59,13 @@ const App = () => {
 
 export default App;
 
+// wraps the whole ass app
 const WholeAssAppWrapper = styled.div`
   display: flex;
   width: 50vw;
   min-width: 1024px;
+`;
+
+const Content = styled.div`
+  margin-left: 230px;
 `;

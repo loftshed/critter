@@ -14,7 +14,7 @@ import {
 
 const Sidebar = () => {
   const { currentUser } = useContext(CurrentUserContext);
-  const { getUserProfile } = useContext(UserContext);
+  // const { getUserProfile } = useContext(UserContext);
 
   return (
     <Wrapper>
@@ -44,9 +44,13 @@ const Sidebar = () => {
 export default Sidebar;
 
 const Wrapper = styled.div`
+  display: flex;
+  position: fixed;
+  /* flex-direction: column; */
+  width: 230px;
   padding: 1rem;
-  width: fit-content;
-  height: 100vh;
+  height: 100%;
+  border-right: solid 1px ${COLORS.darkSubtext};
   background-color: ${COLORS.darkSidebarBg};
 `;
 
