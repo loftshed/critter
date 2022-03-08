@@ -6,12 +6,12 @@ import { FeedContext } from "./FeedContext";
 import { COLORS } from "../constants";
 // import TweetInput from "./TweetInput";
 
-const ProfileFeed = () => {
-  const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
+const ProfileFeed = ({ feedItems }) => {
+  const { receiveFeedItemsFromServer } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
-    console.log("Fetching home feed from server");
+    console.log("Fetching profile feed from server");
     fetch("/api/me/home-feed")
       .then((res) => res.json())
       .then((data) => {
@@ -24,7 +24,7 @@ const ProfileFeed = () => {
   }
 
   const tweets = Object.values(feedItems.tweetsById);
-  console.log(tweets);
+  // console.log(tweets);
 
   return (
     <Wrapper>

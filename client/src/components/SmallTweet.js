@@ -20,7 +20,7 @@ const SmallTweet = ({ tweet }) => {
       <Wrapper>
         {tweet.isRetweeted && <Header></Header>}
         <StyledLink
-          to={`/:${author.handle}`}
+          to={`/${author.handle}`}
           onClick={() => getUserProfile(author.handle)}
         >
           <Avatar src={author.avatarSrc} />
@@ -29,7 +29,7 @@ const SmallTweet = ({ tweet }) => {
           <TweetBody>
             <AuthorInfo>
               <StyledLink
-                to={`/:${author.handle}`}
+                to={`/${author.handle}`}
                 onClick={() => getUserProfile(author.handle)}
               >
                 <DisplayName>{author.displayName}</DisplayName>

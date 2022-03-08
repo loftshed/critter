@@ -19,7 +19,6 @@ export const UserProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         receiveUserFromServer(data);
-        console.log(data);
       });
   };
 

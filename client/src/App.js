@@ -38,10 +38,10 @@ const App = () => {
             <Route exact path="/">
               <HomeFeed />
             </Route>
-            <Route exact path="/notifications/">
+            <Route exact path="/notifications">
               <Notifications />
             </Route>
-            <Route exact path="/bookmarks/">
+            <Route exact path="/bookmarks">
               <Bookmarks />
             </Route>
             <Route path="/tweet/:tweetId">

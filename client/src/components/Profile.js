@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { UserContext } from "./UserContext";
-// import { FeedContext } from "./FeedContext";
+import { FeedContext } from "./FeedContext";
 import { COLORS, SIZES, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -13,13 +13,19 @@ import {
 import ProfileFeed from "./ProfileFeed";
 
 const Profile = () => {
-  const { currentUser } = useContext(CurrentUserContext);
-  const { user, setUserHandle } = useContext(UserContext);
+  // const { currentUser } = useContext(CurrentUserContext);
+  const { feedItems } = useContext(FeedContext);
+  const { user, setUserHandle, getUserProfile } = useContext(UserContext);
   const userHandle = useParams(); // uses parameters from the URL to set user handle
 
+  console.log(user);
+
   useEffect(() => {
-    setUserHandle(userHandle.profileId.slice(1));
+    getUserProfile(userHandle.profileId);
+    setUserHandle(userHandle.profileId);
   }, []);
+
+  console.log(feedItems);
 
   if (user === null) {
     return null;
@@ -73,7 +79,7 @@ const Profile = () => {
           </FlexRow>
         </UserInfo>
         <>
-          <ProfileFeed />
+          <ProfileFeed feedItems={feedItems} />
         </>
       </Wrapper>
     </>

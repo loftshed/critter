@@ -24,7 +24,7 @@ const HomeFeed = () => {
   }
 
   const tweets = Object.values(feedItems.tweetsById);
-  console.log(tweets);
+  // console.log(tweets);
 
   return (
     <Wrapper>

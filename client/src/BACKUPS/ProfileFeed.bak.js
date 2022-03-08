@@ -13,16 +13,6 @@ const ProfileFeed = ({ userHandle }) => {
     useContext(FeedContext);
   const { currentUser } = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    console.log("Fetching profile feed from server");
-    fetch(`/api/${userHandle}/feed`)
-      .then((res) => res.json())
-      .then((data) => {
-        receiveProfileFeedItemsFromServer(data);
-        console.log(data);
-      });
-  }, []);
-
   console.log();
   // // scrolls to top whenever a new feed is loaded
   // useEffect(() => {
