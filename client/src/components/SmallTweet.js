@@ -14,6 +14,13 @@ const SmallTweet = ({ tweet }) => {
   // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
 
+  ////
+  let history = useHistory();
+
+  const handleClick = () => {
+    history.push("/home");
+  };
+  ////
   console.log();
 
   return (
@@ -28,7 +35,7 @@ const SmallTweet = ({ tweet }) => {
           </StyledLink>
         </div>
         <div>
-          <TweetContainer>
+          <TweetContainer onClick={() => handleClick()}>
             <TweetBody>
               {/* {tweet.isRetweeted && (
                 <Header style={{ color: `${COLORS.darkSubtext}` }}>
@@ -82,6 +89,10 @@ const TweetContainer = styled.div`
   padding: 1em;
   background-color: #15141a;
   border-radius: 10px;
+  &:hover {
+    outline: white 2px solid;
+    cursor: pointer;
+  }
 `;
 
 // Tweet content begins

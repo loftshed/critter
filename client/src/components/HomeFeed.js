@@ -5,6 +5,7 @@ import { CurrentUserContext } from "./context/CurrentUserContext";
 import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
 import TweetInput from "./TweetInput";
+import { useHistory } from "react-router-dom";
 
 const HomeFeed = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
