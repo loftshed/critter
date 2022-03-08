@@ -76,17 +76,21 @@ const TweetInput = () => {
 };
 
 export default TweetInput;
-
 const Wrapper = styled.div`
+  display: flex;
+  padding-left: 2em;
+  justify-content: center;
   border-bottom: 10px solid ${COLORS.darkSubtext};
+  margin-bottom: 1em;
   width: 100%;
 `;
 
 //////////////inside inputcontainer
 const InputContainer = styled.div`
   display: flex;
-  margin: 1em 2em;
-  gap: 1em;
+  padding: 2em 1em;
+  gap: 2em;
+  width: 100%;
 `;
 const Avatar = styled.img`
   border-radius: 50%;
@@ -96,7 +100,7 @@ const Avatar = styled.img`
 const InputSubmit = styled.div`
   gap: 1em;
   width: 100%;
-  margin-right: 2em;
+  padding-right: 2em;
   display: flex;
   flex-direction: column;
 `;

@@ -1,15 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import SmallTweet from "./SmallTweet";
-import { CurrentUserContext } from "./context/CurrentUserContext";
 import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
 import TweetInput from "./TweetInput";
-import { useHistory } from "react-router-dom";
 
 const HomeFeed = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
-  // const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     console.log("Fetching home feed from server");
