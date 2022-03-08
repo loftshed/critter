@@ -9,6 +9,7 @@ import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/context/CurrentUserContext";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const App = () => {
   const { currentUser, receiveCurrentUserFromServer } =
@@ -29,29 +30,33 @@ const App = () => {
 
   return (
     <Router id="root">
-      <WholeAssAppWrapper>
-        <GlobalStyles />
-        <Sidebar />
-        <Content>
-          <Switch>
-            <Route exact path="/">
-              <HomeFeed />
-            </Route>
-            <Route exact path="/notifications">
-              <Notifications />
-            </Route>
-            <Route exact path="/bookmarks">
-              <Bookmarks />
-            </Route>
-            <Route path="/tweet/:tweetId">
-              <TweetDetails />
-            </Route>
-            <Route path="/:profileId">
-              <Profile />
-            </Route>
-          </Switch>
-        </Content>
-      </WholeAssAppWrapper>
+      {currentUser === null ? (
+        <></>
+      ) : (
+        <WholeAssAppWrapper>
+          <GlobalStyles />
+          <Sidebar />
+          <Content>
+            <Switch>
+              <Route exact path="/">
+                <HomeFeed />
+              </Route>
+              <Route exact path="/notifications">
+                <Notifications />
+              </Route>
+              <Route exact path="/bookmarks">
+                <Bookmarks />
+              </Route>
+              <Route path="/tweet/:tweetId">
+                <TweetDetails />
+              </Route>
+              <Route path="/:profileId">
+                <Profile />
+              </Route>
+            </Switch>
+          </Content>
+        </WholeAssAppWrapper>
+      )}
     </Router>
   );
 };

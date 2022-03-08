@@ -1,6 +1,7 @@
 import React from "react";
 import { COLORS } from "../constants";
 import styled from "styled-components";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Notifications = () => {
   return (
@@ -8,6 +9,7 @@ const Notifications = () => {
       <HeaderContainer>
         <Header>Notifications</Header>
       </HeaderContainer>
+      <LoadingSpinner />
     </Wrapper>
   );
 };

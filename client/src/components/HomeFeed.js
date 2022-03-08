@@ -31,11 +31,14 @@ const HomeFeed = () => {
         <Header>Home</Header>
       </HeaderContainer>
       <TweetInput />
-      <Tweets>
-        {tweets.map((tweet) => {
-          return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
-        })}
-      </Tweets>
+      {!feedItems && <div>Nothing Yet</div>}
+      {feedItems && (
+        <Tweets>
+          {tweets.map((tweet) => {
+            return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
+          })}
+        </Tweets>
+      )}
     </Wrapper>
   );
 };
