@@ -3,7 +3,8 @@ const data = require("../data");
 // HARDCODED CURRENT USER.
 const CURRENT_USER_HANDLE = "treasurymog";
 
-const MAX_DELAY = 2000;
+// const MAX_DELAY = 2000;
+const MAX_DELAY = 0;
 
 // TODO! reset this!!
 const FAILURE_ODDS = 0.0;
