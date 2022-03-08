@@ -44,6 +44,7 @@ const TweetInput = () => {
         <Avatar src={avatarSrc} />
         <InputSubmit>
           <Input
+            value={tweetString}
             onInput={(ev) => handleInput(ev)}
             placeholder="What's going on?"
           ></Input>

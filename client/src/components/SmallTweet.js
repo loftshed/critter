@@ -27,43 +27,38 @@ const SmallTweet = ({ tweet }) => {
   console.log();
 
   return (
-    <>
-      <Wrapper>
-        <StyledLink
-          to={`/${author.handle}`}
-          onClick={() => getUserProfile(author.handle)}
-        >
-          <Avatar src={author.avatarSrc} />
-        </StyledLink>
-
-        <div>
-          <TweetContainer onClick={() => handleClick(tweet.id)}>
-            <TweetBody>
-              {/* {tweet.isRetweeted && (
+    <Wrapper>
+      <StyledLink
+        to={`/${author.handle}`}
+        onClick={() => getUserProfile(author.handle)}
+      >
+        <Avatar src={author.avatarSrc} />
+      </StyledLink>
+      <TweetContainer onClick={() => handleClick(tweet.id)}>
+        <TweetBody>
+          {/* {tweet.isRetweeted && (
                 <Header style={{ color: `${COLORS.darkSubtext}` }}>
                 <RetweetIcon />
                   Retweeted by @{author.handle}!
                 </Header>
               )} */}
-              <AuthorInfo>
-                <StyledLink
-                  to={`/${author.handle}`}
-                  onClick={() => getUserProfile(author.handle)}
-                >
-                  <DisplayName>{author.displayName}</DisplayName>
-                </StyledLink>
-                <Handle>@{author.handle}</Handle>
-                <>•</>
-                <Timestamp>{timestamp}</Timestamp>
-              </AuthorInfo>
-              <Status>{tweet.status}</Status>
-              {media && <Image src={media.url} />}
-            </TweetBody>
-            <ActionBar />
-          </TweetContainer>
-        </div>
-      </Wrapper>
-    </>
+          <AuthorInfo>
+            <StyledLink
+              to={`/${author.handle}`}
+              onClick={() => getUserProfile(author.handle)}
+            >
+              <DisplayName>{author.displayName}</DisplayName>
+            </StyledLink>
+            <Handle>@{author.handle}</Handle>
+            <>•</>
+            <Timestamp>{timestamp}</Timestamp>
+          </AuthorInfo>
+          <Status>{tweet.status}</Status>
+          {media && <Image src={media.url} />}
+        </TweetBody>
+        <ActionBar />
+      </TweetContainer>
+    </Wrapper>
   );
 };
 
@@ -87,6 +82,8 @@ const Header = styled.div`
 
 const TweetContainer = styled.div`
   display: flex;
+  /* flex: 1; */
+  flex-grow: 1;
   flex-direction: column;
   gap: 1em;
   padding: 1em;
