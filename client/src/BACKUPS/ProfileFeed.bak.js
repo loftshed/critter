@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import SmallTweet from "./SmallTweet";
-import TweetInput from "./TweetInput";
-import { UserContext } from "./UserContext";
-import { FeedContext } from "./FeedContext";
+import SmallTweet from "../components/SmallTweet";
+import TweetInput from "../components/TweetInput";
+import { UserContext } from "../components/UserContext";
+import { FeedContext } from "../components/FeedContext";
 import { COLORS } from "../constants";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "../components/CurrentUserContext";
 
 const ProfileFeed = ({ userHandle }) => {
   const { receiveProfileFeedItemsFromServer, profileFeedItems } =
