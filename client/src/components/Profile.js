@@ -27,6 +27,8 @@ const Profile = () => {
   const params = useParams(); // uses parameters from the URL to set user handle
   // const [feedItemsArray, setFeedItemsArray] = useState();
 
+  // console.log();
+
   const [showFollows, setShowFollows] = useState(false);
 
   useEffect(() => {
@@ -98,9 +100,17 @@ const Profile = () => {
         <Banner src={bannerSrc} />
         <UserInfo>
           <Avatar src={avatarSrc} />
-          <div>
-            <DisplayName>{displayName}</DisplayName>
-            <Handle>@{handle}</Handle>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <DisplayName>{displayName}</DisplayName>
+              <Handle>
+                @{handle}
+                {user.profile.isFollowingYou && (
+                  <FollowsU>FOLLOWS YOU</FollowsU>
+                )}
+              </Handle>
+            </div>
+            {user.profile.isBeingFollowedByYou && <UFollow>Following</UFollow>}
           </div>
           <Bio>{bio}</Bio>
           <FlexRow>
@@ -164,7 +174,7 @@ const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
   height: fit-content;
-  padding: 0rem 2rem;
+  padding: 0rem 3rem;
   gap: 1em;
   color: ${COLORS.darkText};
 `;
@@ -178,6 +188,24 @@ const Handle = styled.div`
   color: ${COLORS.darkSubtext};
   font-weight: ${FONTWEIGHT.bold};
   font-size: 18px;
+`;
+
+const FollowsU = styled.span`
+  background-color: ${COLORS.darkSubtext};
+  color: white;
+  font-size: 11px;
+  border-radius: 5px;
+  padding: 2px 4px;
+  margin-left: 5px;
+`;
+
+const UFollow = styled.div`
+  height: fit-content;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  outline: 1px solid white;
 `;
 
 const Bio = styled.div``;

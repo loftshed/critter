@@ -24,7 +24,10 @@ const SmallTweet = ({ tweet }) => {
     history.push(`/tweet/${tweetId}`);
   };
   ////
-  console.log();
+  console.log(tweet.numLikes);
+  console.log(tweet.numRetweets);
+  console.log(tweet.isLiked);
+  console.log(tweet.isRetweeted);
 
   return (
     <Wrapper>
@@ -36,12 +39,12 @@ const SmallTweet = ({ tweet }) => {
       </StyledLink>
       <TweetContainer onClick={() => handleClick(tweet.id)}>
         <TweetBody>
-          {/* {tweet.isRetweeted && (
-                <Header style={{ color: `${COLORS.darkSubtext}` }}>
-                <RetweetIcon />
-                  Retweeted by @{author.handle}!
-                </Header>
-              )} */}
+          {tweet.isRetweeted && (
+            <Header style={{ color: `${COLORS.darkSubtext}` }}>
+              <RetweetIcon />
+              Retweeted by @{author.handle}!
+            </Header>
+          )}
           <AuthorInfo>
             <StyledLink
               to={`/${author.handle}`}
