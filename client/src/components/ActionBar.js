@@ -40,13 +40,13 @@ const ActionBar = ({ viewType, tweet }) => {
             <ActionButton color="rgba(23, 191, 99, 0.5">
               <RetweetIcon />
             </ActionButton>
-            <Num>{tweet.numRetweets}</Num>
+            <Num>{tweet?.numRetweets}</Num>
           </ActionAndNum>
           <ActionAndNum>
             <ActionButton color="rgba(224, 36, 94, 0.5)">
               <HeartIcon />
             </ActionButton>
-            <Num>{tweet.numLikes}</Num>
+            <Num>{tweet?.numLikes}</Num>
           </ActionAndNum>
           <ActionButton color="rgba(27, 149, 224, 0.5">
             <ShareIcon />
