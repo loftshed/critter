@@ -16,9 +16,18 @@ import LoadingSpinner from "./LoadingSpinner";
 const Profile = () => {
   // const { currentUser } = useContext(CurrentUserContext);
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
-  const { user, userHandle, setUserHandle, getUserProfile } =
-    useContext(UserContext);
+  const {
+    user,
+    userHandle,
+    setUserHandle,
+    getUserProfile,
+    follows,
+    receiveFollowsFromServer,
+  } = useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
+  // const [feedItemsArray, setFeedItemsArray] = useState();
+
+  //
 
   useEffect(() => {
     getUserProfile(params.profileId);
@@ -33,11 +42,27 @@ const Profile = () => {
       .then((data) => {
         receiveFeedItemsFromServer(data);
       });
-  }, [params.profileId]);
+  }, [params.profileId, follows]);
 
-  // if (user === null) {
-  //   return null;
-  // }
+  const getFollowing = () => {
+    console.log("Fetching profile's following from server");
+    fetch(`/api/${params.profileId}/following`)
+      .then((res) => res.json())
+      .then((data) => {
+        receiveFollowsFromServer(data);
+        console.log(data);
+      });
+  };
+
+  const getFollowers = () => {
+    console.log("Fetching profile's followers from server");
+    fetch(`/api/${params.profileId}/followers`)
+      .then((res) => res.json())
+      .then((data) => {
+        receiveFollowsFromServer(data);
+        console.log(data);
+      });
+  };
 
   if (user === null) {
     return (
@@ -46,6 +71,8 @@ const Profile = () => {
       </Wrapper>
     );
   }
+
+  const feedItemsArray = Object.values(feedItems.tweetsById);
 
   // destructure all these things from profile property of currentUser
   const {
@@ -88,14 +115,16 @@ const Profile = () => {
             </LocationJoinDate>
           </FlexRow>
           <FlexRow>
-            <FollowData>{numFollowing}</FollowData>
+            <FollowData onClick={getFollowing}>{numFollowing}</FollowData>
             <FollowDataText>Following</FollowDataText>
-            <FollowData>{numFollowers}</FollowData>
-            <FollowDataText>Followers</FollowDataText>
+            <FollowData onClick={getFollowers}>{numFollowers}</FollowData>
+            <FollowDataText>
+              {numFollowers > 1 ? "Followers" : "Follower"}
+            </FollowDataText>
           </FlexRow>
         </UserInfo>
         <>
-          <ProfileFeed feedItems={feedItems} />
+          <ProfileFeed tweets={feedItemsArray} />
         </>
       </Wrapper>
     </>
@@ -160,8 +189,17 @@ const LocationJoinDate = styled.div`
   color: ${COLORS.darkSubtext};
 `;
 
-const FollowData = styled.div`
+const FollowData = styled.button`
+  font-size: 16px;
+  padding: 0px;
   font-weight: ${FONTWEIGHT.boldest};
+  color: ${COLORS.darkText};
+  background: none;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const FollowDataText = styled.div`

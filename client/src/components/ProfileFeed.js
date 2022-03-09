@@ -5,16 +5,13 @@ import { CurrentUserContext } from "./context/CurrentUserContext";
 import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
 
-const ProfileFeed = ({ feedItems }) => {
+const ProfileFeed = ({ tweets }) => {
   // const { receiveFeedItemsFromServer } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
 
-  if (feedItems === null) {
+  if (tweets === null) {
     return null;
   }
-
-  const tweets = Object.values(feedItems.tweetsById);
-  // console.log(tweets);
 
   return (
     <Wrapper>
