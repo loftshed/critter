@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { FiLoader } from "react-icons/fi";
 import { keyframes } from "styled-components";
-import { COLORS } from "../constants";
+import { COLORS } from "../../constants";
 
 const LoadingSpinner = ({ size }) => {
   return (

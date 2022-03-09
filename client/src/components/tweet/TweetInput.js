@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { CurrentUserContext } from "./context/CurrentUserContext";
-import { ComposeTweetContext } from "./context/ComposeTweetContext";
+import { CurrentUserContext } from "../context/CurrentUserContext";
+import { ComposeTweetContext } from "../context/ComposeTweetContext";
 import styled from "styled-components";
-import { COLORS } from "../constants";
-import LoadingSpinner from "./LoadingSpinner";
+import { COLORS } from "../../constants";
+import LoadingSpinner from "../etc/LoadingSpinner";
 
 const TweetInput = () => {
   const { currentUser } = useContext(CurrentUserContext);

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { COLORS, FONTWEIGHT } from "../constants";
+import { COLORS, FONTWEIGHT } from "../../constants";
 import ActionBar from "./ActionBar";
 import moment from "moment";
-import { UserContext } from "./context/UserContext";
-import LoadingSpinner from "./LoadingSpinner";
+import { UserContext } from "../context/UserContext";
+import LoadingSpinner from "../etc/LoadingSpinner";
 import { FiRepeat as RetweetIcon } from "react-icons/fi";
 
 const SmallTweet = ({ tweet }) => {

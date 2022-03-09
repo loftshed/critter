@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { COLORS } from "../constants";
+import { COLORS } from "../../constants";
 
 const ActionButton = ({ children, color, onClick }) => {
   const [bgColor, setBgColor] = useState("transparent");

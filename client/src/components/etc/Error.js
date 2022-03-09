@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BiSad } from "react-icons/bi";
-import { COLORS } from "../constants";
+import { COLORS } from "../../constants";
 
 const Error = () => {
   return (

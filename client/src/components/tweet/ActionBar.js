@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { FeedContext } from "./context/FeedContext";
-import { CurrentUserContext } from "./context/CurrentUserContext";
+import { FeedContext } from "../context/FeedContext";
+import { CurrentUserContext } from "../context/CurrentUserContext";
 import {
   FiMessageSquare as ReplyIcon,
   FiRepeat as RetweetIcon,

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CurrentUserContext } from "../context/CurrentUserContext";
-import { UserContext } from "../context/UserContext";
-import { FeedContext } from "../context/FeedContext";
-import { COLORS, FONTWEIGHT } from "../../constants";
+import { CurrentUserContext } from "./context/CurrentUserContext";
+import { UserContext } from "./context/UserContext";
+import { FeedContext } from "./context/FeedContext";
+import { COLORS, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
@@ -10,8 +10,8 @@ import {
   FiMapPin as LocationIcon,
   FiCalendar as CalendarIcon,
 } from "react-icons/fi";
-import ProfileFeed from "../feeds/ProfileFeed";
-import LoadingSpinner from "../LoadingSpinner";
+import ProfileFeed from "./profile/ProfileFeed";
+import LoadingSpinner from "./etc/LoadingSpinner";
 
 const Profile = () => {
   // const { currentUser } = useContext(CurrentUserContext);

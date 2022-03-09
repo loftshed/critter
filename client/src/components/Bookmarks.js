@@ -1,7 +1,7 @@
 import React from "react";
 import { COLORS } from "../constants";
 import styled from "styled-components";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./etc/LoadingSpinner";
 const Bookmarks = () => {
   return (
     <Wrapper>

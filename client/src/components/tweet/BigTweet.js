@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLORS, FONTWEIGHT } from "../constants";
+import { COLORS, FONTWEIGHT } from "../../constants";
 import ActionBar from "./ActionBar";
 import moment from "moment";
-import { UserContext } from "./context/UserContext";
+import { UserContext } from "../context/UserContext";
 import { FiRepeat as RetweetIcon, FiHeart as HeartIcon } from "react-icons/fi";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../etc/LoadingSpinner";
 
 const BigTweet = ({ thisTweet }) => {
   const { getUserProfile } = useContext(UserContext);

@@ -10,7 +10,7 @@ import {
   FiMapPin as LocationIcon,
   FiCalendar as CalendarIcon,
 } from "react-icons/fi";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../etc/LoadingSpinner";
 
 // for now all of this is just a sloppy copy of profile.js with a different feed
 
