@@ -121,6 +121,10 @@ const Avatar = styled.img`
   border-radius: 50%;
   width: 100px;
   height: 100px;
+  &:hover {
+    outline: ${COLORS.primary} 2px solid;
+    cursor: pointer;
+  }
 `;
 
 const AuthorInfo = styled.div`
@@ -132,6 +136,10 @@ const AuthorInfo = styled.div`
 const DisplayName = styled.div`
   font-size: 20px;
   color: ${COLORS.darkText};
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: ${COLORS.primary};
+  }
 `;
 const Handle = styled.div``;
 const Timestamp = styled.div``;
