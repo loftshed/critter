@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import BigTweet from "./BigTweet";
+import { FeedContext } from "../context/FeedContext";
 
 const TweetDetails = () => {
-  const [tweet, setTweet] = useState(null);
   const params = useParams();
   const receiveTweetFromServer = (receivedTweet) => {
     setTweet(receivedTweet);
   };
+
+  const { tweet, setTweet } = useContext(FeedContext);
 
   useEffect(() => {
     console.log("Fetching tweet from server");
@@ -17,7 +19,7 @@ const TweetDetails = () => {
       .then((data) => {
         receiveTweetFromServer(data);
       });
-  }, [tweet]);
+  }, []);
 
   if (tweet === null) {
     return null;
@@ -25,7 +27,7 @@ const TweetDetails = () => {
   return (
     <>
       <Wrapper>
-        <BigTweet thisTweet={tweet} />
+        <BigTweet setTweet={setTweet} thisTweet={tweet} />
       </Wrapper>
     </>
   );

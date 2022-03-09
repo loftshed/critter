@@ -5,10 +5,8 @@ import { COLORS, FONTWEIGHT } from "../../constants";
 import ActionBar from "./ActionBar";
 import moment from "moment";
 import { UserContext } from "../context/UserContext";
-import { FiRepeat as RetweetIcon, FiHeart as HeartIcon } from "react-icons/fi";
-import LoadingSpinner from "../etc/LoadingSpinner";
 
-const BigTweet = ({ thisTweet }) => {
+const BigTweet = ({ thisTweet, setTweet }) => {
   const { getUserProfile } = useContext(UserContext);
   const { tweet } = thisTweet;
   const author = tweet.author;
@@ -58,7 +56,7 @@ const BigTweet = ({ thisTweet }) => {
           <> • </>
           Critter web app
         </Timestamp>
-        <ActionBar viewType={"big"} tweet={tweet} />
+        <ActionBar viewType={"big"} tweet={tweet} setTweet={setTweet} />
       </TweetContainer>
     </Wrapper>
   );

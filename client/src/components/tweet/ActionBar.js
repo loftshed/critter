@@ -15,6 +15,7 @@ const ActionBar = ({ viewType, tweet }) => {
   // const { feedItems } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
   // console.log(tweet.isLiked);
+  //  const { tweet, setTweet } = useContext(FeedContext);
 
   const likeTweet = () => {
     console.log("Liking a tweet");
