@@ -114,10 +114,12 @@ const Profile = () => {
           </div>
           <Bio>{bio}</Bio>
           <FlexRow>
-            <LocationJoinDate>
-              <LocationIcon />
-              {location}
-            </LocationJoinDate>
+            {location && (
+              <LocationJoinDate>
+                <LocationIcon />
+                {location}
+              </LocationJoinDate>
+            )}
             <LocationJoinDate>
               <CalendarIcon />
               Joined
@@ -151,7 +153,7 @@ const Wrapper = styled.div`
 
 const FlexRow = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 6px;
 `;
 
 const Avatar = styled.img`

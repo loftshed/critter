@@ -8,6 +8,7 @@ import LoadingSpinner from "./LoadingSpinner";
 
 const HomeFeed = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
+  // const [status, setStatus] = useContext("");
 
   useEffect(() => {
     console.log("Fetching home feed from server");
@@ -16,6 +17,13 @@ const HomeFeed = () => {
       .then((data) => {
         receiveFeedItemsFromServer(data);
       });
+    // error message thing
+    //   .catch((err) => {
+    //     setStatus("error");
+    //     throw new Error(err);
+    //     console.log(err);
+    //   });
+    // // error message thing
   }, []);
 
   if (feedItems === null) {

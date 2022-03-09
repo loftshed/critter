@@ -80,7 +80,7 @@ const Wrapper = styled.div`
 
 // contains the whole shebang
 const TweetContainer = styled.div`
-  background-color: #15141a;
+  background-color: ${COLORS.darkTweetBg};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -121,7 +121,9 @@ const DisplayName = styled.div`
   color: ${COLORS.darkText};
 `;
 const Handle = styled.div``;
-const Timestamp = styled.div``;
+const Timestamp = styled.div`
+  color: ${COLORS.darkText};
+`;
 const Status = styled.div`
   font-size: 22px;
   font-weight: ${FONTWEIGHT.bold};

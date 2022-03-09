@@ -5,7 +5,7 @@ export const COLORS = {
   darkSidebarBg: "#30363d",
   darkText: "#d9d9d9",
   darkLink: "#c9d1d9",
-  darkSubtext: "#484D51",
+  darkSubtext: "#6c757d",
   darkBorder: "#000000",
   darkTweetBg: "#1b1921",
 };
