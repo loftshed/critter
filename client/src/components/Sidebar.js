@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import { UserContext } from "./context/UserContext";
 import { CurrentUserContext } from "./context/CurrentUserContext";
 import styled from "styled-components";
 
@@ -12,11 +11,9 @@ import {
   FiBell as NotificationIcon,
   FiBookmark as BookmarksIcon,
 } from "react-icons/fi";
-import LoadingSpinner from "./LoadingSpinner";
 
 const Sidebar = () => {
   const { currentUser } = useContext(CurrentUserContext);
-  // const { getUserProfile } = useContext(UserContext);
   const params = useParams();
 
   useEffect(() => {
@@ -53,7 +50,6 @@ export default Sidebar;
 const Wrapper = styled.div`
   display: flex;
   position: fixed;
-  /* flex-direction: column; */
   width: 230px;
   padding: 1rem;
   height: 100%;
