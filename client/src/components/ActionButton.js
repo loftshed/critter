@@ -17,6 +17,7 @@ const ActionButton = ({ children, color, onClick }) => {
 };
 
 const Wrapper = styled.button`
+  transition: 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
