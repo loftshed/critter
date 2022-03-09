@@ -93,7 +93,7 @@ const TweetContainer = styled.div`
   border-radius: 10px;
   /* width: 100%; */
   &:hover {
-    outline: white 2px solid;
+    outline: rgba(255, 255, 255, 0.2) 2px solid;
     cursor: pointer;
   }
 `;
