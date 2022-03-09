@@ -129,6 +129,7 @@ const Status = styled.div`
 `;
 const Image = styled.img`
   min-width: 100%;
+  max-width: 100%;
   border-radius: 25px;
   max-height: 60vh;
   object-fit: cover;

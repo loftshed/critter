@@ -24,12 +24,9 @@ const HomeFeed = () => {
         <HeaderContainer>
           <Header>Home</Header>
         </HeaderContainer>
-        <div style={{ height: "272.5px" }}>
+        <div style={{ height: "calc(100vh - 75px)" }}>
           <LoadingSpinner />
         </div>
-        <Tweets>
-          <LoadingSpinner />
-        </Tweets>
       </Wrapper>
     );
   }
@@ -69,6 +66,7 @@ const Tweets = styled.div`
 const HeaderContainer = styled.div`
   font-weight: 700;
   font-size: 32px;
+  height: 73px;
 
   color: ${COLORS.darkText};
   border-bottom: 1px solid ${COLORS.darkSubtext};

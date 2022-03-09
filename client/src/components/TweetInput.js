@@ -17,7 +17,7 @@ const TweetInput = () => {
 
   if (currentUser === null) {
     return (
-      <Wrapper style={{ height: "100%" }}>
+      <Wrapper style={{ height: "100vh" }}>
         <LoadingSpinner />
       </Wrapper>
     );

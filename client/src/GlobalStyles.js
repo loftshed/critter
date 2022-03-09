@@ -12,6 +12,12 @@ export default createGlobalStyle`
 
   html, body {
     max-width: 100vw;
+    scrollbar-width: thin;
+  }
+
+  html {
+    overflow-y: auto;
+    scrollbar-gutter: stable;
   }
 
   #root {
@@ -19,6 +25,7 @@ export default createGlobalStyle`
     justify-content: center;
     width: 100%;
   }
+
 
   /* http://meyerweb.com/eric/tools/css/reset/
     v2.0 | 20110126
