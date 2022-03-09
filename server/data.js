@@ -20,9 +20,8 @@ const users = {
     location: "Whitehall, London",
     url: undefined,
     joined: "2016-10-12T12:00",
-    bio:
-      "I live and work at the Treasury as a mouser but I also have a paw in the finances. Here to help lighten up the political world. Unofficial.",
-    followingIds: ["diplomog", "giantcat9"],
+    bio: "I live and work at the Treasury as a mouser but I also have a paw in the finances. Here to help lighten up the political world. Unofficial.",
+    followingIds: ["diplomog", "giantcat9", "bulgogi_bear"],
     followerIds: ["diplomog", "giantcat9"],
     likeIds: ["1209791721099411456"],
   },
@@ -34,16 +33,42 @@ const users = {
     location: undefined,
     url: undefined,
     joined: "2019-09-01T18:00",
-    bio:
-      "Just giant cats with military hardware. \nInstagram: @giantmilitarycats",
+    bio: "Just giant cats with military hardware. \nInstagram: @giantmilitarycats",
     followingIds: ["treasurymog"],
     followerIds: ["treasurymog"],
     likeIds: [],
   },
+  bulgogi_bear: {
+    handle: "bulgogi_bear",
+    displayName: "Mr. Pagoda",
+    avatarSrc: "/assets/pagodaav.jpg",
+    bannerSrc: "/assets/pagodabanner.jpg",
+    location: "Montreal",
+    url: undefined,
+    joined: "2022-03-09T11:30",
+    bio: "Big dumb idiot",
+    followingIds: ["treasurymog"],
+    followerIds: ["treasurymog", "giantcat9"],
+    likeIds: ["1209791721099411456"],
+  },
 };
 
 const tweets = {
+  // BulgogiBear
+  "1209791721099411423": {
+    id: "1209791721099411423",
+    authorHandle: "bulgogi_bear",
+    timestamp: "2022-03-09T11:30:00+00:00",
+    sortedTimestamp: "2022-03-09T11:30:00+00:00",
+    likedBy: ["giantcat9"],
+    retweetedBy: ["treasurymog"],
+    status:
+      "Today I think I'm just going to wait until my owner is deeply focused, and then start screaming about some random bullshit and destroying the couch",
+    media: [],
+  },
+
   // TreasuryMog
+
   "1209791721099411456r1": {
     id: "1209791721099411456r1",
     authorHandle: "treasurymog",
@@ -68,6 +93,15 @@ const tweets = {
         url: "/assets/ENRXDPKWwAEJqFu.jpeg",
       },
     ],
+  },
+  "1209791721099411423r1": {
+    id: "1209791721099411423r1",
+    authorHandle: "treasurymog",
+    timestamp: "2022-03-09T11:30:00+00:00",
+    sortedTimestamp: "2022-03-09T11:30:00+00:00",
+    retweetOf: "1209791721099411423",
+    likedBy: [],
+    retweetedBy: [],
   },
 
   // Diplomog

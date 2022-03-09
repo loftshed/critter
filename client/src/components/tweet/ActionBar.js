@@ -21,6 +21,22 @@ const ActionBar = ({ viewType, tweet }) => {
   // console.log(tweet.isLiked);
   // console.log(tweet.isRetweeted);
 
+  const likeTweet = () => {
+    console.log("Liking a tweet");
+    fetch("/api/me/home-feed")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+    // error message thing
+    //   .catch((err) => {
+    //     setStatus("error");
+    //     throw new Error(err);
+    //     console.log(err);
+    //   });
+    // // error message thing
+  };
+
   return (
     <Wrapper>
       <Bar

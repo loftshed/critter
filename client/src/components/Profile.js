@@ -9,6 +9,7 @@ import moment from "moment";
 import {
   FiMapPin as LocationIcon,
   FiCalendar as CalendarIcon,
+  FiLink as LinkIcon,
 } from "react-icons/fi";
 import ProfileFeed from "./profile/ProfileFeed";
 import LoadingSpinner from "./etc/LoadingSpinner";
@@ -88,6 +89,7 @@ const Profile = () => {
       location,
       numFollowers,
       numFollowing,
+      url,
       // numLikes,
     },
   } = user;
@@ -111,13 +113,26 @@ const Profile = () => {
               </Handle>
             </div>
             {user.profile.isBeingFollowedByYou && <UFollow>Following</UFollow>}
+            {/* try to implement followers/ing! */}
+            {!user.profile.isBeingFollowedByYou && <UFollow>Follow</UFollow>}
           </div>
           <Bio>{bio}</Bio>
-          <FlexRow>
+          <InfoRow>
             {location && (
               <LocationJoinDate>
                 <LocationIcon />
                 {location}
+              </LocationJoinDate>
+            )}
+            {url && (
+              <LocationJoinDate>
+                <LinkIcon />
+                <a
+                  style={{ textDecoration: "none", color: `${COLORS.primary}` }}
+                  href={url}
+                >
+                  {url.replace(/^https?:\/\//, "")}
+                </a>
               </LocationJoinDate>
             )}
             <LocationJoinDate>
@@ -125,15 +140,15 @@ const Profile = () => {
               Joined
               {joinDate}
             </LocationJoinDate>
-          </FlexRow>
-          <FlexRow>
+          </InfoRow>
+          <FollowRow>
             <FollowData onClick={getFollowing}>{numFollowing}</FollowData>
             <FollowDataText>Following</FollowDataText>
             <FollowData onClick={getFollowers}>{numFollowers}</FollowData>
             <FollowDataText>
               {numFollowers > 1 ? "Followers" : "Follower"}
             </FollowDataText>
-          </FlexRow>
+          </FollowRow>
         </UserInfo>
         <>
           <ProfileFeed tweets={feedItemsArray} />
@@ -151,9 +166,13 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-const FlexRow = styled.div`
+const InfoRow = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 10px;
+`;
+const FollowRow = styled.div`
+  display: flex;
+  gap: 5px;
 `;
 
 const Avatar = styled.img`
