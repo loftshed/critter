@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "./context/CurrentUserContext";
 import { UserContext } from "./context/UserContext";
 import { FeedContext } from "./context/FeedContext";
@@ -26,6 +26,7 @@ const Profile = () => {
   } = useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
   // const [feedItemsArray, setFeedItemsArray] = useState();
+  const [showFollows, setShowFollows] = useState(false);
 
   //
 
@@ -124,7 +125,11 @@ const Profile = () => {
           </FlexRow>
         </UserInfo>
         <>
-          <ProfileFeed tweets={feedItemsArray} />
+          <ProfileFeed
+            tweets={feedItemsArray}
+            showFollows={showFollows}
+            setShowFollows={setShowFollows}
+          />
         </>
       </Wrapper>
     </>

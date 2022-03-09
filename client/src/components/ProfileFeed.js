@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import SmallTweet from "./SmallTweet";
 import { CurrentUserContext } from "./context/CurrentUserContext";
 import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
 
-const ProfileFeed = ({ tweets }) => {
+const ProfileFeed = ({ tweets, showFollows, setShowFollows }) => {
   // const { receiveFeedItemsFromServer } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
 
@@ -16,20 +16,31 @@ const ProfileFeed = ({ tweets }) => {
   return (
     <Wrapper>
       {/* TODO! turn header into a component that can be used on all pages & has an arrow if you navigate to a tweet */}
+      {!showFollows ? (
+        <>
+          <HeaderContainer>
+            <Header>
+              <div>Followers</div>
+            </Header>
+          </HeaderContainer>
+        </>
+      ) : (
+        <>
+          <HeaderContainer>
+            <Header>
+              <div>Tweets</div>
+              <div>Media</div>
+              <div>Likes</div>
+            </Header>
+          </HeaderContainer>
 
-      <HeaderContainer>
-        <Header>
-          <div>Tweets</div>
-          <div>Media</div>
-          <div>Likes</div>
-        </Header>
-      </HeaderContainer>
-
-      <Tweets>
-        {tweets.map((tweet) => {
-          return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
-        })}
-      </Tweets>
+          <Tweets>
+            {tweets.map((tweet) => {
+              return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
+            })}
+          </Tweets>
+        </>
+      )}
     </Wrapper>
   );
 };
