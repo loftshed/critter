@@ -39,10 +39,10 @@ const SmallTweet = ({ tweet }) => {
       </StyledLink>
       <TweetContainer onClick={() => handleClick(tweet.id)}>
         <TweetBody>
-          {tweet.isRetweeted && (
+          {tweet.retweetFrom && (
             <Header style={{ color: `${COLORS.darkSubtext}` }}>
               <RetweetIcon />
-              Retweeted by @{author.handle}!
+              Retweeted by @{tweet.retweetFrom.handle}
             </Header>
           )}
           <AuthorInfo>
@@ -81,7 +81,11 @@ const Wrapper = styled.div`
 `;
 
 const Header = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: -10px;
+  font-size: 15px;
 `;
 
 const TweetContainer = styled.div`
