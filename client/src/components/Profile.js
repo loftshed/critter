@@ -29,13 +29,13 @@ const Profile = () => {
 
   // console.log();
 
-  const [showFollows, setShowFollows] = useState(false);
+  // const [showFollows, setShowFollows] = useState(false);
 
   useEffect(() => {
     getUserProfile(params.profileId);
     setUserHandle(params.profileId);
     window.scrollTo(0, 0);
-  }, [params]);
+  }, [params.profileId]);
 
   useEffect(() => {
     console.log("Fetching profile feed from server");
@@ -44,7 +44,7 @@ const Profile = () => {
       .then((data) => {
         receiveFeedItemsFromServer(data);
       });
-  }, [params.profileId, follows]);
+  }, [params.profileId]);
 
   const getFollowing = () => {
     console.log("Fetching profile's following from server");

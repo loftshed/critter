@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { TweetContext } from "../context/TweetContext";
 import {
@@ -12,10 +12,21 @@ import ActionButton from "./ActionButton";
 const ActionBar = ({ viewType, tweet }) => {
   const smolTrue = viewType === "small";
   // const { feedItems } = useContext(TweetContext);
-  // console.log(tweet.isLiked);
-  //  const { tweet, setTweet } = useContext(TweetContext);
+  //  const [ tweet, setTweet ] = useContext(TweetContext);
 
-  const likeTweet = () => {
+  const [isLiked, setIsLiked] = useState(tweet.isLiked);
+
+  // const updateTweet = () => {
+  //   fetch(`/api/tweet/${tweet.id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       receiveTweetFromServer(data);
+  //     });
+  // };
+
+  const likeTweet = (ev) => {
+    ev.stopPropagation();
+    setIsLiked(true);
     console.log("Liking a tweet");
     fetch(`/api/tweet/${tweet.id}/like`, {
       method: "PUT",
@@ -30,7 +41,9 @@ const ActionBar = ({ viewType, tweet }) => {
       });
   };
 
-  const unlikeTweet = () => {
+  const unlikeTweet = (ev) => {
+    ev.stopPropagation();
+    setIsLiked(false);
     console.log("Unliking a tweet");
     fetch(`/api/tweet/${tweet.id}/like`, {
       method: "PUT",

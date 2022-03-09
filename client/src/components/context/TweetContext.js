@@ -3,18 +3,9 @@ import { useContext, useState, createContext } from "react";
 export const TweetContext = createContext(null);
 
 export const TweetProvider = ({ children }) => {
-  const [tweetString, setTweetString] = useState(null);
+  const [tweetString, setTweetString] = useState("");
   const [feedItems, setFeedItems] = useState(null);
   const [tweet, setTweet] = useState(null);
-
-  const handleAfterPostTweet = () => {
-    console.log("Fetching home feed from server");
-    fetch("/api/me/home-feed")
-      .then((res) => res.json())
-      .then((data) => {
-        receiveFeedItemsFromServer(data);
-      });
-  };
 
   const handlePostTweet = (data) => {
     console.log(data);
@@ -30,6 +21,15 @@ export const TweetProvider = ({ children }) => {
       .then((data) => {
         console.log(data);
         handleAfterPostTweet();
+      });
+  };
+
+  const handleAfterPostTweet = () => {
+    console.log("Fetching home feed from server");
+    fetch("/api/me/home-feed")
+      .then((res) => res.json())
+      .then((data) => {
+        receiveFeedItemsFromServer(data);
       });
   };
 

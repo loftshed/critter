@@ -20,19 +20,28 @@ const SmallTweet = ({ tweet }) => {
 
   let history = useHistory();
 
-  const handleClick = (tweetId) => {
+  const handleClick = (ev, tweetId) => {
+    ev.stopPropagation();
     history.push(`/tweet/${tweetId}`);
   };
 
+  const handleImageClick = (ev) => {
+    ev.stopPropagation();
+    history.push(`/${author.handle}`);
+  };
+
   return (
-    <Wrapper>
-      <StyledLink
-        to={`/${author.handle}`}
-        onClick={() => getUserProfile(author.handle)}
-      >
-        <Avatar src={author.avatarSrc} />
-      </StyledLink>
-      <TweetContainer onClick={() => handleClick(tweet.id)}>
+    <Wrapper onClick={(ev) => handleClick(ev, tweet.id)}>
+      <Avatar
+        onClick={(ev) => {
+          handleImageClick(ev);
+          getUserProfile(author.handle);
+        }}
+        src={author.avatarSrc}
+      />
+
+      <TweetContainer>
+        {/* <TweetContainer onClick={() => handleClick(tweet.id)}> */}
         <TweetBody>
           {tweet.retweetFrom && (
             <Header style={{ color: `${COLORS.darkSubtext}` }}>
