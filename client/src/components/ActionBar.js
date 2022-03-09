@@ -21,6 +21,7 @@ const ActionBar = ({ viewType }) => {
         style={{
           justifyContent: smolTrue ? "flex-start" : "center",
           borderRadius: smolTrue ? "none" : "10px",
+          padding: smolTrue ? "10px 0px 10px 25px" : "10px 15px",
         }}
       >
         <ButtonContainer>
@@ -47,7 +48,7 @@ export default ActionBar;
 const Bar = styled.div`
   display: flex;
   background-color: #30363d;
-  padding: 10px 15px;
+  padding: 10px 0px 10px 25px;
   color: white;
 `;
 

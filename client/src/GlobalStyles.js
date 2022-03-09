@@ -18,6 +18,7 @@ export default createGlobalStyle`
   html {
     overflow-y: auto;
     scrollbar-gutter: stable;
+    scroll-behavior: smooth;
   }
 
   #root {
