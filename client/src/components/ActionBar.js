@@ -8,27 +8,28 @@ import {
   FiShare as ShareIcon,
   FiHeart as HeartIcon,
 } from "react-icons/fi";
+import ActionButton from "./ActionButton";
 
 const ActionBar = () => {
-  const { feedItems } = useContext(FeedContext);
-  const { currentUser } = useContext(CurrentUserContext);
+  // const { feedItems } = useContext(FeedContext);
+  // const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <Wrapper>
       <Bar>
         <ButtonContainer>
-          <Button>
+          <ActionButton color="rgba(27, 149, 224, 0.5">
             <ReplyIcon />
-          </Button>
-          <Button>
+          </ActionButton>
+          <ActionButton color="rgba(23, 191, 99, 0.5">
             <RetweetIcon />
-          </Button>
-          <Button>
+          </ActionButton>
+          <ActionButton color="rgba(27, 149, 224, 0.5">
             <ShareIcon />
-          </Button>
-          <Button>
+          </ActionButton>
+          <ActionButton color="rgba(224, 36, 94, 0.5)">
             <HeartIcon />
-          </Button>
+          </ActionButton>
         </ButtonContainer>
       </Bar>
     </Wrapper>
@@ -39,12 +40,10 @@ export default ActionBar;
 
 const Bar = styled.div`
   display: flex;
-  /* justify-content: space-around; */
   background-color: #30363d;
   padding: 10px;
   border-radius: 10px;
   color: white;
-  /* padding-top: 1em; */
 `;
 
 const ButtonContainer = styled.div`
@@ -52,7 +51,5 @@ const ButtonContainer = styled.div`
   width: 100%;
   justify-content: space-evenly;
 `;
-
-const Button = styled.button``;
 
 const Wrapper = styled.div``;
