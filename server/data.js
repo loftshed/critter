@@ -88,7 +88,7 @@ const tweets = {
     likedBy: ["giantcat9"],
     retweetedBy: ["treasurymog"],
     status:
-      "Today I think I'm just going to wait until my owner is deeply focused, and then start screaming about some random bullshit and destroying the couch",
+      "Waiting around until my owner is deeply focused so I can get back to destroying the furniture...",
     media: [],
   },
 
