@@ -51,9 +51,34 @@ const users = {
     followerIds: ["treasurymog", "giantcat9"],
     likeIds: ["1209791721099411456"],
   },
+  bubbinsbebe: {
+    handle: "bubbinsbebe",
+    displayName: "Thee Buttons Baby",
+    avatarSrc: "/assets/buttonsav.jpg",
+    bannerSrc: "/assets/buttonsbanner.jpg",
+    location: "Montreal",
+    url: undefined,
+    joined: "2022-03-08T11:30",
+    bio: "Adorable or deplorable, depending on the day",
+    followingIds: ["bulgogi_bear"],
+    followerIds: ["bulgogi_bear", "giantcat9"],
+    likeIds: [],
+  },
 };
 
 const tweets = {
+  // BubbinsBebe
+  "1209791721099411865": {
+    id: "1209791721099411865",
+    authorHandle: "bubbinsbebe",
+    timestamp: "2022-03-09T11:57:00+00:00",
+    sortedTimestamp: "2022-03-09T11:57:00+00:00",
+    likedBy: ["giantcat9"],
+    retweetedBy: ["giantcat9"],
+    status: "Can't wait for someone to blink so I can steal a chicken wing!",
+    media: [],
+  },
+
   // BulgogiBear
   "1209791721099411423": {
     id: "1209791721099411423",
@@ -189,6 +214,7 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
     ],
   },
   // Giant Military Cats
+
   "1215337574526525440": {
     id: "1215337574526525440",
     authorHandle: "giantcat9",
@@ -322,6 +348,15 @@ by Lady Butler / 1881`,
         url: "/assets/EN_vOBvW4AAnbML.jpg",
       },
     ],
+  },
+  "1209791721099411865r1": {
+    id: "1209791721099411865r1",
+    authorHandle: "giantcat9",
+    timestamp: "2022-03-09T11:57:00+00:00",
+    sortedTimestamp: "2022-03-09T11:57:00+00:00",
+    retweetOf: "1209791721099411865",
+    likedBy: [],
+    retweetedBy: [],
   },
 };
 
