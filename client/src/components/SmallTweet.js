@@ -57,7 +57,7 @@ const SmallTweet = ({ tweet }) => {
           {media && <Image src={media.url} />}
         </TweetBody>
         <ActionBar viewType={"small"} />
-        <div></div>
+        <div style={{ paddingBottom: "0.5em" }}></div>
       </TweetContainer>
     </Wrapper>
   );
