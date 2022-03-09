@@ -23,11 +23,6 @@ const SmallTweet = ({ tweet }) => {
   const handleClick = (tweetId) => {
     history.push(`/tweet/${tweetId}`);
   };
-  ////
-  console.log(tweet.numLikes);
-  console.log(tweet.numRetweets);
-  console.log(tweet.isLiked);
-  console.log(tweet.isRetweeted);
 
   return (
     <Wrapper>
@@ -59,7 +54,7 @@ const SmallTweet = ({ tweet }) => {
           <Status>{tweet.status}</Status>
           {media && <Image src={media.url} />}
         </TweetBody>
-        <ActionBar viewType={"small"} />
+        <ActionBar viewType={"small"} tweet={tweet} />
         <div style={{ paddingBottom: "0.5em" }}></div>
       </TweetContainer>
     </Wrapper>

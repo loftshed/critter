@@ -10,10 +10,16 @@ import {
 } from "react-icons/fi";
 import ActionButton from "./ActionButton";
 
-const ActionBar = ({ viewType }) => {
+const ActionBar = ({ viewType, tweet }) => {
   const smolTrue = viewType === "small";
   // const { feedItems } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
+
+  ////
+  // console.log(tweet.numLikes);
+  // console.log(tweet.numRetweets);
+  // console.log(tweet.isLiked);
+  // console.log(tweet.isRetweeted);
 
   return (
     <Wrapper>
@@ -25,17 +31,25 @@ const ActionBar = ({ viewType }) => {
         }}
       >
         <ButtonContainer>
-          <ActionButton color="rgba(27, 149, 224, 0.5">
-            <ReplyIcon />
-          </ActionButton>
-          <ActionButton color="rgba(23, 191, 99, 0.5">
-            <RetweetIcon />
-          </ActionButton>
+          <ActionAndNum>
+            <ActionButton color="rgba(27, 149, 224, 0.5">
+              <ReplyIcon />
+            </ActionButton>
+          </ActionAndNum>
+          <ActionAndNum>
+            <ActionButton color="rgba(23, 191, 99, 0.5">
+              <RetweetIcon />
+            </ActionButton>
+            <Num>{tweet.numRetweets}</Num>
+          </ActionAndNum>
+          <ActionAndNum>
+            <ActionButton color="rgba(224, 36, 94, 0.5)">
+              <HeartIcon />
+            </ActionButton>
+            <Num>{tweet.numLikes}</Num>
+          </ActionAndNum>
           <ActionButton color="rgba(27, 149, 224, 0.5">
             <ShareIcon />
-          </ActionButton>
-          <ActionButton color="rgba(224, 36, 94, 0.5)">
-            <HeartIcon />
           </ActionButton>
         </ButtonContainer>
       </Bar>
@@ -44,6 +58,17 @@ const ActionBar = ({ viewType }) => {
 };
 
 export default ActionBar;
+
+const ActionAndNum = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+`;
+
+const Num = styled.div`
+  color: #f0f0f0;
+  font-size: 14px;
+`;
 
 const Bar = styled.div`
   display: flex;
