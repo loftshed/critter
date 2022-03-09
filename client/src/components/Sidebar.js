@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import { CurrentUserContext } from "./context/CurrentUserContext";
 import styled from "styled-components";
+import { UserContext } from "./context/UserContext";
 
 import { COLORS } from "../constants";
 import { ReactComponent as Logo } from "../assets/logo.svg";
@@ -13,7 +13,7 @@ import {
 } from "react-icons/fi";
 
 const Sidebar = () => {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(UserContext);
   const params = useParams();
 
   useEffect(() => {

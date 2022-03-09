@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import SmallTweet from "../tweet/SmallTweet";
-import { CurrentUserContext } from "../context/CurrentUserContext";
 import { FeedContext } from "../context/FeedContext";
 import { COLORS } from "../../constants";
 import ProfileMenuBar from "./ProfileBar";
 
 const ProfileFeed = ({ tweets }) => {
   // const { receiveFeedItemsFromServer } = useContext(FeedContext);
-  // const { currentUser } = useContext(CurrentUserContext);
 
   if (tweets === null) {
     return null;

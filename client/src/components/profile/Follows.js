@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CurrentUserContext } from "../context/CurrentUserContext";
 import { UserContext } from "../context/UserContext";
 import { FeedContext } from "../context/FeedContext";
 import { COLORS, FONTWEIGHT } from "../../constants";
@@ -15,7 +14,7 @@ import LoadingSpinner from "../etc/LoadingSpinner";
 // for now all of this is just a sloppy copy of profile.js with a different feed
 
 const Follows = () => {
-  // const { currentUser } = useContext(CurrentUserContext);
+  // const { currentUser } = useContext(UserContext);
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
   const {
     user,

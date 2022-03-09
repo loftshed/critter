@@ -6,15 +6,14 @@ import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./components/tweet/TweetDetails";
 import Sidebar from "./components/Sidebar";
-import { CurrentUserContext } from "./components/context/CurrentUserContext";
+import { UserContext } from "./components/context/UserContext";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import LoadingSpinner from "./components/etc/LoadingSpinner";
 import Follows from "./components/profile/Follows";
 
 const App = () => {
-  const { currentUser, receiveCurrentUserFromServer } =
-    useContext(CurrentUserContext);
+  const { currentUser, receiveCurrentUserFromServer } = useContext(UserContext);
 
   useEffect(() => {
     console.log("Fetching current user profile from server");
