@@ -10,6 +10,7 @@ import { CurrentUserContext } from "./components/context/CurrentUserContext";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import LoadingSpinner from "./components/LoadingSpinner";
+import Follows from "./components/Follows";
 
 const App = () => {
   const { currentUser, receiveCurrentUserFromServer } =
@@ -54,8 +55,11 @@ const App = () => {
             <Route path="/tweet/:tweetId">
               <TweetDetails />
             </Route>
-            <Route path="/:profileId">
+            <Route exact path="/:profileId">
               <Profile />
+            </Route>
+            <Route path="/:profileId/follows">
+              <Follows />
             </Route>
           </Switch>
         </Content>

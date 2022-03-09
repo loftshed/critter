@@ -10,10 +10,11 @@ import {
   FiMapPin as LocationIcon,
   FiCalendar as CalendarIcon,
 } from "react-icons/fi";
-import ProfileFeed from "./ProfileFeed";
 import LoadingSpinner from "./LoadingSpinner";
 
-const Profile = () => {
+// for now all of this is just a sloppy copy of profile.js with a different feed
+
+const Follows = () => {
   // const { currentUser } = useContext(CurrentUserContext);
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
   const {
@@ -25,7 +26,7 @@ const Profile = () => {
     receiveFollowsFromServer,
   } = useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
-  // const [feedItemsArray, setFeedItemsArray] = useState();
+  const [feedItemsArray, setFeedItemsArray] = useState();
 
   const [showFollows, setShowFollows] = useState(false);
 
@@ -64,7 +65,7 @@ const Profile = () => {
       });
   };
 
-  if (user === null || feedItems === null) {
+  if (user === null) {
     return (
       <Wrapper>
         <LoadingSpinner />
@@ -72,7 +73,7 @@ const Profile = () => {
     );
   }
 
-  const feedItemsArray = Object.values(feedItems.tweetsById);
+  setFeedItemsArray(Object.values(feedItems.tweetsById));
 
   // destructure all these things from profile property of currentUser
   const {
@@ -123,15 +124,13 @@ const Profile = () => {
             </FollowDataText>
           </FlexRow>
         </UserInfo>
-        <>
-          <ProfileFeed tweets={feedItemsArray} />
-        </>
+        <></>
       </Wrapper>
     </>
   );
 };
 
-export default Profile;
+export default Follows;
 
 const Wrapper = styled.div`
   background-color: ${COLORS.darkBg};

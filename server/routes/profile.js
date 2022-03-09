@@ -38,13 +38,11 @@ router.get("/api/:handle/profile", (req, res) => {
 router.get("/api/:handle/following", (req, res) => {
   const user = getUser(req.params.handle);
   const following = user.followingIds.map(getUserProfile);
-
   return res.json({ following });
 });
 router.get("/api/:handle/followers", (req, res) => {
   const user = getUser(req.params.handle);
   const followers = user.followerIds.map(getUserProfile);
-
   return res.json({ followers });
 });
 
