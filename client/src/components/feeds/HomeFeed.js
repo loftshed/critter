@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import SmallTweet from "./SmallTweet";
-import { FeedContext } from "./context/FeedContext";
-import { COLORS } from "../constants";
-import TweetInput from "./TweetInput";
-import LoadingSpinner from "./LoadingSpinner";
+import SmallTweet from "../SmallTweet";
+import { FeedContext } from "../context/FeedContext";
+import { COLORS } from "../../constants";
+import TweetInput from "../TweetInput";
+import LoadingSpinner from "../LoadingSpinner";
 
 const HomeFeed = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);

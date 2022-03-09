@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CurrentUserContext } from "./context/CurrentUserContext";
-import { UserContext } from "./context/UserContext";
-import { FeedContext } from "./context/FeedContext";
-import { COLORS, FONTWEIGHT } from "../constants";
+import { CurrentUserContext } from "../context/CurrentUserContext";
+import { UserContext } from "../context/UserContext";
+import { FeedContext } from "../context/FeedContext";
+import { COLORS, FONTWEIGHT } from "../../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
@@ -10,10 +10,11 @@ import {
   FiMapPin as LocationIcon,
   FiCalendar as CalendarIcon,
 } from "react-icons/fi";
-import ProfileFeed from "./ProfileFeed";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../LoadingSpinner";
 
-const Profile = () => {
+// for now all of this is just a sloppy copy of profile.js with a different feed
+
+const Follows = () => {
   // const { currentUser } = useContext(CurrentUserContext);
   const { feedItems, receiveFeedItemsFromServer } = useContext(FeedContext);
   const {
@@ -25,9 +26,7 @@ const Profile = () => {
     receiveFollowsFromServer,
   } = useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
-  // const [feedItemsArray, setFeedItemsArray] = useState();
-
-  // console.log();
+  const [feedItemsArray, setFeedItemsArray] = useState();
 
   const [showFollows, setShowFollows] = useState(false);
 
@@ -66,7 +65,7 @@ const Profile = () => {
       });
   };
 
-  if (user === null || feedItems === null) {
+  if (user === null) {
     return (
       <Wrapper>
         <LoadingSpinner />
@@ -74,7 +73,7 @@ const Profile = () => {
     );
   }
 
-  const feedItemsArray = Object.values(feedItems.tweetsById);
+  setFeedItemsArray(Object.values(feedItems.tweetsById));
 
   // destructure all these things from profile property of currentUser
   const {
@@ -100,26 +99,16 @@ const Profile = () => {
         <Banner src={bannerSrc} />
         <UserInfo>
           <Avatar src={avatarSrc} />
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>
-              <DisplayName>{displayName}</DisplayName>
-              <Handle>
-                @{handle}
-                {user.profile.isFollowingYou && (
-                  <FollowsU>FOLLOWS YOU</FollowsU>
-                )}
-              </Handle>
-            </div>
-            {user.profile.isBeingFollowedByYou && <UFollow>Following</UFollow>}
+          <div>
+            <DisplayName>{displayName}</DisplayName>
+            <Handle>@{handle}</Handle>
           </div>
           <Bio>{bio}</Bio>
           <FlexRow>
-            {location && (
-              <LocationJoinDate>
-                <LocationIcon />
-                {location}
-              </LocationJoinDate>
-            )}
+            <LocationJoinDate>
+              <LocationIcon />
+              {location}
+            </LocationJoinDate>
             <LocationJoinDate>
               <CalendarIcon />
               Joined
@@ -135,15 +124,13 @@ const Profile = () => {
             </FollowDataText>
           </FlexRow>
         </UserInfo>
-        <>
-          <ProfileFeed tweets={feedItemsArray} />
-        </>
+        <></>
       </Wrapper>
     </>
   );
 };
 
-export default Profile;
+export default Follows;
 
 const Wrapper = styled.div`
   background-color: ${COLORS.darkBg};
@@ -153,7 +140,7 @@ const Wrapper = styled.div`
 
 const FlexRow = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 10px;
 `;
 
 const Avatar = styled.img`
@@ -176,7 +163,7 @@ const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
   height: fit-content;
-  padding: 0rem 3rem;
+  padding: 0rem 2rem;
   gap: 1em;
   color: ${COLORS.darkText};
 `;
@@ -190,24 +177,6 @@ const Handle = styled.div`
   color: ${COLORS.darkSubtext};
   font-weight: ${FONTWEIGHT.bold};
   font-size: 18px;
-`;
-
-const FollowsU = styled.span`
-  background-color: ${COLORS.darkSubtext};
-  color: white;
-  font-size: 11px;
-  border-radius: 5px;
-  padding: 2px 4px;
-  margin-left: 5px;
-`;
-
-const UFollow = styled.div`
-  height: fit-content;
-  border-radius: 50px;
-  padding: 10px 20px;
-  font-size: 20px;
-  font-weight: 700;
-  outline: 1px solid white;
 `;
 
 const Bio = styled.div``;

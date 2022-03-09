@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Bookmarks from "./components/Bookmarks";
-import HomeFeed from "./components/HomeFeed";
+import HomeFeed from "./components/feeds/HomeFeed";
 import Notifications from "./components/Notifications";
-import Profile from "./components/Profile";
+import Profile from "./components/profile/Profile";
 import TweetDetails from "./components/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import { CurrentUserContext } from "./components/context/CurrentUserContext";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import LoadingSpinner from "./components/LoadingSpinner";
-import Follows from "./components/Follows";
+import Follows from "./components/profile/Follows";
 
 const App = () => {
   const { currentUser, receiveCurrentUserFromServer } =

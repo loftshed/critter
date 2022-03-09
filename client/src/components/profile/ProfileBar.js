@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, useParams } from "react-router-dom";
-import { COLORS } from "../constants";
+import { COLORS } from "../../constants";
 
 const ProfileMenuBar = ({ tweets }) => {
   const params = useParams();
