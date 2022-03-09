@@ -57,6 +57,7 @@ const SmallTweet = ({ tweet }) => {
           {media && <Image src={media.url} />}
         </TweetBody>
         <ActionBar viewType={"small"} />
+        <div></div>
       </TweetContainer>
     </Wrapper>
   );
@@ -86,7 +87,6 @@ const TweetContainer = styled.div`
   flex-grow: 1;
   flex-direction: column;
   gap: 1em;
-  padding: 1em;
   background-color: ${COLORS.darkTweetBg};
   border-radius: 10px;
   /* width: 100%; */
@@ -100,6 +100,7 @@ const TweetContainer = styled.div`
 const TweetBody = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 1em;
   gap: 1em;
   color: ${COLORS.darkSubtext};
 `;

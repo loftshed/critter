@@ -17,7 +17,12 @@ const ActionBar = ({ viewType }) => {
 
   return (
     <Wrapper>
-      <Bar style={{ justifyContent: smolTrue ? "flex-start" : "center" }}>
+      <Bar
+        style={{
+          justifyContent: smolTrue ? "flex-start" : "center",
+          borderRadius: smolTrue ? "none" : "10px",
+        }}
+      >
         <ButtonContainer>
           <ActionButton color="rgba(27, 149, 224, 0.5">
             <ReplyIcon />
@@ -43,7 +48,6 @@ const Bar = styled.div`
   display: flex;
   background-color: #30363d;
   padding: 10px 15px;
-  border-radius: 10px;
   color: white;
 `;
 
