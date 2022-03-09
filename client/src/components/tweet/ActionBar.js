@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { FeedContext } from "../context/FeedContext";
 import { CurrentUserContext } from "../context/CurrentUserContext";
@@ -14,28 +14,48 @@ const ActionBar = ({ viewType, tweet }) => {
   const smolTrue = viewType === "small";
   // const { feedItems } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
-
-  ////
-  // console.log(tweet.numLikes);
-  // console.log(tweet.numRetweets);
   // console.log(tweet.isLiked);
-  // console.log(tweet.isRetweeted);
 
   const likeTweet = () => {
     console.log("Liking a tweet");
-    fetch("/api/me/home-feed")
+    fetch(`/api/tweet/${tweet.id}/like`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ like: true }),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // error message shit will go here
       });
-    // error message thing
-    //   .catch((err) => {
-    //     setStatus("error");
-    //     throw new Error(err);
-    //     console.log(err);
-    //   });
-    // // error message thing
   };
+
+  const unlikeTweet = () => {
+    console.log("Unliking a tweet");
+    fetch(`/api/tweet/${tweet.id}/like`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ like: false }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // error message shit will go here
+      });
+  };
+
+  // error message thing
+  //   .catch((err) => {
+  //     setStatus("error");
+  //     throw new Error(err);
+  //     console.log(err);
+  //   });
+  // // error message thing
+  // if (tweet === null) {
+  //   return null;
+  // }
 
   return (
     <Wrapper>
@@ -59,7 +79,10 @@ const ActionBar = ({ viewType, tweet }) => {
             <Num>{tweet?.numRetweets}</Num>
           </ActionAndNum>
           <ActionAndNum>
-            <ActionButton color="rgba(224, 36, 94, 0.5)">
+            <ActionButton
+              onClick={!tweet.isLiked ? likeTweet : unlikeTweet}
+              color="rgba(224, 36, 94, 0.5)"
+            >
               <HeartIcon />
             </ActionButton>
             <Num>{tweet?.numLikes}</Num>

@@ -17,7 +17,7 @@ const TweetDetails = () => {
       .then((data) => {
         receiveTweetFromServer(data);
       });
-  }, []);
+  }, [tweet]);
 
   if (tweet === null) {
     return null;

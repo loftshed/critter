@@ -69,6 +69,7 @@ router.post("/api/tweet", (req, res) => {
  */
 router.put("/api/tweet/:tweetId/like", (req, res) => {
   const { like } = req.body;
+  console.log(req.body);
 
   const tweet = data.tweets[req.params.tweetId];
 

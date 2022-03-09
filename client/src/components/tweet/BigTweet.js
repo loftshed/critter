@@ -19,7 +19,7 @@ const BigTweet = ({ thisTweet }) => {
   // use this for retweeted by heading...?
   // console.log(tweet.retweetFrom);
 
-  console.log(tweet);
+  // console.log(tweet);
 
   // if (!media) {
   //   return (
@@ -58,7 +58,7 @@ const BigTweet = ({ thisTweet }) => {
           <> • </>
           Critter web app
         </Timestamp>
-        <ActionBar viewType={"big"} />
+        <ActionBar viewType={"big"} tweet={tweet} />
       </TweetContainer>
     </Wrapper>
   );

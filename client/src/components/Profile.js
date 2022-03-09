@@ -184,7 +184,7 @@ const Avatar = styled.img`
 
 const Banner = styled.img`
   width: 100%;
-  min-height: 350px;
+  height: 350px;
   margin-bottom: -110px;
   object-fit: cover;
   object-position: center;
