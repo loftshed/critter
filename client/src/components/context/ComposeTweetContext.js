@@ -1,12 +1,12 @@
 import { useContext, useState, createContext } from "react";
-import { FeedContext } from "./FeedContext";
 
 export const ComposeTweetContext = createContext(null);
 
 export const ComposeTweetProvider = ({ children }) => {
-  const { receiveFeedItemsFromServer } = useContext(FeedContext);
   const [remainingChars, setRemainingChars] = useState(280);
   const [tweetString, setTweetString] = useState(null);
+  const [feedItems, setFeedItems] = useState(null);
+  const [tweet, setTweet] = useState(null);
 
   const handleAfterPostTweet = () => {
     console.log("Fetching home feed from server");
@@ -34,6 +34,10 @@ export const ComposeTweetProvider = ({ children }) => {
       });
   };
 
+  const receiveFeedItemsFromServer = (data) => {
+    setFeedItems({ ...data });
+  };
+
   return (
     <ComposeTweetContext.Provider
       value={{
@@ -42,6 +46,10 @@ export const ComposeTweetProvider = ({ children }) => {
         tweetString,
         setTweetString,
         handlePostTweet,
+        receiveFeedItemsFromServer,
+        feedItems,
+        tweet,
+        setTweet,
       }}
     >
       {children}
