@@ -3,7 +3,6 @@ import { useContext, useState, createContext } from "react";
 export const TweetContext = createContext(null);
 
 export const TweetProvider = ({ children }) => {
-  const [remainingChars, setRemainingChars] = useState(280);
   const [tweetString, setTweetString] = useState(null);
   const [feedItems, setFeedItems] = useState(null);
   const [tweet, setTweet] = useState(null);
@@ -41,8 +40,6 @@ export const TweetProvider = ({ children }) => {
   return (
     <TweetContext.Provider
       value={{
-        remainingChars,
-        setRemainingChars,
         tweetString,
         setTweetString,
         handlePostTweet,

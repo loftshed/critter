@@ -6,14 +6,10 @@ import { COLORS } from "../../constants";
 import LoadingSpinner from "../etc/LoadingSpinner";
 
 const TweetInput = () => {
+  const [remainingChars, setRemainingChars] = useState(280);
   const { currentUser } = useContext(UserContext);
-  const {
-    remainingChars,
-    setRemainingChars,
-    tweetString,
-    setTweetString,
-    handlePostTweet,
-  } = useContext(TweetContext);
+  const { tweetString, setTweetString, handlePostTweet } =
+    useContext(TweetContext);
 
   if (currentUser === null) {
     return (
