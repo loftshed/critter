@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "./context/UserContext";
-import { ComposeTweetContext } from "./context/ComposeTweetContext";
+import { TweetContext } from "./context/TweetContext";
 import { COLORS, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -14,8 +14,7 @@ import ProfileFeed from "./profile/ProfileFeed";
 import LoadingSpinner from "./etc/LoadingSpinner";
 
 const Profile = () => {
-  const { feedItems, receiveFeedItemsFromServer } =
-    useContext(ComposeTweetContext);
+  const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
   const {
     currentUser,
     user,

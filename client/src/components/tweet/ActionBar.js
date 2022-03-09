@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { ComposeTweetContext } from "../context/ComposeTweetContext";
+import { TweetContext } from "../context/TweetContext";
 import {
   FiMessageSquare as ReplyIcon,
   FiRepeat as RetweetIcon,
@@ -11,9 +11,9 @@ import ActionButton from "./ActionButton";
 
 const ActionBar = ({ viewType, tweet }) => {
   const smolTrue = viewType === "small";
-  // const { feedItems } = useContext(ComposeTweetContext);
+  // const { feedItems } = useContext(TweetContext);
   // console.log(tweet.isLiked);
-  //  const { tweet, setTweet } = useContext(ComposeTweetContext);
+  //  const { tweet, setTweet } = useContext(TweetContext);
 
   const likeTweet = () => {
     console.log("Liking a tweet");

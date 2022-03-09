@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ComposeTweetContext } from "../context/ComposeTweetContext";
+import { TweetContext } from "../context/TweetContext";
 import { UserContext } from "../context/UserContext";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
@@ -13,7 +13,7 @@ const TweetInput = () => {
     tweetString,
     setTweetString,
     handlePostTweet,
-  } = useContext(ComposeTweetContext);
+  } = useContext(TweetContext);
 
   if (currentUser === null) {
     return (

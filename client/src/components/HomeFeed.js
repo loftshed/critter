@@ -1,14 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import SmallTweet from "./tweet/SmallTweet";
-import { ComposeTweetContext } from "./context/ComposeTweetContext";
+import { TweetContext } from "./context/TweetContext";
 import { COLORS } from "../constants";
 import TweetInput from "./tweet/TweetInput";
 import LoadingSpinner from "./etc/LoadingSpinner";
 
 const HomeFeed = () => {
-  const { feedItems, receiveFeedItemsFromServer } =
-    useContext(ComposeTweetContext);
+  const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
   // const [status, setStatus] = useContext("");
 
   useEffect(() => {

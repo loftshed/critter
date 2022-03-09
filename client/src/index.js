@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { UserProvider } from "./components/context/UserContext";
 
-import { ComposeTweetProvider } from "./components/context/ComposeTweetContext";
+import { TweetProvider } from "./components/context/TweetContext";
 
 import App from "./App";
 
 ReactDOM.render(
   <UserProvider>
-    <ComposeTweetProvider>
+    <TweetProvider>
       <App />
-    </ComposeTweetProvider>
+    </TweetProvider>
   </UserProvider>,
   document.getElementById("root")
 );

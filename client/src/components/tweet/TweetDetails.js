@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import BigTweet from "./BigTweet";
-import { ComposeTweetContext } from "../context/ComposeTweetContext";
+import { TweetContext } from "../context/TweetContext";
 
 const TweetDetails = () => {
   const params = useParams();
@@ -10,7 +10,7 @@ const TweetDetails = () => {
     setTweet(receivedTweet);
   };
 
-  const { tweet, setTweet } = useContext(ComposeTweetContext);
+  const { tweet, setTweet } = useContext(TweetContext);
 
   useEffect(() => {
     console.log("Fetching tweet from server");
