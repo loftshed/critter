@@ -6,7 +6,7 @@ import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./components/tweet/TweetDetails";
 import Sidebar from "./components/Sidebar";
-import { UserContext } from "./components/context/UserContext";
+import { UserContext } from "./components/context/UserContext.js";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import LoadingSpinner from "./components/etc/LoadingSpinner";
