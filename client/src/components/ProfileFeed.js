@@ -5,7 +5,7 @@ import { CurrentUserContext } from "./context/CurrentUserContext";
 import { FeedContext } from "./context/FeedContext";
 import { COLORS } from "../constants";
 
-const ProfileFeed = ({ tweets, showFollows, setShowFollows }) => {
+const ProfileFeed = ({ tweets, showFollows }) => {
   // const { receiveFeedItemsFromServer } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
 

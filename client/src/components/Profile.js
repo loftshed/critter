@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "./context/CurrentUserContext";
 import { UserContext } from "./context/UserContext";
 import { FeedContext } from "./context/FeedContext";
-import { COLORS, SIZES, FONTWEIGHT } from "../constants";
+import { COLORS, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
@@ -26,9 +26,8 @@ const Profile = () => {
   } = useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
   // const [feedItemsArray, setFeedItemsArray] = useState();
-  const [showFollows, setShowFollows] = useState(false);
 
-  //
+  const [showFollows, setShowFollows] = useState(false);
 
   useEffect(() => {
     getUserProfile(params.profileId);
@@ -125,11 +124,7 @@ const Profile = () => {
           </FlexRow>
         </UserInfo>
         <>
-          <ProfileFeed
-            tweets={feedItemsArray}
-            showFollows={showFollows}
-            setShowFollows={setShowFollows}
-          />
+          <ProfileFeed tweets={feedItemsArray} showFollows={showFollows} />
         </>
       </Wrapper>
     </>
