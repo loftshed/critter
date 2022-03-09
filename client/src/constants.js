@@ -7,7 +7,7 @@ export const COLORS = {
   darkLink: "#c9d1d9",
   darkSubtext: "#484D51",
   darkBorder: "#000000",
-  darkTweetBg: "#15141A",
+  darkTweetBg: "#1b1921",
 };
 
 export const FONTWEIGHT = {

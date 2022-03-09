@@ -20,7 +20,7 @@ const Wrapper = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: auto;
+  /* margin: auto; */
   border: none;
   border-radius: 50%;
   height: 26px;

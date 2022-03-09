@@ -56,7 +56,7 @@ const SmallTweet = ({ tweet }) => {
           <Status>{tweet.status}</Status>
           {media && <Image src={media.url} />}
         </TweetBody>
-        <ActionBar />
+        <ActionBar viewType={"small"} />
       </TweetContainer>
     </Wrapper>
   );
@@ -87,7 +87,7 @@ const TweetContainer = styled.div`
   flex-direction: column;
   gap: 1em;
   padding: 1em;
-  background-color: #15141a;
+  background-color: ${COLORS.darkTweetBg};
   border-radius: 10px;
   /* width: 100%; */
   &:hover {

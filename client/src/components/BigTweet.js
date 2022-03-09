@@ -58,7 +58,7 @@ const BigTweet = ({ thisTweet }) => {
           <> • </>
           Critter web app
         </Timestamp>
-        <ActionBar />
+        <ActionBar viewType={"big"} />
       </TweetContainer>
     </Wrapper>
   );

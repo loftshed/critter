@@ -10,13 +10,14 @@ import {
 } from "react-icons/fi";
 import ActionButton from "./ActionButton";
 
-const ActionBar = () => {
+const ActionBar = ({ viewType }) => {
+  const smolTrue = viewType === "small";
   // const { feedItems } = useContext(FeedContext);
   // const { currentUser } = useContext(CurrentUserContext);
 
   return (
     <Wrapper>
-      <Bar>
+      <Bar style={{ justifyContent: smolTrue ? "flex-start" : "center" }}>
         <ButtonContainer>
           <ActionButton color="rgba(27, 149, 224, 0.5">
             <ReplyIcon />
@@ -41,15 +42,15 @@ export default ActionBar;
 const Bar = styled.div`
   display: flex;
   background-color: #30363d;
-  padding: 10px;
+  padding: 10px 15px;
   border-radius: 10px;
   color: white;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+  width: 80%;
+  justify-content: space-between;
 `;
 
 const Wrapper = styled.div``;

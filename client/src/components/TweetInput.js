@@ -122,7 +122,7 @@ const Input = styled.textarea`
   font-size: 24px;
   font-weight: 400;
   height: 150px;
-  background-color: #15141a;
+  background-color: ${COLORS.darkTweetBg};
   border-radius: 10px;
   border: none;
   resize: none;
