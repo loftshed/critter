@@ -4,11 +4,11 @@ import { FiLoader } from "react-icons/fi";
 import { keyframes } from "styled-components";
 import { COLORS } from "../constants";
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ size }) => {
   return (
     <Wrapper>
       <Spinner>
-        <SpinnerIcon />
+        <SpinnerIcon style={{ width: size, height: size }} />
       </Spinner>
     </Wrapper>
   );
@@ -39,7 +39,5 @@ const Spinner = styled.div`
 `;
 const SpinnerIcon = styled(FiLoader)`
   color: ${COLORS.darkSubtext};
-  width: 100px;
-  height: 100px;
   animation: ${spin} 2s linear infinite;
 `;

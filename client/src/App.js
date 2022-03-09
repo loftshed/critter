@@ -29,7 +29,7 @@ const App = () => {
       <>
         <GlobalStyles />
         <LoadingDiv>
-          <LoadingSpinner />
+          <LoadingSpinner size="50px" />
         </LoadingDiv>
       </>
     );

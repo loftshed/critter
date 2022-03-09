@@ -21,13 +21,13 @@ const BigTweet = ({ thisTweet }) => {
 
   console.log(tweet);
 
-  if (!media) {
-    return (
-      <Wrapper>
-        <LoadingSpinner />
-      </Wrapper>
-    );
-  }
+  // if (!media) {
+  //   return (
+  //     <Wrapper>
+  //       <LoadingSpinner />
+  //     </Wrapper>
+  //   );
+  // }
 
   return (
     <Wrapper>

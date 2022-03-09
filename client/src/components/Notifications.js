@@ -9,7 +9,7 @@ const Notifications = () => {
       <HeaderContainer>
         <Header>Notifications</Header>
       </HeaderContainer>
-      <LoadingSpinner />
+      <LoadingSpinner size="100px" />
     </Wrapper>
   );
 };

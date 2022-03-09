@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { COLORS } from "../constants";
 
 const ActionButton = ({ children, color, onClick }) => {
-  const [strokeColor, setStrokeColor] = useState("#5b5963");
+  const [bgColor, setBgColor] = useState("#5b5963");
   return (
     <Wrapper
-      style={{ backgroundColor: strokeColor }}
-      onMouseEnter={() => setStrokeColor(color)}
-      onMouseLeave={() => setStrokeColor("#5b5963")}
+      style={{ backgroundColor: bgColor }}
+      onMouseEnter={() => setBgColor(color)}
+      onMouseLeave={() => setBgColor("#5b5963")}
       onClick={onClick}
     >
       {children}

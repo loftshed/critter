@@ -25,7 +25,7 @@ const HomeFeed = () => {
           <Header>Home</Header>
         </HeaderContainer>
         <div style={{ height: "calc(100vh - 75px)" }}>
-          <LoadingSpinner />
+          <LoadingSpinner size="100px" />
         </div>
       </Wrapper>
     );

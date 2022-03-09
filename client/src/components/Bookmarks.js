@@ -8,7 +8,7 @@ const Bookmarks = () => {
       <HeaderContainer>
         <Header>Bookmarks</Header>
       </HeaderContainer>
-      <LoadingSpinner />
+      <LoadingSpinner size="100px" />
     </Wrapper>
   );
 };
