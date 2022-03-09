@@ -28,10 +28,10 @@ export default ProfileMenuBar;
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   text-align: center;
-  width: 33%;
+  width: calc(100% * 1 / 3);
   &.active {
     padding-bottom: 3px;
-    margin-bottom: -5px;
+    margin-bottom: -8px;
     border-bottom: 3px solid ${COLORS.primary};
     text-decoration-color: ${COLORS.primary};
   }
@@ -51,5 +51,5 @@ const HeaderContainer = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-around;
-  margin: 0.5em 1em;
+  margin: 0.5em 0em;
 `;
