@@ -24,10 +24,10 @@ const Profile = () => {
     receiveFollowsFromServer,
     // follows,
   } = useContext(UserContext);
-  const params = useParams(); // uses parameters from the URL to set user handle
-
   // const [feedItemsArray, setFeedItemsArray] = useState();
   // const [showFollows, setShowFollows] = useState(false);
+
+  const params = useParams(); // uses parameters from the URL to set user handle
 
   useEffect(() => {
     getUserProfile(params.profileId);
@@ -72,10 +72,7 @@ const Profile = () => {
     );
   }
 
-  console.log(user);
-
   const feedItemsArray = Object.values(feedItems.tweetsById);
-
   const joinDate = moment(user.joined).format(" MMMM Do");
 
   return (
