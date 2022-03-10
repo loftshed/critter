@@ -17,7 +17,7 @@ const ProfileFeed = ({ tweets }) => {
       <ProfileMenuBar tweets={tweets} />
       <Tweets>
         {tweets.map((tweet) => {
-          return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
+          return <SmallTweet mappedTweet={tweet} key={tweet.id}></SmallTweet>;
         })}
       </Tweets>
     </Wrapper>
