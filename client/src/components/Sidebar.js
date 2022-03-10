@@ -28,30 +28,30 @@ const Sidebar = () => {
     <Wrapper>
       <Navigation>
         <StyledLogo />
-        <NavigationLink exact to="/">
-          <MenuButton>
+        <MenuButton>
+          <NavigationLink exact to="/">
             <HomeIcon style={{ marginRight: "10px" }} />
             Home
-          </MenuButton>
-        </NavigationLink>
-        <NavigationLink to={`/${currentUser.handle}`}>
-          <MenuButton>
+          </NavigationLink>
+        </MenuButton>
+        <MenuButton>
+          <NavigationLink to={`/${currentUser.handle}`}>
             <ProfileIcon style={{ marginRight: "10px" }} />
             Profile
-          </MenuButton>
-        </NavigationLink>
-        <NavigationLink to="/notifications/">
-          <MenuButton>
+          </NavigationLink>
+        </MenuButton>
+        <MenuButton>
+          <NavigationLink to="/notifications/">
             <NotificationIcon style={{ marginRight: "10px" }} />
             Notifications
-          </MenuButton>
-        </NavigationLink>
-        <NavigationLink to="/bookmarks/">
-          <MenuButton>
+          </NavigationLink>
+        </MenuButton>
+        <MenuButton>
+          <NavigationLink to="/bookmarks/">
             <BookmarksIcon style={{ marginRight: "10px" }} />
             Bookmarks
-          </MenuButton>
-        </NavigationLink>
+          </NavigationLink>
+        </MenuButton>
       </Navigation>
     </Wrapper>
   );
@@ -70,12 +70,17 @@ const Wrapper = styled.div`
 `;
 
 const MenuButton = styled(Button)`
-  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
   text-transform: none;
   border-radius: 25px;
   padding: 0.35em 0.75em;
   font-size: 20px;
   font-weight: 700;
+  &:hover {
+    background-color: ${COLORS.primary};
+  }
 `;
 
 const StyledLogo = styled(Logo)`
@@ -93,10 +98,12 @@ const NavigationLink = styled(NavLink)`
   display: flex;
   align-items: center;
   text-decoration: none;
-
   color: ${COLORS.darkLink};
 
   &.active {
-    color: ${COLORS.primary};
+    background-color: ${COLORS.primary};
+    margin: -0.35em -0.75em;
+    padding: inherit;
+    border-radius: inherit;
   }
 `;
