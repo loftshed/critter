@@ -7,6 +7,7 @@ import {
   FiCalendar as CalendarIcon,
   FiLink as LinkIcon,
 } from "react-icons/fi";
+import Button from "@mui/material/Button";
 
 // my components
 import { COLORS, FONTWEIGHT } from "../constants";
@@ -42,6 +43,38 @@ const Profile = () => {
         receiveFeedItemsFromServer(data);
       });
   }, [params.profileId]);
+
+  const followUser = () => {
+    console.log(`Following user ${params.profileId}`);
+    fetch(`/api/${params.profileId}/follow`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ follow: true }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        getUserProfile(params.profileId);
+      });
+  };
+
+  const unfollowUser = () => {
+    console.log(`Unfollowing user ${params.profileId}`);
+    fetch(`/api/${params.profileId}/unfollow`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ follow: false }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        getUserProfile(params.profileId);
+      });
+  };
 
   const getFollowing = () => {
     console.log("Fetching profile's following from server");
@@ -88,9 +121,13 @@ const Profile = () => {
                 {user.isFollowingYou && <FollowsU>FOLLOWS YOU</FollowsU>}
               </Handle>
             </div>
-            {user.isBeingFollowedByYou && <UFollow>Following</UFollow>}
+            {user.isBeingFollowedByYou && (
+              <UFollow onClick={unfollowUser}>Following</UFollow>
+            )}
             {/* try to implement followers/ing! */}
-            {!user.isBeingFollowedByYou && <UFollow>Follow</UFollow>}
+            {!user.isBeingFollowedByYou && (
+              <UFollow onClick={followUser}>Follow</UFollow>
+            )}
           </div>
           <Bio>{user.bio}</Bio>
           <InfoRow>
@@ -196,13 +233,19 @@ const FollowsU = styled.span`
   margin-left: 5px;
 `;
 
-const UFollow = styled.div`
+const UFollow = styled(Button)`
+  text-transform: none;
+  color: ${COLORS.darkText};
+  background-color: ${COLORS.darkTweetBg};
   height: fit-content;
   border-radius: 50px;
-  padding: 10px 20px;
+  padding: 7.5px 20px;
   font-size: 20px;
   font-weight: 700;
-  outline: 1px solid white;
+  outline: 2px solid ${COLORS.darkText};
+  &:hover {
+    background-color: ${COLORS.primary};
+  }
 `;
 
 const Bio = styled.div``;
