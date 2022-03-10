@@ -12,17 +12,24 @@ import { TweetContext } from "../context/TweetContext";
 import ActionButton from "./ActionButton";
 
 const ActionBar = ({ viewType, mappedTweet }) => {
-  const { tweet, setTweet } = useContext(TweetContext);
+  const { tweet, setTweet, receiveFeedItemsFromServer } =
+    useContext(TweetContext);
   const smolTrue = viewType === "small";
   const tweetSource = smolTrue ? mappedTweet : tweet;
-
-  console.log(tweetSource.id);
 
   const updateTweet = () => {
     fetch(`/api/tweet/${tweetSource.id}`)
       .then((res) => res.json())
       .then((data) => {
         setTweet(data.tweet);
+      });
+  };
+
+  const updateFeed = () => {
+    fetch("/api/me/home-feed")
+      .then((res) => res.json())
+      .then((data) => {
+        receiveFeedItemsFromServer(data);
       });
   };
 
@@ -39,8 +46,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        updateTweet();
+        smolTrue ? updateFeed() : updateTweet(); // there's gotta be a better way!
       });
   };
 
@@ -57,8 +63,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        updateTweet();
+        smolTrue ? updateFeed() : updateTweet(); // there's gotta be a better way!
       });
   };
 
