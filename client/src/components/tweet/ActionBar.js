@@ -11,11 +11,11 @@ import {
 import ActionButton from "./ActionButton";
 
 const ActionBar = ({ viewType, tweet }) => {
-  const [isLiked, setIsLiked] = useState(tweet.isLiked);
   const smolTrue = viewType === "small";
-  console.log(tweet);
 
-  // const { feedItems } = useContext(TweetContext);
+  // several potential approaches to make bar re-render after liking a tweet.
+  //
+  // const [isLiked, setIsLiked] = useState(tweet.isLiked);
 
   // const updateTweet = () => {
   //   fetch(`/api/tweet/${tweet.id}`)
@@ -27,7 +27,7 @@ const ActionBar = ({ viewType, tweet }) => {
 
   const likeTweet = (ev) => {
     ev.stopPropagation();
-    setIsLiked(true);
+    // setIsLiked(true);
     console.log("Liking a tweet");
     fetch(`/api/tweet/${tweet.id}/like`, {
       method: "PUT",
@@ -44,7 +44,7 @@ const ActionBar = ({ viewType, tweet }) => {
 
   const unlikeTweet = (ev) => {
     ev.stopPropagation();
-    setIsLiked(false);
+    // setIsLiked(false);
     console.log("Unliking a tweet");
     fetch(`/api/tweet/${tweet.id}/like`, {
       method: "PUT",
