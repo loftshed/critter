@@ -53,7 +53,7 @@ const HomeFeed = () => {
       <TweetInput />
       <Tweets>
         {tweets.map((tweet) => {
-          return <SmallTweet tweet={tweet} key={tweet.id}></SmallTweet>;
+          return <SmallTweet mappedTweet={tweet} key={tweet.id}></SmallTweet>;
         })}
       </Tweets>
     </Wrapper>

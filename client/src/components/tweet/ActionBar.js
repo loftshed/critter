@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import {
   FiMessageSquare as ReplyIcon,
@@ -8,28 +8,32 @@ import {
 } from "react-icons/fi";
 
 // my components
+import { TweetContext } from "../context/TweetContext";
 import ActionButton from "./ActionButton";
 
-const ActionBar = ({ viewType, tweet }) => {
+const ActionBar = ({ viewType, mappedTweet }) => {
+  const { tweet, setTweet } = useContext(TweetContext);
   const smolTrue = viewType === "small";
 
+  console.log(mappedTweet);
+  // console.log(tweet);
   // several potential approaches to make bar re-render after liking a tweet.
   //
   // const [isLiked, setIsLiked] = useState(tweet.isLiked);
 
-  // const updateTweet = () => {
-  //   fetch(`/api/tweet/${tweet.id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       receiveTweetFromServer(data);
-  //     });
-  // };
+  const updateTweet = () => {
+    fetch(`/api/tweet/${mappedTweet.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTweet(data.tweet);
+      });
+  };
 
   const likeTweet = (ev) => {
     ev.stopPropagation();
     // setIsLiked(true);
     console.log("Liking a tweet");
-    fetch(`/api/tweet/${tweet.id}/like`, {
+    fetch(`/api/tweet/${mappedTweet.id}/like`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +42,7 @@ const ActionBar = ({ viewType, tweet }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // error message shit will go here
+        console.log(data);
       });
   };
 
@@ -46,7 +50,7 @@ const ActionBar = ({ viewType, tweet }) => {
     ev.stopPropagation();
     // setIsLiked(false);
     console.log("Unliking a tweet");
-    fetch(`/api/tweet/${tweet.id}/like`, {
+    fetch(`/api/tweet/${mappedTweet.id}/like`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +59,7 @@ const ActionBar = ({ viewType, tweet }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // error message shit will go here
+        console.log(data);
       });
   };
 
@@ -103,7 +107,7 @@ const ActionBar = ({ viewType, tweet }) => {
           </ActionAndNum>
           <ActionAndNum>
             <ActionButton
-              onClick={!tweet.isLiked ? likeTweet : unlikeTweet}
+              onClick={!tweet?.isLiked ? likeTweet : unlikeTweet}
               color="rgba(224, 36, 94, 0.5)"
             >
               <HeartIcon />

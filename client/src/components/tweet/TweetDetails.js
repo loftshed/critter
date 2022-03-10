@@ -30,7 +30,7 @@ const TweetDetails = () => {
   return (
     <>
       <Wrapper>
-        <BigTweet setTweet={setTweet} thisTweet={tweet} />
+        <BigTweet />
       </Wrapper>
     </>
   );

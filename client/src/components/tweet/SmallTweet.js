@@ -9,9 +9,9 @@ import { UserContext } from "../context/UserContext";
 import { COLORS, FONTWEIGHT } from "../../constants";
 import ActionBar from "./ActionBar";
 
-const SmallTweet = ({ tweet }) => {
+const SmallTweet = ({ mappedTweet }) => {
   const { getUserProfile } = useContext(UserContext);
-  const timestamp = moment(tweet.timestamp).format("MMMM Do");
+  const timestamp = moment(mappedTweet.timestamp).format("MMMM Do");
   /// https://v5.reactrouter.com/web/api/history
   const history = useHistory();
 
@@ -22,45 +22,45 @@ const SmallTweet = ({ tweet }) => {
   };
   const handleNestedClick = (ev) => {
     ev.stopPropagation();
-    history.push(`/${tweet.author.handle}`);
+    history.push(`/${mappedTweet.author.handle}`);
   };
 
   return (
-    <Wrapper onClick={(ev) => handleContainerClick(ev, tweet.id)}>
+    <Wrapper onClick={(ev) => handleContainerClick(ev, mappedTweet.id)}>
       <Avatar
         onClick={(ev) => {
           handleNestedClick(ev);
-          getUserProfile(tweet.author.handle);
+          getUserProfile(mappedTweet.author.handle);
         }}
-        src={tweet.author.avatarSrc}
+        src={mappedTweet.author.avatarSrc}
       />
 
       <TweetContainer>
         {/* <TweetContainer onClick={() => handleClick(tweet.id)}> */}
         <TweetBody>
-          {tweet.retweetFrom && (
+          {mappedTweet.retweetFrom && (
             <Header style={{ color: `${COLORS.darkSubtext}` }}>
               <RetweetIcon />
-              Retweeted by @{tweet.retweetFrom.handle}
+              Retweeted by @{mappedTweet.retweetFrom.handle}
             </Header>
           )}
           <AuthorInfo>
             <DisplayName
               onClick={(ev) => {
                 handleNestedClick(ev);
-                getUserProfile(tweet.author.handle);
+                getUserProfile(mappedTweet.author.handle);
               }}
             >
-              {tweet.author.displayName}
+              {mappedTweet.author.displayName}
             </DisplayName>
-            <Handle>@{tweet.author.handle}</Handle>
+            <Handle>@{mappedTweet.author.handle}</Handle>
             <>•</>
             <Timestamp>{timestamp}</Timestamp>
           </AuthorInfo>
-          <Status>{tweet.status}</Status>
-          {tweet.media[0] && <Image src={tweet.media[0].url} />}
+          <Status>{mappedTweet.status}</Status>
+          {mappedTweet.media[0] && <Image src={mappedTweet.media[0].url} />}
         </TweetBody>
-        <ActionBar viewType={"small"} tweet={tweet} />
+        <ActionBar viewType={"small"} mappedTweet={mappedTweet} />
         <div style={{ paddingBottom: "0.5em" }}></div>
       </TweetContainer>
     </Wrapper>
