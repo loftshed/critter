@@ -12,12 +12,8 @@ const ProfileMenuBar = ({ tweets }) => {
         <StyledNavLink exact to={`/${params.profileId}`}>
           Tweets
         </StyledNavLink>
-        <StyledLink exact to={`/${params.profileId}`}>
-          Media
-        </StyledLink>
-        <StyledLink exact to={`/${params.profileId}`}>
-          Likes
-        </StyledLink>
+        <StyledLink to={`/${params.profileId}`}>Media</StyledLink>
+        <StyledLink to={`/${params.profileId}`}>Likes</StyledLink>
       </Header>
     </HeaderContainer>
   );

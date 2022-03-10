@@ -11,8 +11,7 @@ import { UserContext } from "./context/UserContext";
 import { useParams } from "react-router-dom";
 
 const HomeFeed = () => {
-  const { feedItems, receiveFeedItemsFromServer, tweetsArray, setTweetsArray } =
-    useContext(TweetContext);
+  const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
 
   useEffect(() => {
     console.log("Fetching home feed from server");

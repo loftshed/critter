@@ -3,10 +3,9 @@ import { useContext, useState, createContext } from "react";
 export const TweetContext = createContext(null);
 
 export const TweetProvider = ({ children }) => {
-  const [tweetsArray, setTweetsArray] = useState([]);
-  const [tweetString, setTweetString] = useState("");
-  const [feedItems, setFeedItems] = useState(null);
-  const [tweet, setTweet] = useState(null);
+  const [tweetString, setTweetString] = useState(""); // state that handles tweet input box
+  const [feedItems, setFeedItems] = useState(null); // state that holds a given feed's tweets after they are retrieved from the server
+  const [tweet, setTweet] = useState(null); // state for individual tweet (for TweetDetails.js)
 
   const handlePostTweet = (data) => {
     console.log(data);
@@ -48,8 +47,6 @@ export const TweetProvider = ({ children }) => {
         feedItems,
         tweet,
         setTweet,
-        tweetsArray,
-        setTweetsArray,
       }}
     >
       {children}

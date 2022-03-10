@@ -17,8 +17,7 @@ import ProfileFeed from "./profile/ProfileFeed";
 import LoadingSpinner from "./etc/LoadingSpinner";
 
 const Profile = () => {
-  const { feedItems, receiveFeedItemsFromServer, tweetsArray, setTweetsArray } =
-    useContext(TweetContext);
+  const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
   const { user, getUserProfile, receiveFollowsFromServer, currentUser } =
     useContext(UserContext);
   // const [showFollows, setShowFollows] = useState(false);

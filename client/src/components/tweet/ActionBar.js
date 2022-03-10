@@ -14,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import { COLORS } from "../../constants";
 import { TweetContext } from "../context/TweetContext";
 
+// ActionBar is used by both BigTweet.js and SmallTweet.js and holds functionality for interacting with a tweet
 const ActionBar = ({ viewType, mappedTweet }) => {
   const { tweet, setTweet, receiveFeedItemsFromServer } =
     useContext(TweetContext);
@@ -26,8 +27,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
   // if not, we use the data from the state "tweet" (which contains only one tweet)
   const tweetSource = smolTrue ? mappedTweet : tweet;
 
-  console.log();
-
+  // updates the tweet bearing the id contained in tweetSource
   const updateTweet = () => {
     fetch(`/api/tweet/${tweetSource.id}`)
       .then((res) => res.json())
@@ -36,7 +36,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       });
   };
 
-  // if a profileId is given in params, re-fetch that profileId's feed --
+  // if a profileId is present in params, we must be viewing a profile, so re-fetch that profileId's feed --
   // if not, we must be in home-feed, so re-fetch that feed instead.
   const updateFeed = () => {
     fetch(
@@ -48,6 +48,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       });
   };
 
+  // likes a tweet
   const likeTweet = (ev) => {
     ev.stopPropagation();
     console.log("Liking a tweet");
@@ -60,10 +61,13 @@ const ActionBar = ({ viewType, mappedTweet }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        smolTrue ? updateFeed() : updateTweet(); // there's gotta be a better way!
+        // if smolTrue returns boolean TRUE we're viewing a profile, so update the state of the entire feed
+        // if smolTrue returns boolean FALSE we will update just the one tweet we're viewing
+        smolTrue ? updateFeed() : updateTweet();
       });
   };
 
+  // unlikes a tweet
   const unlikeTweet = (ev) => {
     ev.stopPropagation();
     console.log("Unliking a tweet");
@@ -76,7 +80,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        smolTrue ? updateFeed() : updateTweet(); // there's gotta be a better way!
+        smolTrue ? updateFeed() : updateTweet();
       });
   };
 
@@ -107,7 +111,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
                 ev.stopPropagation();
               }}
               size={smolTrue ? "small" : "medium"}
-              iconColor="rgba(27, 149, 224, 0.5)"
+              iconcolor="rgba(27, 149, 224, 0.5)"
             >
               <ReplyIcon fontSize={smolTrue ? "small" : "medium"} />
             </StyledIconButton>
@@ -118,7 +122,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
                 ev.stopPropagation();
               }}
               size={smolTrue ? "small" : "medium"}
-              iconColor="rgba(23, 191, 99, 0.5)"
+              iconcolor="rgba(23, 191, 99, 0.5)"
             >
               <RetweetIcon fontSize={smolTrue ? "small" : "medium"} />
             </StyledIconButton>
@@ -128,7 +132,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
             <StyledIconButton
               onClick={!tweetSource?.isLiked ? likeTweet : unlikeTweet}
               size={smolTrue ? "small" : "medium"}
-              iconColor="rgba(224, 36, 94, 0.5)"
+              iconcolor="rgba(224, 36, 94, 0.5)"
             >
               {!tweetSource?.isLiked ? (
                 <HeartIcon fontSize={smolTrue ? "small" : "medium"} />
@@ -147,7 +151,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
                 ev.stopPropagation();
               }}
               size={smolTrue ? "small" : "medium"}
-              iconColor="rgba(27, 149, 224, 0.5)"
+              iconcolor="rgba(27, 149, 224, 0.5)"
             >
               <ShareIcon fontSize={smolTrue ? "small" : "medium"} />
             </StyledIconButton>
@@ -171,7 +175,7 @@ const ShareIcon = styled(IosShareRoundedIcon)``;
 const StyledIconButton = styled(IconButton)`
   color: ${COLORS.darkText};
   &:hover {
-    background-color: ${(props) => props.iconColor};
+    background-color: ${(props) => props.iconcolor};
   }
 `;
 
