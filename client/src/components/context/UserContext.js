@@ -28,7 +28,7 @@ export const UserProvider = ({ children }) => {
     fetch(`/api/${userHandle}/profile`)
       .then((res) => res.json())
       .then((data) => {
-        receiveUserFromServer(data);
+        receiveUserFromServer(data.profile);
       });
   };
 

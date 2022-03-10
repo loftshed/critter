@@ -1,7 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "./context/UserContext";
-import { TweetContext } from "./context/TweetContext";
-import { COLORS, FONTWEIGHT } from "../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
@@ -10,6 +7,11 @@ import {
   FiCalendar as CalendarIcon,
   FiLink as LinkIcon,
 } from "react-icons/fi";
+
+// my components
+import { COLORS, FONTWEIGHT } from "../constants";
+import { UserContext } from "./context/UserContext";
+import { TweetContext } from "./context/TweetContext";
 import ProfileFeed from "./profile/ProfileFeed";
 import LoadingSpinner from "./etc/LoadingSpinner";
 
@@ -23,10 +25,8 @@ const Profile = () => {
     // follows,
   } = useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
+
   // const [feedItemsArray, setFeedItemsArray] = useState();
-
-  // console.log();
-
   // const [showFollows, setShowFollows] = useState(false);
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Profile = () => {
       });
   };
 
-  if (user === null || feedItems === null) {
+  if (!user || !feedItems) {
     return (
       <Wrapper>
         <LoadingSpinner />
@@ -72,78 +72,61 @@ const Profile = () => {
     );
   }
 
+  console.log(user);
+
   const feedItemsArray = Object.values(feedItems.tweetsById);
 
-  // destructure all these things from profile property of user being viewed
-  const {
-    profile: {
-      avatarSrc,
-      bannerSrc,
-      bio,
-      displayName,
-      handle,
-      joined,
-      location,
-      numFollowers,
-      numFollowing,
-      url,
-      // numLikes,
-    },
-  } = user;
-
-  const joinDate = moment(joined).format(" MMMM Do");
+  const joinDate = moment(user.joined).format(" MMMM Do");
 
   return (
     <>
       <Wrapper>
-        <Banner src={bannerSrc} />
+        <Banner src={user.bannerSrc} />
         <UserInfo>
-          <Avatar src={avatarSrc} />
+          <Avatar src={user.avatarSrc} />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <div>
-              <DisplayName>{displayName}</DisplayName>
+              <DisplayName>{user.displayName}</DisplayName>
               <Handle>
-                @{handle}
-                {user.profile.isFollowingYou && (
-                  <FollowsU>FOLLOWS YOU</FollowsU>
-                )}
+                @{user.handle}
+                {user.isFollowingYou && <FollowsU>FOLLOWS YOU</FollowsU>}
               </Handle>
             </div>
-            {user.profile.isBeingFollowedByYou && <UFollow>Following</UFollow>}
+            {user.isBeingFollowedByYou && <UFollow>Following</UFollow>}
             {/* try to implement followers/ing! */}
-            {!user.profile.isBeingFollowedByYou && <UFollow>Follow</UFollow>}
+            {!user.isBeingFollowedByYou && <UFollow>Follow</UFollow>}
           </div>
-          <Bio>{bio}</Bio>
+          <Bio>{user.bio}</Bio>
           <InfoRow>
-            {location && (
+            {user.location && (
               <LocationJoinDate>
                 <LocationIcon />
-                {location}
+                {user.location}
               </LocationJoinDate>
             )}
-            {url && (
+            {user.url && (
               <LocationJoinDate>
                 <LinkIcon />
                 <a
                   style={{ textDecoration: "none", color: `${COLORS.primary}` }}
-                  href={url}
+                  href={user.url}
                 >
-                  {url.replace(/^https?:\/\//, "")}
+                  {user.url.replace(/^https?:\/\//, "")}
                 </a>
               </LocationJoinDate>
             )}
             <LocationJoinDate>
               <CalendarIcon />
               Joined
-              {joinDate}
+              {user.joined}
             </LocationJoinDate>
           </InfoRow>
           <FollowRow>
-            <FollowData onClick={getFollowing}>{numFollowing}</FollowData>
+            <FollowData onClick={getFollowing}>{user.numFollowing}</FollowData>
             <FollowDataText>Following</FollowDataText>
-            <FollowData onClick={getFollowers}>{numFollowers}</FollowData>
+            <FollowData onClick={getFollowers}>{user.numFollowers}</FollowData>
             <FollowDataText>
-              {numFollowers > 1 ? "Followers" : "Follower"}
+              {user.numFollowers > 1 ? "Followers" : "Follower"}
             </FollowDataText>
           </FollowRow>
         </UserInfo>

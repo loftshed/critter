@@ -15,6 +15,7 @@ const SmallTweet = ({ tweet }) => {
   /// https://v5.reactrouter.com/web/api/history
   const history = useHistory();
 
+  // handlers for useHistory shiz
   const handleContainerClick = (ev, tweetId) => {
     ev.stopPropagation();
     history.push(`/tweet/${tweetId}`);
