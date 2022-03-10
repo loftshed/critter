@@ -1,11 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import {
-  FiHome as HomeIcon,
-  FiUser as ProfileIcon,
-  FiBell as NotificationIcon,
-  FiBookmark as BookmarksIcon,
-} from "react-icons/fi";
+import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
 import Button from "@mui/material/Button";
 
 import styled from "styled-components";
@@ -30,25 +28,25 @@ const Sidebar = () => {
         <StyledLogo />
         <MenuButton>
           <NavigationLink exact to="/">
-            <HomeIcon style={{ marginRight: "10px" }} />
+            <HomeOutlinedIcon style={{ marginRight: "10px" }} />
             Home
           </NavigationLink>
         </MenuButton>
         <MenuButton>
           <NavigationLink to={`/${currentUser.handle}`}>
-            <ProfileIcon style={{ marginRight: "10px" }} />
+            <PersonOutlineRoundedIcon style={{ marginRight: "10px" }} />
             Profile
           </NavigationLink>
         </MenuButton>
         <MenuButton>
           <NavigationLink to="/notifications/">
-            <NotificationIcon style={{ marginRight: "10px" }} />
+            <NotificationsOutlinedIcon style={{ marginRight: "10px" }} />
             Notifications
           </NavigationLink>
         </MenuButton>
         <MenuButton>
           <NavigationLink to="/bookmarks/">
-            <BookmarksIcon style={{ marginRight: "10px" }} />
+            <BookmarksOutlinedIcon style={{ marginRight: "10px" }} />
             Bookmarks
           </NavigationLink>
         </MenuButton>
