@@ -27,7 +27,7 @@ const Follows = () => {
   const params = useParams(); // uses parameters from the URL to set user handle
   const [feedItemsArray, setFeedItemsArray] = useState();
 
-  const [showFollows, setShowFollows] = useState(false);
+  // const [showFollows, setShowFollows] = useState(false);
 
   useEffect(() => {
     getUserProfile(params.profileId);

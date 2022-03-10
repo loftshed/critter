@@ -1,25 +1,28 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import BigTweet from "./BigTweet";
+
+// my components
 import { TweetContext } from "../context/TweetContext";
+import BigTweet from "./BigTweet";
 
 const TweetDetails = () => {
-  const params = useParams();
-  const receiveTweetFromServer = (receivedTweet) => {
-    setTweet(receivedTweet);
-  };
-
   const { tweet, setTweet } = useContext(TweetContext);
+  const params = useParams();
 
+  console.log(tweet);
+
+  // grabs a single tweet from the server on component mount
   useEffect(() => {
-    console.log("Fetching tweet from server");
+    console.log(`Fetching tweet with id ${params.tweetId} from server`);
     fetch(`/api/tweet/${params.tweetId}`)
       .then((res) => res.json())
       .then((data) => {
-        receiveTweetFromServer(data);
+        setTweet(data.tweet);
       });
   }, []);
+
+  // if tweet has not yet been loaded,
 
   if (tweet === null) {
     return null;

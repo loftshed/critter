@@ -1,23 +1,20 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { FiRepeat as RetweetIcon } from "react-icons/fi";
 import styled from "styled-components";
+import moment from "moment";
+
+/// my components
+import { UserContext } from "../context/UserContext";
 import { COLORS, FONTWEIGHT } from "../../constants";
 import ActionBar from "./ActionBar";
-import moment from "moment";
-import { UserContext } from "../context/UserContext";
-import LoadingSpinner from "../etc/LoadingSpinner";
-import { FiRepeat as RetweetIcon } from "react-icons/fi";
 
 const SmallTweet = ({ tweet }) => {
   const { getUserProfile } = useContext(UserContext);
-  const author = tweet.author;
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
-  // reminder, this const needed to be in square bracket to destructure the array
-  const [media] = tweet.media;
+  const [media] = tweet.media; // reminder, this const needed to be in square bracket to destructure the array
 
-  //// useHistory thing...
   /// https://v5.reactrouter.com/web/api/history
-
   let history = useHistory();
 
   const handleClick = (ev, tweetId) => {
@@ -27,7 +24,7 @@ const SmallTweet = ({ tweet }) => {
 
   const handleImageClick = (ev) => {
     ev.stopPropagation();
-    history.push(`/${author.handle}`);
+    history.push(`/${tweet.author.handle}`);
   };
 
   return (
@@ -35,9 +32,9 @@ const SmallTweet = ({ tweet }) => {
       <Avatar
         onClick={(ev) => {
           handleImageClick(ev);
-          getUserProfile(author.handle);
+          getUserProfile(tweet.author.handle);
         }}
-        src={author.avatarSrc}
+        src={tweet.author.avatarSrc}
       />
 
       <TweetContainer>
@@ -51,12 +48,12 @@ const SmallTweet = ({ tweet }) => {
           )}
           <AuthorInfo>
             <StyledLink
-              to={`/${author.handle}`}
-              onClick={() => getUserProfile(author.handle)}
+              to={`/${tweet.author.handle}`}
+              onClick={() => getUserProfile(tweet.author.handle)}
             >
-              <DisplayName>{author.displayName}</DisplayName>
+              <DisplayName>{tweet.author.displayName}</DisplayName>
             </StyledLink>
-            <Handle>@{author.handle}</Handle>
+            <Handle>@{tweet.author.handle}</Handle>
             <>•</>
             <Timestamp>{timestamp}</Timestamp>
           </AuthorInfo>

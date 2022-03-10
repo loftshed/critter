@@ -5,27 +5,16 @@ import { COLORS, FONTWEIGHT } from "../../constants";
 import ActionBar from "./ActionBar";
 import moment from "moment";
 import { UserContext } from "../context/UserContext";
+import { TweetContext } from "../context/TweetContext";
 
-const BigTweet = ({ thisTweet, setTweet }) => {
+const BigTweet = () => {
   const { getUserProfile } = useContext(UserContext);
-  const { tweet } = thisTweet;
-  const author = tweet.author;
+  const { tweet, setTweet } = useContext(TweetContext);
   const timestamp = moment(tweet.timestamp).format("h:mm A • MMM D YYYY");
   // // reminder, this const needed to be in square bracket to destructure the array
   const [media] = tweet.media;
 
-  // use this for retweeted by heading...?
-  // console.log(tweet.retweetFrom);
-
-  // console.log(tweet);
-
-  // if (!media) {
-  //   return (
-  //     <Wrapper>
-  //       <LoadingSpinner />
-  //     </Wrapper>
-  //   );
-  // }
+  console.log(tweet);
 
   return (
     <Wrapper>
@@ -33,19 +22,19 @@ const BigTweet = ({ thisTweet, setTweet }) => {
         <TweetBody>
           <TweetHeader>
             <StyledLink
-              to={`/${author.handle}`}
-              onClick={() => getUserProfile(author.handle)}
+              to={`/${tweet.author.handle}`}
+              onClick={() => getUserProfile(tweet.author.handle)}
             >
-              <Avatar src={author.avatarSrc} />
+              <Avatar src={tweet.author.avatarSrc} />
             </StyledLink>
             <AuthorInfo>
               <StyledLink
-                to={`/${author.handle}`}
-                onClick={() => getUserProfile(author.handle)}
+                to={`/${tweet.author.handle}`}
+                onClick={() => getUserProfile(tweet.author.handle)}
               >
-                <DisplayName>{author.displayName}</DisplayName>
+                <DisplayName>{tweet.author.displayName}</DisplayName>
               </StyledLink>
-              <Handle>@{author.handle}</Handle>
+              <Handle>@{tweet.author.handle}</Handle>
             </AuthorInfo>
           </TweetHeader>
           <Status>{tweet.status}</Status>
