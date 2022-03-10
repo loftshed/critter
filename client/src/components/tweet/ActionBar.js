@@ -14,15 +14,12 @@ import ActionButton from "./ActionButton";
 const ActionBar = ({ viewType, mappedTweet }) => {
   const { tweet, setTweet } = useContext(TweetContext);
   const smolTrue = viewType === "small";
+  const tweetSource = smolTrue ? mappedTweet : tweet;
 
-  console.log(mappedTweet);
-  // console.log(tweet);
-  // several potential approaches to make bar re-render after liking a tweet.
-  //
-  // const [isLiked, setIsLiked] = useState(tweet.isLiked);
+  console.log(tweetSource);
 
   const updateTweet = () => {
-    fetch(`/api/tweet/${mappedTweet.id}`)
+    fetch(`/api/tweet/${tweetSource.id}`)
       .then((res) => res.json())
       .then((data) => {
         setTweet(data.tweet);
@@ -33,7 +30,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
     ev.stopPropagation();
     // setIsLiked(true);
     console.log("Liking a tweet");
-    fetch(`/api/tweet/${mappedTweet.id}/like`, {
+    fetch(`/api/tweet/${tweetSource.id}/like`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -43,6 +40,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        updateTweet();
       });
   };
 
@@ -50,7 +48,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
     ev.stopPropagation();
     // setIsLiked(false);
     console.log("Unliking a tweet");
-    fetch(`/api/tweet/${mappedTweet.id}/like`, {
+    fetch(`/api/tweet/${tweetSource.id}/like`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -60,6 +58,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        updateTweet();
       });
   };
 
@@ -103,16 +102,16 @@ const ActionBar = ({ viewType, mappedTweet }) => {
             >
               <RetweetIcon />
             </ActionButton>
-            <Num>{tweet?.numRetweets}</Num>
+            <Num>{tweetSource?.numRetweets}</Num>
           </ActionAndNum>
           <ActionAndNum>
             <ActionButton
-              onClick={!tweet?.isLiked ? likeTweet : unlikeTweet}
+              onClick={!tweetSource?.isLiked ? likeTweet : unlikeTweet}
               color="rgba(224, 36, 94, 0.5)"
             >
               <HeartIcon />
             </ActionButton>
-            <Num>{tweet?.numLikes}</Num>
+            <Num>{tweetSource?.numLikes}</Num>
           </ActionAndNum>
           <ActionButton
             onClick={(ev) => {
