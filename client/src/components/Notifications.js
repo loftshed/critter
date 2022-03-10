@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import IconButton from "@mui/material/IconButton";
 
 // my components
 import { COLORS } from "../constants";
