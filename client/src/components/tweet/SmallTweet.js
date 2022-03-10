@@ -85,13 +85,12 @@ const Wrapper = styled.div`
 const Tweet = styled.div`
   display: flex;
   gap: 1em;
-  /* margin: 0.5em 0em; */
-  padding: 1em;
+  padding: 1em 2em;
   width: 100%;
   transition: ease 0.1s all;
   &:hover {
     cursor: pointer;
-    box-shadow: inset 0px 0px 100px #21252b;
+    box-shadow: inset 0px 0px 75px #21252b;
   }
 `;
 
