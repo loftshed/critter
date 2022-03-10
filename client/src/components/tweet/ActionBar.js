@@ -1,20 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { TweetContext } from "../context/TweetContext";
 import {
   FiMessageSquare as ReplyIcon,
   FiRepeat as RetweetIcon,
   FiShare as ShareIcon,
   FiHeart as HeartIcon,
 } from "react-icons/fi";
+
+// my components
 import ActionButton from "./ActionButton";
 
 const ActionBar = ({ viewType, tweet }) => {
-  const smolTrue = viewType === "small";
-  // const { feedItems } = useContext(TweetContext);
-  //  const [ tweet, setTweet ] = useContext(TweetContext);
-
   const [isLiked, setIsLiked] = useState(tweet.isLiked);
+  const smolTrue = viewType === "small";
+  console.log(tweet);
+
+  // const { feedItems } = useContext(TweetContext);
 
   // const updateTweet = () => {
   //   fetch(`/api/tweet/${tweet.id}`)
@@ -125,6 +126,8 @@ const ActionBar = ({ viewType, tweet }) => {
 
 export default ActionBar;
 
+const Wrapper = styled.div``;
+
 const ActionAndNum = styled.div`
   display: flex;
   align-items: center;
@@ -148,5 +151,3 @@ const ButtonContainer = styled.div`
   width: 80%;
   justify-content: space-between;
 `;
-
-const Wrapper = styled.div``;
