@@ -16,24 +16,17 @@ import LoadingSpinner from "../etc/LoadingSpinner";
 const Follows = () => {
   // const { currentUser } = useContext(UserContext);
   const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
-  const {
-    user,
-    userHandle,
-    setUserHandle,
-    getUserProfile,
-    follows,
-    receiveFollowsFromServer,
-  } = useContext(UserContext);
+  const { user, getUserProfile, follows, receiveFollowsFromServer } =
+    useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
   const [feedItemsArray, setFeedItemsArray] = useState();
 
   // const [showFollows, setShowFollows] = useState(false);
 
-  useEffect(() => {
-    getUserProfile(params.profileId);
-    setUserHandle(params.profileId);
-    window.scrollTo(0, 0);
-  }, [params]);
+  // useEffect(() => {
+  //   getUserProfile(params.profileId);
+  //   window.scrollTo(0, 0);
+  // }, [params]);
 
   useEffect(() => {
     console.log("Fetching profile feed from server");

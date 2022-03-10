@@ -6,7 +6,6 @@ export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [status, setStatus] = useState("loading");
   const [user, setUser] = useState(null);
-  const [userHandle, setUserHandle] = useState(null);
   const [follows, setFollows] = useState(null);
 
   const receiveCurrentUserFromServer = (data) => {
@@ -20,12 +19,11 @@ export const UserProvider = ({ children }) => {
     setFollows({ ...data });
   };
 
-  const getUserProfile = (userHandle) => {
+  const getUserProfile = (handle) => {
     console.log(
-      `Fetching profile for user with handle '${userHandle}' from server`
+      `Fetching profile for user with handle '${handle}' from server`
     );
-
-    fetch(`/api/${userHandle}/profile`)
+    fetch(`/api/${handle}/profile`)
       .then((res) => res.json())
       .then((data) => {
         receiveUserFromServer(data.profile);
@@ -37,8 +35,6 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         setUser,
-        userHandle,
-        setUserHandle,
         receiveUserFromServer,
         getUserProfile,
         receiveFollowsFromServer,

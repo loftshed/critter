@@ -19,7 +19,6 @@ const Profile = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
   const {
     user,
-    setUserHandle,
     getUserProfile,
     receiveFollowsFromServer,
     // follows,
@@ -31,7 +30,6 @@ const Profile = () => {
 
   useEffect(() => {
     getUserProfile(params.profileId);
-    setUserHandle(params.profileId);
     window.scrollTo(0, 0);
   }, [params.profileId]);
 
