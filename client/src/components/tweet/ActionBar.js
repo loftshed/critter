@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import {
-  FiMessageSquare as ReplyIcon,
-  FiRepeat as RetweetIcon,
-  FiShare as ShareIcon,
-  FiHeart as HeartIcon,
-} from "react-icons/fi";
+
+import FavoriteRounded from "@mui/icons-material/Favorite";
+import FavoriteBorderRounded from "@mui/icons-material/FavoriteBorder";
+import RepeatRoundedIcon from "@mui/icons-material/RepeatRounded";
+import ChatBubbleOutlineRoundedIcon from "@mui/icons-material/ChatBubbleOutlineRounded";
+import IosShareRoundedIcon from "@mui/icons-material/IosShareRounded";
+
+import IconButton from "@mui/material/IconButton";
 
 // my components
+import { COLORS } from "../../constants";
 import { TweetContext } from "../context/TweetContext";
-import ActionButton from "./ActionButton";
 
 const ActionBar = ({ viewType, mappedTweet }) => {
   const { tweet, setTweet, receiveFeedItemsFromServer } =
@@ -88,44 +90,57 @@ const ActionBar = ({ viewType, mappedTweet }) => {
         }}
       >
         <ButtonContainer>
-          <ActionAndNum>
-            <ActionButton
+          <ButtonAndNum>
+            <StyledIconButton
               onClick={(ev) => {
                 ev.stopPropagation();
               }}
-              color="rgba(27, 149, 224, 0.5"
+              size="small"
+              iconColor="rgba(27, 149, 224, 0.5)"
             >
-              <ReplyIcon />
-            </ActionButton>
-          </ActionAndNum>
-          <ActionAndNum>
-            <ActionButton
+              <ReplyIcon fontSize={smolTrue ? "small" : "medium"} />
+            </StyledIconButton>
+          </ButtonAndNum>
+          <ButtonAndNum>
+            <StyledIconButton
               onClick={(ev) => {
                 ev.stopPropagation();
               }}
-              color="rgba(23, 191, 99, 0.5"
+              size="small"
+              iconColor="rgba(23, 191, 99, 0.5)"
             >
-              <RetweetIcon />
-            </ActionButton>
+              <RetweetIcon fontSize={smolTrue ? "small" : "medium"} />
+            </StyledIconButton>
             <Num>{tweetSource?.numRetweets}</Num>
-          </ActionAndNum>
-          <ActionAndNum>
-            <ActionButton
+          </ButtonAndNum>
+          <ButtonAndNum onClick={(ev) => ev.stopPropagation()}>
+            <StyledIconButton
               onClick={!tweetSource?.isLiked ? likeTweet : unlikeTweet}
-              color="rgba(224, 36, 94, 0.5)"
+              size="small"
+              iconColor="rgba(224, 36, 94, 0.5)"
             >
-              <HeartIcon />
-            </ActionButton>
+              {!tweetSource?.isLiked ? (
+                <HeartIcon fontSize={smolTrue ? "small" : "medium"} />
+              ) : (
+                <HeartIconFilled
+                  fontSize={smolTrue ? "small" : "medium"}
+                  sx={{ color: "rgba(224, 36, 94, 1)" }}
+                />
+              )}
+            </StyledIconButton>
             <Num>{tweetSource?.numLikes}</Num>
-          </ActionAndNum>
-          <ActionButton
-            onClick={(ev) => {
-              ev.stopPropagation();
-            }}
-            color="rgba(27, 149, 224, 0.5"
-          >
-            <ShareIcon />
-          </ActionButton>
+          </ButtonAndNum>
+          <ButtonAndNum>
+            <StyledIconButton
+              onClick={(ev) => {
+                ev.stopPropagation();
+              }}
+              size="small"
+              iconColor="rgba(27, 149, 224, 0.5)"
+            >
+              <ShareIcon fontSize={smolTrue ? "small" : "medium"} />
+            </StyledIconButton>
+          </ButtonAndNum>
         </ButtonContainer>
       </Bar>
     </Wrapper>
@@ -136,15 +151,28 @@ export default ActionBar;
 
 const Wrapper = styled.div``;
 
-const ActionAndNum = styled.div`
+const ReplyIcon = styled(ChatBubbleOutlineRoundedIcon)``;
+const RetweetIcon = styled(RepeatRoundedIcon)``;
+const HeartIcon = styled(FavoriteBorderRounded)``;
+const HeartIconFilled = styled(FavoriteRounded)``;
+const ShareIcon = styled(IosShareRoundedIcon)``;
+
+const StyledIconButton = styled(IconButton)`
+  color: ${COLORS.darkText};
+  &:hover {
+    background-color: ${(props) => props.iconColor};
+  }
+`;
+
+const ButtonAndNum = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.2em;
 `;
 
 const Num = styled.div`
   color: #f0f0f0;
-  font-size: 14px;
+  font-size: 18px;
 `;
 
 const Bar = styled.div`

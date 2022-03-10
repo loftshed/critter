@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import Button from "@mui/material/Button";
 import styled from "styled-components";
 
 // my components
@@ -58,20 +59,21 @@ const TweetInput = () => {
             <Counter style={{ color: getCounterColor() }}>
               {remainingChars}
             </Counter>
-            <Button
+            <MeowButton
               onClick={() => {
                 handlePostTweet(tweetString);
                 setTweetString("");
                 setRemainingChars(280);
               }}
               disabled={remainingChars < 0 || remainingChars === 280}
-              style={{
+              variant="contained"
+              sx={{
                 opacity:
                   remainingChars < 0 || remainingChars === 280 ? "50%" : "100%",
               }}
             >
               Meow
-            </Button>
+            </MeowButton>
           </SubmitArea>
         </InputSubmit>
       </InputContainer>
@@ -138,14 +140,22 @@ const Counter = styled.div`
   font-weight: 700;
 `;
 
-const Button = styled.button`
+const MeowButton = styled(Button)`
+  border-radius: 50px;
+  padding: 10px 20px;
+  font: inherit;
+  font-weight: 800;
+  text-transform: none;
   background-color: ${COLORS.primary};
   color: ${COLORS.darkText};
-  font: inherit;
-  font-weight: 700;
-  border-style: none;
-  padding: 10px 20px;
-  border-radius: 50px;
+  &:hover {
+    background-color: ${COLORS.primary};
+    filter: brightness(125%);
+  }
+  &:disabled {
+    background-color: ${COLORS.primary};
+    color: ${COLORS.darkText};
+  }
 `;
 //////////////inputcontainer ends
 
