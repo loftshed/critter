@@ -12,6 +12,7 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/tweet/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import LoadingSpinner from "./components/etc/LoadingSpinner";
+import Error from "./components/etc/Error";
 import Follows from "./components/profile/Follows-TODO";
 
 const App = () => {
@@ -35,8 +36,16 @@ const App = () => {
       });
   }, []);
 
-  // error message thing
-  // use error status to conditionally render a page
+  if (errorStatus === "error") {
+    return (
+      <>
+        <GlobalStyles />
+        <LoadingDiv>
+          <Error />
+        </LoadingDiv>
+      </>
+    );
+  }
 
   if (currentUser === null) {
     return (
