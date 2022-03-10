@@ -19,13 +19,8 @@ import LoadingSpinner from "./etc/LoadingSpinner";
 const Profile = () => {
   const { feedItems, receiveFeedItemsFromServer, tweetsArray, setTweetsArray } =
     useContext(TweetContext);
-  const {
-    user,
-    getUserProfile,
-    receiveFollowsFromServer,
-    // follows,
-  } = useContext(UserContext);
-  // const [feedItemsArray, setFeedItemsArray] = useState();
+  const { user, getUserProfile, receiveFollowsFromServer, currentUser } =
+    useContext(UserContext);
   // const [showFollows, setShowFollows] = useState(false);
 
   const params = useParams(); // uses parameters from the URL to set user handle
@@ -121,12 +116,15 @@ const Profile = () => {
                 {user.isFollowingYou && <FollowsU>FOLLOWS YOU</FollowsU>}
               </Handle>
             </div>
-            {user.isBeingFollowedByYou && (
-              <UFollow onClick={unfollowUser}>Following</UFollow>
-            )}
-            {/* try to implement followers/ing! */}
-            {!user.isBeingFollowedByYou && (
-              <UFollow onClick={followUser}>Follow</UFollow>
+            {user.handle !== currentUser.handle && (
+              <>
+                {user.isBeingFollowedByYou && (
+                  <UFollow onClick={unfollowUser}>Following</UFollow>
+                )}
+                {!user.isBeingFollowedByYou && (
+                  <UFollow onClick={followUser}>Follow</UFollow>
+                )}
+              </>
             )}
           </div>
           <Bio>{user.bio}</Bio>
