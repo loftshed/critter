@@ -9,7 +9,8 @@ import TweetInput from "./tweet/TweetInput";
 import LoadingSpinner from "./etc/LoadingSpinner";
 
 const HomeFeed = () => {
-  const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
+  const { feedItems, receiveFeedItemsFromServer, tweetsArray, setTweetsArray } =
+    useContext(TweetContext);
   // const [status, setStatus] = useContext("");
 
   useEffect(() => {
@@ -42,7 +43,6 @@ const HomeFeed = () => {
   }
 
   const tweets = Object.values(feedItems.tweetsById);
-  // console.log(tweets);
 
   return (
     <Wrapper>

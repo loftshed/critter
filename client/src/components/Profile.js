@@ -16,7 +16,8 @@ import ProfileFeed from "./profile/ProfileFeed";
 import LoadingSpinner from "./etc/LoadingSpinner";
 
 const Profile = () => {
-  const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
+  const { feedItems, receiveFeedItemsFromServer, tweetsArray, setTweetsArray } =
+    useContext(TweetContext);
   const {
     user,
     getUserProfile,
@@ -70,7 +71,7 @@ const Profile = () => {
     );
   }
 
-  const feedItemsArray = Object.values(feedItems.tweetsById);
+  const tweets = Object.values(feedItems.tweetsById);
   const joinDate = moment(user.joined).format(" MMMM Do");
 
   return (
@@ -126,7 +127,7 @@ const Profile = () => {
           </FollowRow>
         </UserInfo>
         <>
-          <ProfileFeed tweets={feedItemsArray} />
+          <ProfileFeed tweets={tweets} />
         </>
       </Wrapper>
     </>

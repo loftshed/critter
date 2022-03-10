@@ -16,6 +16,8 @@ const ActionBar = ({ viewType, mappedTweet }) => {
   const smolTrue = viewType === "small";
   const tweetSource = smolTrue ? mappedTweet : tweet;
 
+  console.log(tweetSource.id);
+
   const updateTweet = () => {
     fetch(`/api/tweet/${tweetSource.id}`)
       .then((res) => res.json())

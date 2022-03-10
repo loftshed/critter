@@ -3,6 +3,7 @@ import { useContext, useState, createContext } from "react";
 export const TweetContext = createContext(null);
 
 export const TweetProvider = ({ children }) => {
+  const [tweetsArray, setTweetsArray] = useState([]);
   const [tweetString, setTweetString] = useState("");
   const [feedItems, setFeedItems] = useState(null);
   const [tweet, setTweet] = useState(null);
@@ -47,6 +48,8 @@ export const TweetProvider = ({ children }) => {
         feedItems,
         tweet,
         setTweet,
+        tweetsArray,
+        setTweetsArray,
       }}
     >
       {children}
