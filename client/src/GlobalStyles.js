@@ -12,13 +12,14 @@ export default createGlobalStyle`
 
   html, body {
     max-width: 100vw;
-    scrollbar-width: thin;
   }
 
   html {
     overflow-y: auto;
     scrollbar-gutter: stable;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    /* ::-webkit-scrollbar */
   }
 
   #root {

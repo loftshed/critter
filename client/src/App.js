@@ -15,7 +15,12 @@ import LoadingSpinner from "./components/etc/LoadingSpinner";
 import Follows from "./components/profile/Follows-TODO";
 
 const App = () => {
-  const { currentUser, receiveCurrentUserFromServer } = useContext(UserContext);
+  const {
+    currentUser,
+    receiveCurrentUserFromServer,
+    errorStatus,
+    setErrorStatus,
+  } = useContext(UserContext);
 
   useEffect(() => {
     console.log("Fetching current user profile from server");
@@ -23,8 +28,15 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         receiveCurrentUserFromServer(data.profile);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   }, []);
+
+  // error message thing
+  // use error status to conditionally render a page
 
   if (currentUser === null) {
     return (

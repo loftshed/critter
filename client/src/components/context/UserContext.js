@@ -4,7 +4,7 @@ export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [status, setStatus] = useState("loading");
+  const [errorStatus, setErrorStatus] = useState("loading");
   const [user, setUser] = useState(null);
   const [follows, setFollows] = useState(null);
 
@@ -41,8 +41,8 @@ export const UserProvider = ({ children }) => {
         follows,
         currentUser,
         setCurrentUser,
-        status,
-        setStatus,
+        errorStatus,
+        setErrorStatus,
         receiveCurrentUserFromServer,
       }}
     >

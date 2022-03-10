@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import FavoriteRounded from "@mui/icons-material/Favorite";
@@ -16,8 +17,16 @@ import { TweetContext } from "../context/TweetContext";
 const ActionBar = ({ viewType, mappedTweet }) => {
   const { tweet, setTweet, receiveFeedItemsFromServer } =
     useContext(TweetContext);
+  const params = useParams();
+
+  // if prop "viewType" contains the string "small", record that in const smolTrue which will be used throughout the actionbar to determine placement of buttons as well as some other tings
   const smolTrue = viewType === "small";
+
+  // if smolTrue, we will use the tweet data passed down from the .map function (which originates in either HomeFeed.js or Profile.js)
+  // if not, we use the data from the state "tweet" (which contains only one tweet)
   const tweetSource = smolTrue ? mappedTweet : tweet;
+
+  console.log();
 
   const updateTweet = () => {
     fetch(`/api/tweet/${tweetSource.id}`)
@@ -27,8 +36,12 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       });
   };
 
+  // if a profileId is given in params, re-fetch that profileId's feed --
+  // if not, we must be in home-feed, so re-fetch that feed instead.
   const updateFeed = () => {
-    fetch("/api/me/home-feed")
+    fetch(
+      params.profileId ? `/api/${params.profileId}/feed` : `/api/me/home-feed`
+    )
       .then((res) => res.json())
       .then((data) => {
         receiveFeedItemsFromServer(data);
@@ -37,7 +50,6 @@ const ActionBar = ({ viewType, mappedTweet }) => {
 
   const likeTweet = (ev) => {
     ev.stopPropagation();
-    // setIsLiked(true);
     console.log("Liking a tweet");
     fetch(`/api/tweet/${tweetSource.id}/like`, {
       method: "PUT",
@@ -54,7 +66,6 @@ const ActionBar = ({ viewType, mappedTweet }) => {
 
   const unlikeTweet = (ev) => {
     ev.stopPropagation();
-    // setIsLiked(false);
     console.log("Unliking a tweet");
     fetch(`/api/tweet/${tweetSource.id}/like`, {
       method: "PUT",
