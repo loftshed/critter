@@ -25,8 +25,6 @@ const SmallTweet = ({ mappedTweet }) => {
     history.push(`/${mappedTweet.author.handle}`);
   };
 
-  // console.log(mappedTweet);
-
   return (
     <Wrapper onClick={(ev) => handleContainerClick(ev, mappedTweet.id)}>
       <Avatar
