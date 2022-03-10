@@ -118,7 +118,7 @@ const Profile = () => {
             <LocationJoinDate>
               <CalendarIcon />
               Joined
-              {user.joined}
+              {joinDate}
             </LocationJoinDate>
           </InfoRow>
           <FollowRow>
