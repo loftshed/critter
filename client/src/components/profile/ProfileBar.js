@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { COLORS } from "../../constants";
 
 const ProfileMenuBar = ({ tweets }) => {
@@ -12,12 +12,12 @@ const ProfileMenuBar = ({ tweets }) => {
         <StyledNavLink exact to={`/${params.profileId}`}>
           Tweets
         </StyledNavLink>
-        <StyledNavLink exact to={`/${params.profileId}/media`}>
+        <StyledLink exact to={`/${params.profileId}`}>
           Media
-        </StyledNavLink>
-        <StyledNavLink exact to={`/${params.profileId}/likes`}>
+        </StyledLink>
+        <StyledLink exact to={`/${params.profileId}`}>
           Likes
-        </StyledNavLink>
+        </StyledLink>
       </Header>
     </HeaderContainer>
   );
@@ -35,6 +35,13 @@ const StyledNavLink = styled(NavLink)`
     border-bottom: 3px solid ${COLORS.primary};
     text-decoration-color: ${COLORS.primary};
   }
+  color: ${COLORS.darkText};
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  text-align: center;
+  width: calc(100% * 1 / 3);
   color: ${COLORS.darkText};
 `;
 

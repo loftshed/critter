@@ -11,8 +11,8 @@ const Error = () => {
         <ErrorHeading>An unknown error has occurred.</ErrorHeading>
         <ErrorMessage>
           Please try refreshing the page, or{" "}
-          <a href="mailto:lmao@thereaintnosupport.bruh">contact support</a> if
-          the problem persists.
+          <a href="mailto:lmao@there_aint_no_support.bruh">contact support</a>{" "}
+          if the problem persists.
         </ErrorMessage>
       </ErrorContainer>
     </Wrapper>

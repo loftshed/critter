@@ -52,6 +52,17 @@ const TweetInput = () => {
           <Input
             value={tweetString}
             onInput={(ev) => handleInput(ev)}
+            onKeyDown={(ev) => {
+              // trying to make it so you can hold shift to do multiple lines, but it just gets rid of the spaces so far...
+              if (ev.key === "Enter" && ev.shiftKey === true) {
+                return;
+              }
+              if (ev.key === "Enter") {
+                handlePostTweet(tweetString);
+                setTweetString("");
+                setRemainingChars(280);
+              }
+            }}
             placeholder="What's going on?"
           ></Input>
           {}
@@ -95,14 +106,15 @@ const Wrapper = styled.div`
 //////////////inside inputcontainer
 const InputContainer = styled.div`
   display: flex;
-  padding: 2em 1em;
+  padding: 2em 0em;
   gap: 2em;
   width: 100%;
 `;
 const Avatar = styled.img`
+  margin-top: 1em;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 125px;
+  height: 125px;
 `;
 const InputSubmit = styled.div`
   gap: 1em;
