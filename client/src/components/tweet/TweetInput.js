@@ -19,12 +19,6 @@ const TweetInput = () => {
     );
   }
 
-  const {
-    profile: { avatarSrc },
-  } = currentUser;
-
-  console.log(currentUser);
-
   const handleInput = (ev) => {
     // returns remaining chars as result of 280 minus length of event target value
     const remainingCharCounter = (length) => {
@@ -48,7 +42,7 @@ const TweetInput = () => {
   return (
     <Wrapper>
       <InputContainer>
-        <Avatar src={avatarSrc} />
+        <Avatar src={currentUser.avatarSrc} />
         <InputSubmit>
           <Input
             value={tweetString}

@@ -20,7 +20,7 @@ const App = () => {
     fetch("/api/me/profile")
       .then((res) => res.json())
       .then((data) => {
-        receiveCurrentUserFromServer(data);
+        receiveCurrentUserFromServer(data.profile);
       });
   }, []);
 

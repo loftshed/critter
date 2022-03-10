@@ -28,7 +28,7 @@ const Sidebar = () => {
           <HomeIcon />
           <Item>Home</Item>
         </NavigationLink>
-        <NavigationLink to={`/${currentUser.profile.handle}`}>
+        <NavigationLink to={`/${currentUser.handle}`}>
           <ProfileIcon />
           <Item>Profile</Item>
         </NavigationLink>
