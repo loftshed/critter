@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import SmallTweet from "./tweet/SmallTweet";
-import { TweetContext } from "./context/TweetContext";
+
+// my components
 import { COLORS } from "../constants";
+import { TweetContext } from "./context/TweetContext";
+import SmallTweet from "./tweet/SmallTweet";
 import TweetInput from "./tweet/TweetInput";
 import LoadingSpinner from "./etc/LoadingSpinner";
 

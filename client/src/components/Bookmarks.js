@@ -1,7 +1,10 @@
 import React from "react";
-import { COLORS } from "../constants";
 import styled from "styled-components";
+
+// my components
+import { COLORS } from "../constants";
 import LoadingSpinner from "./etc/LoadingSpinner";
+
 const Bookmarks = () => {
   return (
     <Wrapper>
