@@ -4,7 +4,7 @@ const data = require("../data");
 const CURRENT_USER_HANDLE = "treasurymog";
 
 // const MAX_DELAY = 2000;
-const MAX_DELAY = 2000;
+const MAX_DELAY = 1;
 
 // TODO! reset this!!
 const FAILURE_ODDS = 0;
