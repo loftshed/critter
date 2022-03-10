@@ -1,20 +1,20 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { COLORS, FONTWEIGHT } from "../../constants";
-import ActionBar from "./ActionBar";
 import moment from "moment";
+
+// my components
 import { UserContext } from "../context/UserContext";
 import { TweetContext } from "../context/TweetContext";
+import { COLORS, FONTWEIGHT } from "../../constants";
+import ActionBar from "./ActionBar";
 
 const BigTweet = () => {
   const { getUserProfile } = useContext(UserContext);
   const { tweet, setTweet } = useContext(TweetContext);
   const timestamp = moment(tweet.timestamp).format("h:mm A • MMM D YYYY");
-  // // reminder, this const needed to be in square bracket to destructure the array
-  const [media] = tweet.media;
 
-  console.log(tweet);
+  console.log();
 
   return (
     <Wrapper>
@@ -38,7 +38,7 @@ const BigTweet = () => {
             </AuthorInfo>
           </TweetHeader>
           <Status>{tweet.status}</Status>
-          {media && <Image src={media.url} />}
+          {tweet.media[0] && <Image src={tweet.media[0].url} />}
         </TweetBody>
         <Timestamp>
           {timestamp}
@@ -96,6 +96,10 @@ const Avatar = styled.img`
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  &:hover {
+    outline: ${COLORS.primary} 2px solid;
+    cursor: pointer;
+  }
 `;
 
 const AuthorInfo = styled.div`
@@ -106,6 +110,10 @@ const AuthorInfo = styled.div`
 const DisplayName = styled.div`
   font-size: 20px;
   color: ${COLORS.darkText};
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: ${COLORS.primary};
+  }
 `;
 const Handle = styled.div``;
 const Timestamp = styled.div`

@@ -12,7 +12,6 @@ import ActionBar from "./ActionBar";
 const SmallTweet = ({ tweet }) => {
   const { getUserProfile } = useContext(UserContext);
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
-  const [media] = tweet.media; // reminder, this const needed to be in square bracket to destructure the array
 
   /// https://v5.reactrouter.com/web/api/history
   let history = useHistory();
@@ -58,7 +57,7 @@ const SmallTweet = ({ tweet }) => {
             <Timestamp>{timestamp}</Timestamp>
           </AuthorInfo>
           <Status>{tweet.status}</Status>
-          {media && <Image src={media.url} />}
+          {tweet.media[0] && <Image src={tweet.media[0].url} />}
         </TweetBody>
         <ActionBar viewType={"small"} tweet={tweet} />
         <div style={{ paddingBottom: "0.5em" }}></div>

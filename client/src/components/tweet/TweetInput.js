@@ -6,10 +6,10 @@ import { COLORS } from "../../constants";
 import LoadingSpinner from "../etc/LoadingSpinner";
 
 const TweetInput = () => {
-  const [remainingChars, setRemainingChars] = useState(280);
   const { currentUser } = useContext(UserContext);
   const { tweetString, setTweetString, handlePostTweet } =
     useContext(TweetContext);
+  const [remainingChars, setRemainingChars] = useState(280);
 
   if (currentUser === null) {
     return (
@@ -22,6 +22,8 @@ const TweetInput = () => {
   const {
     profile: { avatarSrc },
   } = currentUser;
+
+  console.log(currentUser);
 
   const handleInput = (ev) => {
     // returns remaining chars as result of 280 minus length of event target value

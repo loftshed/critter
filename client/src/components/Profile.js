@@ -16,13 +16,11 @@ import LoadingSpinner from "./etc/LoadingSpinner";
 const Profile = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
   const {
-    currentUser,
     user,
-    userHandle,
     setUserHandle,
     getUserProfile,
-    follows,
     receiveFollowsFromServer,
+    // follows,
   } = useContext(UserContext);
   const params = useParams(); // uses parameters from the URL to set user handle
   // const [feedItemsArray, setFeedItemsArray] = useState();
@@ -76,7 +74,7 @@ const Profile = () => {
 
   const feedItemsArray = Object.values(feedItems.tweetsById);
 
-  // destructure all these things from profile property of currentUser
+  // destructure all these things from profile property of user being viewed
   const {
     profile: {
       avatarSrc,
