@@ -95,7 +95,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
               onClick={(ev) => {
                 ev.stopPropagation();
               }}
-              size="small"
+              size={smolTrue ? "small" : "medium"}
               iconColor="rgba(27, 149, 224, 0.5)"
             >
               <ReplyIcon fontSize={smolTrue ? "small" : "medium"} />
@@ -106,7 +106,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
               onClick={(ev) => {
                 ev.stopPropagation();
               }}
-              size="small"
+              size={smolTrue ? "small" : "medium"}
               iconColor="rgba(23, 191, 99, 0.5)"
             >
               <RetweetIcon fontSize={smolTrue ? "small" : "medium"} />
@@ -116,7 +116,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
           <ButtonAndNum onClick={(ev) => ev.stopPropagation()}>
             <StyledIconButton
               onClick={!tweetSource?.isLiked ? likeTweet : unlikeTweet}
-              size="small"
+              size={smolTrue ? "small" : "medium"}
               iconColor="rgba(224, 36, 94, 0.5)"
             >
               {!tweetSource?.isLiked ? (
@@ -135,7 +135,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
               onClick={(ev) => {
                 ev.stopPropagation();
               }}
-              size="small"
+              size={smolTrue ? "small" : "medium"}
               iconColor="rgba(27, 149, 224, 0.5)"
             >
               <ShareIcon fontSize={smolTrue ? "small" : "medium"} />

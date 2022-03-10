@@ -26,43 +26,51 @@ const SmallTweet = ({ mappedTweet }) => {
   };
 
   return (
-    <Wrapper onClick={(ev) => handleContainerClick(ev, mappedTweet.id)}>
-      <Avatar
-        onClick={(ev) => {
-          handleNestedClick(ev);
-          getUserProfile(mappedTweet.author.handle);
-        }}
-        src={mappedTweet.author.avatarSrc}
-      />
+    <Wrapper>
+      <Tweet onClick={(ev) => handleContainerClick(ev, mappedTweet.id)}>
+        <Avatar
+          onClick={(ev) => {
+            handleNestedClick(ev);
+            getUserProfile(mappedTweet.author.handle);
+          }}
+          src={mappedTweet.author.avatarSrc}
+        />
 
-      <TweetContainer>
-        {/* <TweetContainer onClick={() => handleClick(tweet.id)}> */}
-        <TweetBody>
-          {mappedTweet.retweetFrom && (
-            <Header style={{ color: `${COLORS.darkSubtext}` }}>
-              <RetweetIcon />
-              Retweeted by @{mappedTweet.retweetFrom.handle}
-            </Header>
-          )}
-          <AuthorInfo>
-            <DisplayName
-              onClick={(ev) => {
-                handleNestedClick(ev);
-                getUserProfile(mappedTweet.author.handle);
-              }}
-            >
-              {mappedTweet.author.displayName}
-            </DisplayName>
-            <Handle>@{mappedTweet.author.handle}</Handle>
-            <>•</>
-            <Timestamp>{timestamp}</Timestamp>
-          </AuthorInfo>
-          <Status>{mappedTweet.status}</Status>
-          {mappedTweet.media[0] && <Image src={mappedTweet.media[0].url} />}
-        </TweetBody>
-        <ActionBar viewType={"small"} mappedTweet={mappedTweet} />
-        <div style={{ paddingBottom: "0.5em" }}></div>
-      </TweetContainer>
+        <TweetContainer>
+          <TweetBody>
+            {mappedTweet.retweetFrom && (
+              <Header style={{ color: `${COLORS.darkSubtext}` }}>
+                <RetweetIcon />
+                Retweeted by @{mappedTweet.retweetFrom.handle}
+              </Header>
+            )}
+            <AuthorInfo>
+              <DisplayName
+                onClick={(ev) => {
+                  handleNestedClick(ev);
+                  getUserProfile(mappedTweet.author.handle);
+                }}
+              >
+                {mappedTweet.author.displayName}
+              </DisplayName>
+              <Handle
+                onClick={(ev) => {
+                  handleNestedClick(ev);
+                  getUserProfile(mappedTweet.author.handle);
+                }}
+              >
+                @{mappedTweet.author.handle}
+              </Handle>
+              <>•</>
+              <Timestamp>{timestamp}</Timestamp>
+            </AuthorInfo>
+            <Status>{mappedTweet.status}</Status>
+            {mappedTweet.media[0] && <Image src={mappedTweet.media[0].url} />}
+          </TweetBody>
+          <ActionBar viewType={"small"} mappedTweet={mappedTweet} />
+          <div style={{ paddingBottom: "0.5em" }}></div>
+        </TweetContainer>
+      </Tweet>
     </Wrapper>
   );
 };
@@ -72,9 +80,19 @@ export default SmallTweet;
 const Wrapper = styled.div`
   display: flex;
   /* flex-direction: column; */
+`;
+
+const Tweet = styled.div`
+  display: flex;
   gap: 1em;
-  padding: 1em 3em;
+  /* margin: 0.5em 0em; */
+  padding: 1em;
   width: 100%;
+  transition: ease 0.1s all;
+  &:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 100px #21252b;
+  }
 `;
 
 const Header = styled.div`
@@ -91,12 +109,12 @@ const TweetContainer = styled.div`
   flex-direction: column;
   gap: 1em;
   background-color: ${COLORS.darkTweetBg};
-  border-radius: 10px;
+  border-radius: 25px;
   /* width: 100%; */
-  &:hover {
+  /* &:hover {
     outline: rgba(255, 255, 255, 0.2) 2px solid;
     cursor: pointer;
-  }
+  } */
 `;
 
 // Tweet content begins
