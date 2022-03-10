@@ -4,10 +4,12 @@ import styled from "styled-components";
 
 // my components
 import { TweetContext } from "../context/TweetContext";
+import { UserContext } from "../context/UserContext";
 import BigTweet from "./BigTweet";
 
 const TweetDetails = () => {
   const { tweet, setTweet } = useContext(TweetContext);
+  const { errorStatus, setErrorStatus } = useContext(UserContext);
   const params = useParams();
 
   console.log(tweet);
@@ -19,6 +21,10 @@ const TweetDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setTweet(data.tweet);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   }, []);
 

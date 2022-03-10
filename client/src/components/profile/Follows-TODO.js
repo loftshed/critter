@@ -21,6 +21,8 @@ const Follows = () => {
     user,
     getUserProfile,
     receiveFollowsFromServer,
+    errorStatus,
+    setErrorStatus,
     // follows,
   } = useContext(UserContext);
   // const [feedItemsArray, setFeedItemsArray] = useState();
@@ -39,6 +41,10 @@ const Follows = () => {
       .then((res) => res.json())
       .then((data) => {
         receiveFeedItemsFromServer(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   }, [params.profileId]);
 
@@ -49,6 +55,10 @@ const Follows = () => {
       .then((data) => {
         receiveFollowsFromServer(data);
         console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
@@ -59,6 +69,10 @@ const Follows = () => {
       .then((data) => {
         receiveFollowsFromServer(data);
         console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 

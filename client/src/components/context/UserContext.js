@@ -27,6 +27,10 @@ export const UserProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         receiveUserFromServer(data.profile);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 

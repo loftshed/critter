@@ -1,8 +1,10 @@
 import { useContext, useState, createContext } from "react";
+import { UserContext } from "./UserContext";
 
 export const TweetContext = createContext(null);
 
 export const TweetProvider = ({ children }) => {
+  const { setErrorStatus } = useContext(UserContext);
   const [tweetString, setTweetString] = useState(""); // state that handles tweet input box
   const [feedItems, setFeedItems] = useState(null); // state that holds a given feed's tweets after they are retrieved from the server
   const [tweet, setTweet] = useState(null); // state for individual tweet (for TweetDetails.js)
@@ -21,6 +23,10 @@ export const TweetProvider = ({ children }) => {
       .then((data) => {
         console.log(data);
         handleAfterPostTweet();
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
@@ -30,6 +36,10 @@ export const TweetProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => {
         receiveFeedItemsFromServer(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 

@@ -13,11 +13,13 @@ import IconButton from "@mui/material/IconButton";
 // my components
 import { COLORS } from "../../constants";
 import { TweetContext } from "../context/TweetContext";
+import { UserContext } from "../context/UserContext";
 
 // ActionBar is used by both BigTweet.js and SmallTweet.js and holds functionality for interacting with a tweet
 const ActionBar = ({ viewType, mappedTweet }) => {
   const { tweet, setTweet, receiveFeedItemsFromServer } =
     useContext(TweetContext);
+  const { errorStatus, setErrorStatus } = useContext(UserContext);
   const params = useParams();
 
   // if prop "viewType" contains the string "small", record that in const smolTrue which will be used throughout the actionbar to determine placement of buttons as well as some other tings
@@ -33,6 +35,10 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       .then((res) => res.json())
       .then((data) => {
         setTweet(data.tweet);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
@@ -45,13 +51,17 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       .then((res) => res.json())
       .then((data) => {
         receiveFeedItemsFromServer(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
   // likes a tweet
   const likeTweet = (ev) => {
     ev.stopPropagation();
-    console.log("Liking a tweet");
+    // console.log("Liking a tweet");
     fetch(`/api/tweet/${tweetSource.id}/like`, {
       method: "PUT",
       headers: {
@@ -64,13 +74,17 @@ const ActionBar = ({ viewType, mappedTweet }) => {
         // if smolTrue returns boolean TRUE we're viewing a profile, so update the state of the entire feed
         // if smolTrue returns boolean FALSE we will update just the one tweet we're viewing
         smolTrue ? updateFeed() : updateTweet();
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
   // unlikes a tweet
   const unlikeTweet = (ev) => {
     ev.stopPropagation();
-    console.log("Unliking a tweet");
+    // console.log("Unliking a tweet");
     fetch(`/api/tweet/${tweetSource.id}/like`, {
       method: "PUT",
       headers: {
@@ -81,19 +95,12 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       .then((res) => res.json())
       .then((data) => {
         smolTrue ? updateFeed() : updateTweet();
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
-
-  // error message thing
-  //   .catch((err) => {
-  //     setStatus("error");
-  //     throw new Error(err);
-  //     console.log(err);
-  //   });
-  // // error message thing
-  // if (tweet === null) {
-  //   return null;
-  // }
 
   return (
     <Wrapper>

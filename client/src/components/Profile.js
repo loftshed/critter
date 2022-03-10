@@ -18,8 +18,14 @@ import LoadingSpinner from "./etc/LoadingSpinner";
 
 const Profile = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
-  const { user, getUserProfile, receiveFollowsFromServer, currentUser } =
-    useContext(UserContext);
+  const {
+    user,
+    getUserProfile,
+    receiveFollowsFromServer,
+    currentUser,
+    setErrorStatus,
+    errorStatus,
+  } = useContext(UserContext);
   // const [showFollows, setShowFollows] = useState(false);
 
   const params = useParams(); // uses parameters from the URL to set user handle
@@ -35,6 +41,10 @@ const Profile = () => {
       .then((res) => res.json())
       .then((data) => {
         receiveFeedItemsFromServer(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   }, [params.profileId]);
 
@@ -51,6 +61,10 @@ const Profile = () => {
       .then((data) => {
         console.log(data);
         getUserProfile(params.profileId);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
@@ -67,6 +81,10 @@ const Profile = () => {
       .then((data) => {
         console.log(data);
         getUserProfile(params.profileId);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
@@ -77,6 +95,10 @@ const Profile = () => {
       .then((data) => {
         receiveFollowsFromServer(data);
         console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 
@@ -87,6 +109,10 @@ const Profile = () => {
       .then((data) => {
         receiveFollowsFromServer(data);
         console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   };
 

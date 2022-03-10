@@ -4,7 +4,7 @@ import styled from "styled-components";
 // my components
 import { COLORS } from "../../constants";
 import SmallTweet from "../tweet/SmallTweet";
-import ProfileMenuBar from "./ProfileBar";
+import ProfileMenuBar from "./ProfileMenuBar";
 
 const ProfileFeed = ({ tweets }) => {
   if (tweets === null) {

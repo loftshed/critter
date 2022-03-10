@@ -4,14 +4,14 @@ import styled from "styled-components";
 // my components
 import { COLORS } from "../constants";
 import { TweetContext } from "./context/TweetContext";
+import { UserContext } from "./context/UserContext";
 import SmallTweet from "./tweet/SmallTweet";
 import TweetInput from "./tweet/TweetInput";
 import LoadingSpinner from "./etc/LoadingSpinner";
-import { UserContext } from "./context/UserContext";
-import { useParams } from "react-router-dom";
 
 const HomeFeed = () => {
   const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
+  const { setErrorStatus, errorStatus } = useContext(UserContext);
 
   useEffect(() => {
     console.log("Fetching home feed from server");
@@ -19,6 +19,10 @@ const HomeFeed = () => {
       .then((res) => res.json())
       .then((data) => {
         receiveFeedItemsFromServer(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
       });
   }, []);
 
