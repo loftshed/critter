@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FiRepeat as RetweetIcon } from "react-icons/fi";
 import styled from "styled-components";
 import moment from "moment";
@@ -52,7 +52,6 @@ const SmallTweet = ({ tweet }) => {
             >
               {tweet.author.displayName}
             </DisplayName>
-
             <Handle>@{tweet.author.handle}</Handle>
             <>•</>
             <Timestamp>{timestamp}</Timestamp>

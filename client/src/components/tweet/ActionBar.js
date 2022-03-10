@@ -80,12 +80,22 @@ const ActionBar = ({ viewType, tweet }) => {
       >
         <ButtonContainer>
           <ActionAndNum>
-            <ActionButton color="rgba(27, 149, 224, 0.5">
+            <ActionButton
+              onClick={(ev) => {
+                ev.stopPropagation();
+              }}
+              color="rgba(27, 149, 224, 0.5"
+            >
               <ReplyIcon />
             </ActionButton>
           </ActionAndNum>
           <ActionAndNum>
-            <ActionButton color="rgba(23, 191, 99, 0.5">
+            <ActionButton
+              onClick={(ev) => {
+                ev.stopPropagation();
+              }}
+              color="rgba(23, 191, 99, 0.5"
+            >
               <RetweetIcon />
             </ActionButton>
             <Num>{tweet?.numRetweets}</Num>
@@ -99,7 +109,12 @@ const ActionBar = ({ viewType, tweet }) => {
             </ActionButton>
             <Num>{tweet?.numLikes}</Num>
           </ActionAndNum>
-          <ActionButton color="rgba(27, 149, 224, 0.5">
+          <ActionButton
+            onClick={(ev) => {
+              ev.stopPropagation();
+            }}
+            color="rgba(27, 149, 224, 0.5"
+          >
             <ShareIcon />
           </ActionButton>
         </ButtonContainer>
