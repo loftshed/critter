@@ -12,25 +12,23 @@ import ActionBar from "./ActionBar";
 const SmallTweet = ({ tweet }) => {
   const { getUserProfile } = useContext(UserContext);
   const timestamp = moment(tweet.timestamp).format("MMMM Do");
-
   /// https://v5.reactrouter.com/web/api/history
-  let history = useHistory();
+  const history = useHistory();
 
-  const handleClick = (ev, tweetId) => {
+  const handleContainerClick = (ev, tweetId) => {
     ev.stopPropagation();
     history.push(`/tweet/${tweetId}`);
   };
-
-  const handleImageClick = (ev) => {
+  const handleNestedClick = (ev) => {
     ev.stopPropagation();
     history.push(`/${tweet.author.handle}`);
   };
 
   return (
-    <Wrapper onClick={(ev) => handleClick(ev, tweet.id)}>
+    <Wrapper onClick={(ev) => handleContainerClick(ev, tweet.id)}>
       <Avatar
         onClick={(ev) => {
-          handleImageClick(ev);
+          handleNestedClick(ev);
           getUserProfile(tweet.author.handle);
         }}
         src={tweet.author.avatarSrc}
@@ -46,12 +44,15 @@ const SmallTweet = ({ tweet }) => {
             </Header>
           )}
           <AuthorInfo>
-            <StyledLink
-              to={`/${tweet.author.handle}`}
-              onClick={() => getUserProfile(tweet.author.handle)}
+            <DisplayName
+              onClick={(ev) => {
+                handleNestedClick(ev);
+                getUserProfile(tweet.author.handle);
+              }}
             >
-              <DisplayName>{tweet.author.displayName}</DisplayName>
-            </StyledLink>
+              {tweet.author.displayName}
+            </DisplayName>
+
             <Handle>@{tweet.author.handle}</Handle>
             <>•</>
             <Timestamp>{timestamp}</Timestamp>
@@ -67,10 +68,6 @@ const SmallTweet = ({ tweet }) => {
 };
 
 export default SmallTweet;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -90,7 +87,6 @@ const Header = styled.div`
 
 const TweetContainer = styled.div`
   display: flex;
-  /* flex: 1; */
   flex-grow: 1;
   flex-direction: column;
   gap: 1em;

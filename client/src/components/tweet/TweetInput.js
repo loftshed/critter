@@ -1,23 +1,18 @@
 import React, { useContext, useState } from "react";
+import styled from "styled-components";
+
+// my components
+import { COLORS } from "../../constants";
 import { TweetContext } from "../context/TweetContext";
 import { UserContext } from "../context/UserContext";
-import styled from "styled-components";
-import { COLORS } from "../../constants";
 import LoadingSpinner from "../etc/LoadingSpinner";
 
 const TweetInput = () => {
   const { currentUser } = useContext(UserContext);
   const { tweetString, setTweetString, handlePostTweet } =
     useContext(TweetContext);
-  const [remainingChars, setRemainingChars] = useState(280);
 
-  if (currentUser === null) {
-    return (
-      <Wrapper style={{ height: "100vh" }}>
-        <LoadingSpinner />
-      </Wrapper>
-    );
-  }
+  const [remainingChars, setRemainingChars] = useState(280);
 
   const handleInput = (ev) => {
     // returns remaining chars as result of 280 minus length of event target value
@@ -38,6 +33,15 @@ const TweetInput = () => {
     }
     return counterColor;
   };
+
+  // stops things from breaking if user isn't loaded yet
+  if (currentUser === null) {
+    return (
+      <Wrapper style={{ height: "100vh" }}>
+        <LoadingSpinner />
+      </Wrapper>
+    );
+  }
 
   return (
     <Wrapper>

@@ -1,16 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { UserContext } from "./context/UserContext";
-
-import { COLORS } from "../constants";
-import { ReactComponent as Logo } from "../assets/logo.svg";
 import {
   FiHome as HomeIcon,
   FiUser as ProfileIcon,
   FiBell as NotificationIcon,
   FiBookmark as BookmarksIcon,
 } from "react-icons/fi";
+import styled from "styled-components";
+import { ReactComponent as Logo } from "../assets/logo.svg";
+
+// my components
+import { COLORS } from "../constants";
+import { UserContext } from "./context/UserContext";
 
 const Sidebar = () => {
   const { currentUser } = useContext(UserContext);

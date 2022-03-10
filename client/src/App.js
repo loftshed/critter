@@ -1,14 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
+import GlobalStyles from "./GlobalStyles";
+
+// my components
+import { UserContext } from "./components/context/UserContext.js";
 import Bookmarks from "./components/Bookmarks";
 import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Profile from "./components/Profile";
 import TweetDetails from "./components/tweet/TweetDetails";
 import Sidebar from "./components/Sidebar";
-import { UserContext } from "./components/context/UserContext.js";
-import styled from "styled-components";
-import GlobalStyles from "./GlobalStyles";
 import LoadingSpinner from "./components/etc/LoadingSpinner";
 import Follows from "./components/profile/Follows";
 
