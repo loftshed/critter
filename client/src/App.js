@@ -12,7 +12,7 @@ import Profile from "./components/Profile";
 import TweetDetails from "./components/tweet/TweetDetails";
 import Sidebar from "./components/Sidebar";
 import LoadingSpinner from "./components/etc/LoadingSpinner";
-import Follows from "./components/profile/Follows";
+import Follows from "./components/profile/Follows-TODO";
 
 const App = () => {
   const { currentUser, receiveCurrentUserFromServer } = useContext(UserContext);

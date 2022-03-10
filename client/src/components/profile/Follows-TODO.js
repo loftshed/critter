@@ -1,32 +1,37 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/UserContext";
-import { TweetContext } from "../context/TweetContext";
-import { COLORS, FONTWEIGHT } from "../../constants";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
 import {
   FiMapPin as LocationIcon,
   FiCalendar as CalendarIcon,
+  FiLink as LinkIcon,
 } from "react-icons/fi";
+
+// my components
+import { COLORS, FONTWEIGHT } from "../../constants";
+import { UserContext } from "../context/UserContext";
+import { TweetContext } from "../context/TweetContext";
+import ProfileFeed from "./ProfileFeed";
 import LoadingSpinner from "../etc/LoadingSpinner";
 
-// for now all of this is just a sloppy copy of profile.js with a different feed
-
 const Follows = () => {
-  // const { currentUser } = useContext(UserContext);
   const { feedItems, receiveFeedItemsFromServer } = useContext(TweetContext);
-  const { user, getUserProfile, follows, receiveFollowsFromServer } =
-    useContext(UserContext);
-  const params = useParams(); // uses parameters from the URL to set user handle
-  const [feedItemsArray, setFeedItemsArray] = useState();
-
+  const {
+    user,
+    getUserProfile,
+    receiveFollowsFromServer,
+    // follows,
+  } = useContext(UserContext);
+  // const [feedItemsArray, setFeedItemsArray] = useState();
   // const [showFollows, setShowFollows] = useState(false);
 
-  // useEffect(() => {
-  //   getUserProfile(params.profileId);
-  //   window.scrollTo(0, 0);
-  // }, [params]);
+  const params = useParams(); // uses parameters from the URL to set user handle
+
+  useEffect(() => {
+    getUserProfile(params.profileId);
+    window.scrollTo(0, 0);
+  }, [params.profileId]);
 
   useEffect(() => {
     console.log("Fetching profile feed from server");
@@ -35,7 +40,7 @@ const Follows = () => {
       .then((data) => {
         receiveFeedItemsFromServer(data);
       });
-  }, [params.profileId, follows]);
+  }, [params.profileId]);
 
   const getFollowing = () => {
     console.log("Fetching profile's following from server");
@@ -57,7 +62,7 @@ const Follows = () => {
       });
   };
 
-  if (user === null) {
+  if (!user || !feedItems) {
     return (
       <Wrapper>
         <LoadingSpinner />
@@ -65,58 +70,64 @@ const Follows = () => {
     );
   }
 
-  setFeedItemsArray(Object.values(feedItems.tweetsById));
-
-  // destructure all these things from profile property of currentUser
-  const {
-    profile: {
-      avatarSrc,
-      bannerSrc,
-      bio,
-      displayName,
-      handle,
-      joined,
-      location,
-      numFollowers,
-      numFollowing,
-      // numLikes,
-    },
-  } = user;
-
-  const joinDate = moment(joined).format(" MMMM Do");
+  const feedItemsArray = Object.values(feedItems.tweetsById);
+  const joinDate = moment(user.joined).format(" MMMM Do");
 
   return (
     <>
       <Wrapper>
-        <Banner src={bannerSrc} />
+        <Banner src={user.bannerSrc} />
         <UserInfo>
-          <Avatar src={avatarSrc} />
-          <div>
-            <DisplayName>{displayName}</DisplayName>
-            <Handle>@{handle}</Handle>
+          <Avatar src={user.avatarSrc} />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>
+              <DisplayName>{user.displayName}</DisplayName>
+              <Handle>
+                @{user.handle}
+                {user.isFollowingYou && <FollowsU>FOLLOWS YOU</FollowsU>}
+              </Handle>
+            </div>
+            {user.isBeingFollowedByYou && <UFollow>Following</UFollow>}
+            {/* try to implement followers/ing! */}
+            {!user.isBeingFollowedByYou && <UFollow>Follow</UFollow>}
           </div>
-          <Bio>{bio}</Bio>
-          <FlexRow>
-            <LocationJoinDate>
-              <LocationIcon />
-              {location}
-            </LocationJoinDate>
+          <Bio>{user.bio}</Bio>
+          <InfoRow>
+            {user.location && (
+              <LocationJoinDate>
+                <LocationIcon />
+                {user.location}
+              </LocationJoinDate>
+            )}
+            {user.url && (
+              <LocationJoinDate>
+                <LinkIcon />
+                <a
+                  style={{ textDecoration: "none", color: `${COLORS.primary}` }}
+                  href={user.url}
+                >
+                  {user.url.replace(/^https?:\/\//, "")}
+                </a>
+              </LocationJoinDate>
+            )}
             <LocationJoinDate>
               <CalendarIcon />
               Joined
               {joinDate}
             </LocationJoinDate>
-          </FlexRow>
-          <FlexRow>
-            <FollowData onClick={getFollowing}>{numFollowing}</FollowData>
+          </InfoRow>
+          <FollowRow>
+            <FollowData onClick={getFollowing}>{user.numFollowing}</FollowData>
             <FollowDataText>Following</FollowDataText>
-            <FollowData onClick={getFollowers}>{numFollowers}</FollowData>
+            <FollowData onClick={getFollowers}>{user.numFollowers}</FollowData>
             <FollowDataText>
-              {numFollowers > 1 ? "Followers" : "Follower"}
+              {user.numFollowers > 1 ? "Followers" : "Follower"}
             </FollowDataText>
-          </FlexRow>
+          </FollowRow>
         </UserInfo>
-        <></>
+        <>
+          <ProfileFeed tweets={feedItemsArray} />
+        </>
       </Wrapper>
     </>
   );
@@ -130,9 +141,13 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-const FlexRow = styled.div`
+const InfoRow = styled.div`
   display: flex;
   gap: 10px;
+`;
+const FollowRow = styled.div`
+  display: flex;
+  gap: 5px;
 `;
 
 const Avatar = styled.img`
@@ -144,7 +159,7 @@ const Avatar = styled.img`
 
 const Banner = styled.img`
   width: 100%;
-  min-height: 350px;
+  height: 350px;
   margin-bottom: -110px;
   object-fit: cover;
   object-position: center;
@@ -155,7 +170,7 @@ const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
   height: fit-content;
-  padding: 0rem 2rem;
+  padding: 0rem 3rem;
   gap: 1em;
   color: ${COLORS.darkText};
 `;
@@ -169,6 +184,24 @@ const Handle = styled.div`
   color: ${COLORS.darkSubtext};
   font-weight: ${FONTWEIGHT.bold};
   font-size: 18px;
+`;
+
+const FollowsU = styled.span`
+  background-color: ${COLORS.darkSubtext};
+  color: white;
+  font-size: 11px;
+  border-radius: 5px;
+  padding: 2px 4px;
+  margin-left: 5px;
+`;
+
+const UFollow = styled.div`
+  height: fit-content;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  outline: 1px solid white;
 `;
 
 const Bio = styled.div``;
