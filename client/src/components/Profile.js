@@ -43,7 +43,6 @@ const Profile = () => {
         receiveFeedItemsFromServer(data);
       })
       .catch((error) => {
-        console.log(error);
         setErrorStatus("error");
       });
   }, [params.profileId]);

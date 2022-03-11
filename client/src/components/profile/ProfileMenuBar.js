@@ -10,7 +10,7 @@ const ProfileMenuBar = ({ tweets }) => {
   const params = useParams();
 
   return (
-    <HeaderContainer>
+    <Wrapper>
       <Header>
         <StyledNavLink exact to={`/${params.profileId}`}>
           Tweets
@@ -18,7 +18,7 @@ const ProfileMenuBar = ({ tweets }) => {
         <StyledLink to={`/${params.profileId}`}>Media</StyledLink>
         <StyledLink to={`/${params.profileId}`}>Likes</StyledLink>
       </Header>
-    </HeaderContainer>
+    </Wrapper>
   );
 };
 
@@ -44,8 +44,8 @@ const StyledLink = styled(Link)`
   color: ${COLORS.darkText};
 `;
 
-const HeaderContainer = styled.div`
-  margin-top: 1em;
+const Wrapper = styled.div`
+  margin: 1.5em 0em;
   font-weight: 700;
   font-size: 18px;
 

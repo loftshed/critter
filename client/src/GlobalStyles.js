@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { COLORS } from "./constants";
 
 export default createGlobalStyle`
   *,
@@ -17,10 +18,8 @@ export default createGlobalStyle`
   html {
     overflow-y: auto;
     scrollbar-gutter: stable;
-    scroll-behavior: smooth;
-    scrollbar-width: thin;
-    /* ::-webkit-scrollbar */
   }
+    
 
   #root {
     display: flex;
