@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import moment from "moment";
+import { FiRepeat as RetweetIcon } from "react-icons/fi";
 
 // my components
 import { UserContext } from "../context/UserContext";
@@ -20,6 +21,12 @@ const BigTweet = () => {
     <Wrapper>
       <TweetContainer>
         <TweetBody>
+          {tweet.retweetFrom && (
+            <Header style={{ color: `${COLORS.darkSubtext}` }}>
+              <RetweetIcon />
+              Retweeted by @{tweet.retweetFrom.handle}
+            </Header>
+          )}
           <TweetHeader>
             <StyledLink
               to={`/${tweet.author.handle}`}
@@ -134,3 +141,11 @@ const Image = styled.img`
 `;
 
 // Tweet content ends
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: -10px;
+  font-size: 15px;
+`;
