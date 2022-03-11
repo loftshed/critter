@@ -58,7 +58,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       });
   };
 
-  // likes a tweet
+  // toggles liking a tweet
   const toggleLikeTweet = (ev) => {
     ev.stopPropagation();
     // console.log("Liking a tweet");
@@ -83,6 +83,34 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       });
   };
 
+  // toggles retweeting a tweet
+  // (it works, but then the page crashes on the next profile load)
+  // so maybe it doesn't work
+  // but why?????
+  // ???????????????????????
+  // ?
+  const toggleRetweet = (ev) => {
+    ev.stopPropagation();
+    // console.log("Liking a tweet");
+    fetch(`/api/tweet/${tweetSource.id}/retweet`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(
+        !tweetSource?.isRetweeted ? { retweet: true } : { retweet: false }
+      ),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        smolTrue ? updateFeed() : updateTweet();
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorStatus("error");
+      });
+  };
+
   //
 
   return (
@@ -95,22 +123,25 @@ const ActionBar = ({ viewType, mappedTweet }) => {
         }}
       >
         <ButtonContainer>
-          <ButtonAndNum>
+          <ButtonAndNum
+            onClick={(ev) => {
+              ev.stopPropagation();
+            }}
+          >
             <StyledIconButton
-              onClick={(ev) => {
-                ev.stopPropagation();
-              }}
               size={smolTrue ? "small" : "medium"}
               iconcolor="rgba(27, 149, 224, 0.5)"
             >
               <ReplyIcon fontSize={smolTrue ? "small" : "medium"} />
             </StyledIconButton>
           </ButtonAndNum>
-          <ButtonAndNum>
+          <ButtonAndNum
+            onClick={(ev) => {
+              ev.stopPropagation();
+            }}
+          >
             <StyledIconButton
-              onClick={(ev) => {
-                ev.stopPropagation();
-              }}
+              // onClick={toggleRetweet}
               size={smolTrue ? "small" : "medium"}
               iconcolor="rgba(23, 191, 99, 0.5)"
             >
@@ -135,7 +166,11 @@ const ActionBar = ({ viewType, mappedTweet }) => {
             </StyledIconButton>
             <Num>{tweetSource?.numLikes}</Num>
           </ButtonAndNum>
-          <ButtonAndNum>
+          <ButtonAndNum
+            onClick={(ev) => {
+              ev.stopPropagation();
+            }}
+          >
             <StyledIconButton
               onClick={(ev) => {
                 ev.stopPropagation();
