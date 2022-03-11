@@ -23,8 +23,14 @@ const BigTweet = () => {
         <TweetBody>
           {tweet.retweetFrom && (
             <Header style={{ color: `${COLORS.darkSubtext}` }}>
-              <RetweetIcon />
-              Retweeted by @{tweet.retweetFrom.handle}
+              <RetweetIcon style={{ marginRight: "2px" }} />
+              Retweeted by
+              <StyledLink
+                to={`/${tweet.retweetFrom.handle}`}
+                onClick={() => getUserProfile(tweet.retweetFrom.handle)}
+              >
+                @{tweet.retweetFrom.handle}
+              </StyledLink>
             </Header>
           )}
           <TweetHeader>
@@ -62,6 +68,7 @@ export default BigTweet;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  color: ${COLORS.darkSubtext};
 `;
 
 const Wrapper = styled.div`
@@ -145,7 +152,7 @@ const Image = styled.img`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   margin-bottom: -10px;
   font-size: 15px;
 `;
