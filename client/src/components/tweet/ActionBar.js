@@ -19,7 +19,7 @@ import { UserContext } from "../context/UserContext";
 const ActionBar = ({ viewType, mappedTweet }) => {
   const { tweet, setTweet, receiveFeedItemsFromServer } =
     useContext(TweetContext);
-  const { errorStatus, setErrorStatus } = useContext(UserContext);
+  const { setErrorStatus } = useContext(UserContext);
   const params = useParams();
 
   // if prop "viewType" contains the string "small", record that in const smolTrue which will be used throughout the actionbar to determine placement of buttons as well as some other tings
