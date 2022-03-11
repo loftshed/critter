@@ -59,7 +59,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
   };
 
   // likes a tweet
-  const likeTweet = (ev) => {
+  const toggleLikeTweet = (ev) => {
     ev.stopPropagation();
     // console.log("Liking a tweet");
     fetch(`/api/tweet/${tweetSource.id}/like`, {
@@ -67,7 +67,9 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ like: true }),
+      body: JSON.stringify(
+        !tweetSource?.isLiked ? { like: true } : { like: false }
+      ),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -81,26 +83,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
       });
   };
 
-  // unlikes a tweet
-  const unlikeTweet = (ev) => {
-    ev.stopPropagation();
-    // console.log("Unliking a tweet");
-    fetch(`/api/tweet/${tweetSource.id}/like`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ like: false }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        smolTrue ? updateFeed() : updateTweet();
-      })
-      .catch((error) => {
-        console.log(error);
-        setErrorStatus("error");
-      });
-  };
+  //
 
   return (
     <Wrapper>
@@ -137,7 +120,7 @@ const ActionBar = ({ viewType, mappedTweet }) => {
           </ButtonAndNum>
           <ButtonAndNum onClick={(ev) => ev.stopPropagation()}>
             <StyledIconButton
-              onClick={!tweetSource?.isLiked ? likeTweet : unlikeTweet}
+              onClick={toggleLikeTweet}
               size={smolTrue ? "small" : "medium"}
               iconcolor="rgba(224, 36, 94, 0.5)"
             >
