@@ -53,6 +53,7 @@ export const TweetProvider = ({ children }) => {
         tweetString,
         setTweetString,
         handlePostTweet,
+        handleAfterPostTweet,
         receiveFeedItemsFromServer,
         feedItems,
         tweet,

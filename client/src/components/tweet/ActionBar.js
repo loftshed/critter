@@ -17,9 +17,10 @@ import { UserContext } from "../context/UserContext";
 
 // ActionBar is used by both BigTweet.js and SmallTweet.js and holds functionality for interacting with a tweet
 const ActionBar = ({ viewType, mappedTweet }) => {
-  const { tweet, setTweet, receiveFeedItemsFromServer } =
+  const { tweet, setTweet, receiveFeedItemsFromServer, handleAfterPostTweet } =
     useContext(TweetContext);
-  const { setErrorStatus } = useContext(UserContext);
+  const { setErrorStatus, getUserProfile, currentUser } =
+    useContext(UserContext);
   const params = useParams();
 
   // if prop "viewType" contains the string "small", record that in const smolTrue which will be used throughout the actionbar to determine placement of buttons as well as some other tings
@@ -89,27 +90,27 @@ const ActionBar = ({ viewType, mappedTweet }) => {
   // but why?????
   // ???????????????????????
   // ?
-  const toggleRetweet = (ev) => {
-    ev.stopPropagation();
-    // console.log("Liking a tweet");
-    fetch(`/api/tweet/${tweetSource.id}/retweet`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(
-        !tweetSource?.isRetweeted ? { retweet: true } : { retweet: false }
-      ),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        smolTrue ? updateFeed() : updateTweet();
-      })
-      .catch((error) => {
-        console.log(error);
-        setErrorStatus("error");
-      });
-  };
+  // const toggleRetweet = (ev) => {
+  //   ev.stopPropagation();
+  //   // console.log("Liking a tweet");
+  //   fetch(`/api/tweet/${tweetSource.id}/retweet`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(
+  //       !tweetSource?.isRetweeted ? { retweet: true } : { retweet: false }
+  //     ),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       smolTrue ? updateFeed() : updateTweet();
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       setErrorStatus("error");
+  //     });
+  // };
 
   //
 
