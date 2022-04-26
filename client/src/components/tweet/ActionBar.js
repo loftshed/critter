@@ -112,8 +112,6 @@ const ActionBar = ({ viewType, mappedTweet }) => {
   //     });
   // };
 
-  //
-
   return (
     <Wrapper>
       <Bar
