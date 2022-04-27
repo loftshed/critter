@@ -4,6 +4,6 @@ A twitter clone produced as part of the Concordia Bootcamps Full-Stack Web Devel
 
 ## Higher quality demo available on YouTube https://youtu.be/iqowXUgzlaU
 
-<img src="./readme_images/02-twitter.gif" />
+![critter gif](/readme_images/02-twitter.gif)
 
 > ##### (The original requirements of this project are detailed in full in ORIGINAL_README.md)
